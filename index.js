@@ -19,7 +19,15 @@ app.get("/time", (request, response) =>{
   API FRAN ALONSO
 ##########################*/
 
-var   contacts = [{
+var contacts = []
+            
+app.get("/api/v1/biofuels-production", (request, response) =>{
+    
+ response.send(contacts);
+});
+
+app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
+    contacts = [{
                 name: "peter",
                 phone: "123456",
                 email: "peter@peter.com"
@@ -29,12 +37,7 @@ var   contacts = [{
                 email: "paul@paul.com"
             }];
             
-app.get("/api/v1/biofuels-production", (request, response) =>{
- request.send(contacts);
-});
-
-app.get("/api/v1/biofuels-production/loadInitialData", (request,respond)=>{
-    request.send(contacts);
+    response.send(contacts);
 });
 
 
