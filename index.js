@@ -31,7 +31,7 @@ app.get("/api/v1/biofuels-production/loadInitialData", (request,respond)=>{
                 phone: "3333",
                 email: "paul@paul.com"
             }];
-    request.send(contacts)
+    request.send(contacts);
 });
 
 
