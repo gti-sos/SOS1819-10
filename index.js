@@ -12,17 +12,17 @@ app.get("/time", (request, response) =>{
 });
 
 
-//##########################
-    API FRAN ALONSO
-//##########################
+/*##########################
+  API FRAN ALONSO
+##########################*/
 
-
+var contacts = []
 app.get("/api/v1/biofuels-production", (request, response) =>{
- res.send(contacts);
+ request.send(contacts);
 });
 
 app.get("/api/v1/biofuels-production/loadInitialData", (req,res)=>{
-    var contacts = [{
+    contacts = [{
                 name: "peter",
                 phone: "123456",
                 email: "peter@peter.com"
