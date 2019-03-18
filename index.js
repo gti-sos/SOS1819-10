@@ -12,11 +12,28 @@ app.get("/time", (request, response) =>{
 });
 
 
+//##########################
+    API FRAN ALONSO
+//##########################
+
 
 app.get("/api/v1/biofuels-production", (request, response) =>{
-   
-    response.send(new Date());
+ res.send(contacts);
 });
+
+app.get("/api/v1/biofuels-production/loadInitialData", (req,res)=>{
+    var contacts = [{
+                name: "peter",
+                phone: "123456",
+                email: "peter@peter.com"
+            }, {
+                name: "paul",
+                phone: "3333",
+                email: "paul@paul.com"
+            }];
+                
+});
+
 
 app.listen(port, () =>{
     console.log("magic is happening"+port);
