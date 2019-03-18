@@ -21,7 +21,7 @@ app.get("/api/v1/biofuels-production", (request, response) =>{
  request.send(contacts);
 });
 
-app.get("/api/v1/biofuels-production/loadInitialData", (req,res)=>{
+app.get("/api/v1/biofuels-production/loadInitialData", (request,respond)=>{
     contacts = [{
                 name: "peter",
                 phone: "123456",
@@ -31,7 +31,7 @@ app.get("/api/v1/biofuels-production/loadInitialData", (req,res)=>{
                 phone: "3333",
                 email: "paul@paul.com"
             }];
-                
+    request.send(contacts)
 });
 
 
