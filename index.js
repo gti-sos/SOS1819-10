@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 var express= require("express");
-=======
-var express = require("express");
->>>>>>> be4a0ff8249ae0c390d6ca2d7165fe2f33ebe099
+
 var bodyParser = require("body-parser");
 
 var app = express();
@@ -21,38 +19,6 @@ app.listen(port,()=>{
 //-------- api j-carlos--------
 //*****************************
 
-<<<<<<< HEAD
-
-/*##########################
-  API FRAN ALONSO
-##########################*/
-
-var contacts = []
-            
-app.get("/api/v1/biofuels-production", (request, response) =>{
-    
- response.send(contacts);
-});
-
-app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
-    contacts = [{
-                name: "peter",
-                phone: "123456",
-                email: "peter@peter.com"
-            }, {
-                name: "paul",
-                phone: "3333",
-                email: "paul@paul.com"
-            }];
-            
-    response.send(contacts);
-});
-
-
-app.listen(port, () =>{
-    console.log("magic is happening"+port);
-});
-=======
 var eCarStatics =[{
     country: "Norway",
     year: "2015",
@@ -192,4 +158,34 @@ app.put("/api/v1/e-car-statics", (req, res) => {
 
     res.sendStatus(409);
 });
->>>>>>> be4a0ff8249ae0c390d6ca2d7165fe2f33ebe099
+
+
+/*##########################
+  API FRAN ALONSO
+##########################*/
+
+var contacts = []
+            
+app.get("/api/v1/biofuels-production", (request, response) =>{
+    
+ response.send(contacts);
+});
+
+app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
+    contacts = [{
+                name: "peter",
+                phone: "123456",
+                email: "peter@peter.com"
+            }, {
+                name: "paul",
+                phone: "3333",
+                email: "paul@paul.com"
+            }];
+            
+    response.send(contacts);
+});
+
+
+app.listen(port, () =>{
+    console.log("magic is happening"+port);
+});
