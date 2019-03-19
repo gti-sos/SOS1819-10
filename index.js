@@ -116,6 +116,10 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
 
     if (updated == false) {
         res.sendStatus(404);
+    }else{
+        
+        eCarStatics = updatedCarStatics2;
+        res.sendStatus(200);
     }
 
 });
