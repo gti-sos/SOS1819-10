@@ -188,3 +188,185 @@ app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
 app.listen(port, () =>{
     console.log("magic is happening"+port);
 });
+
+/*##########################
+-----Api Francisco Pardillo-
+##########################*/
+
+var express = require("express");
+
+var body = require("body-parser");
+
+var app = express();
+
+app.use(body.json());
+
+var port = process.env.PORT || 8080;
+
+var datos =[{}];
+
+//Carga de datos.
+
+app.post("/datos/loadInitialData", (req, res) => {
+
+    datos = [{
+        nombre_del_pais: "Albania",
+        año: "1960",
+        emisiones_de_co2: "0,05"
+        },{
+        nombre_del_pais: "Alemania",
+        año: "1991",
+        emisiones_de_co2: "11,62"
+        },{
+        nombre_del_pais: "España",
+        año: "1990",
+        emisiones_de_co2: "5,624"
+        }]
+        
+    if (datos.length > 0){
+        
+        res.send(201);
+    }
+    
+    else{
+        
+        res.send(400);
+    }
+});
+
+// GET a un conjunto
+
+app.get("/datos", (req, res) => {     
+    res.send(datos);
+});
+
+// POST de un recurso
+
+app.post("/datos", (req, res) => {
+    
+    var newData = req.body;
+    
+    datos.push(newData);
+    
+    res.sendStatus(201);
+});
+
+// DELETE a un conjunto
+
+app.delete("/datos", (req, res) => {
+    
+    datos = [];
+    
+    res.sendStatus(200);
+});
+
+// GET a un dato
+
+app.get("/datos/:nombre_del_pais", (req, res) => {
+    
+    var name = req.params.nombre_del_pais;
+    
+    var dato = datos.filter((c) => {
+        return c.nombre_del_pais == name;
+    })
+    
+    if (dato.length >= 1){
+        
+        res.send(dato[0]);
+    }
+    
+    else{
+        res.send(404);
+    }
+});
+
+// PUT a uno concreto
+
+app.put("/datos/:name", (req, res) => {
+    
+    var name = req.params.name;
+    
+    var act = req.body;
+    
+    var found = false;
+    
+    var lista = datos.map((c) => {
+        
+        if(c.nombre_del_pais == name){
+            
+            found = true;
+            
+            return act;
+        }
+        
+        else{
+            
+            return c;
+        }
+    })
+    
+    
+    if (found == false){
+        
+         res.send(404);
+    }
+    
+    else{
+        
+        datos = lista;
+        
+        res.send(200);
+    }
+});
+
+//DELETE a un dato
+
+app.delete("/datos/:nombre_del_pais", (req, res) => {
+    
+    var name = req.params.nombre_del_pais;
+    
+    var found = false;
+    
+    var lista = datos.filter((c) => {
+        
+        if (c.nombre_del_pais == name){
+            
+            found = true;
+        }
+        return c.nombre_del_pais != name;
+    })
+    
+    
+    if (found == false){
+        
+         res.send(404);
+    }
+    
+    else{
+        
+        datos = lista;
+        
+        res.send(200);
+    }
+});
+
+// POST a un recurso(error)
+
+app.post("/datos/:name", (req, res) => {
+    
+    res.sendStatus(405);
+});
+
+// PUT al conjunto(error)
+
+app.put("/datos", (req, res) => {
+    
+    res.sendStatus(405);
+});
+
+app.listen(port, () => {
+    console.log("Super server ready on port " + port);
+});
+
+//Fin api Francisco Pardillo
+//---------------------------
