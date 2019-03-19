@@ -4,6 +4,7 @@ var express= require("express");
 var bodyParser = require("body-parser");
 
 var app = express();
+
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
@@ -158,33 +159,145 @@ app.put("/api/v1/e-car-statics", (req, res) => {
     res.sendStatus(409);
 });
 
-
 /*##########################
   API FRAN ALONSO
 ##########################*/
 
-var contacts = []
-            
-app.get("/api/v1/biofuels-production", (request, response) =>{
-    
- response.send(contacts);
-});
+var biofuels = []
+
 
 app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
-    contacts = [{
-                name: "peter",
-                phone: "123456",
-                email: "peter@peter.com"
-            }, {
-                name: "paul",
-                phone: "3333",
-                email: "paul@paul.com"
-            }];
-            
-    response.send(contacts);
+    biofuels =[{
+    country: "China",
+    year: "2003",
+    ethanolFuel: 14,
+    dryNaturalGas : 1211,
+    biodiesel : 0.1
+},{
+    country: "Brazil",
+    year: "2004",
+    ethanolFuel: 252,
+    dryNaturalGas : 341,
+    biodiesel : 0
+}, {
+    country: "Canada",
+    year: "2005",
+    ethanolFuel: 4.4,
+    dryNaturalGas : 6561,
+    biodiesel : 0
+}];
+    
+    
+    response.send(biofuels);
+});
+// GET al conjunto de recursos            
+app.get("/api/v1/biofuels-production", (request, response) =>{
+    
+ response.send(biofuels);
 });
 
+//POST al conjunto de recursos
 
-app.listen(port, () =>{
-    console.log("magic is happening"+port);
+app.post("/api/v1/biofuels-production", (request, response) =>{
+    
+    var newBiofuel = request.body;
+    
+    biofuels.push(newBiofuel);
+    
+    response.sendStatus(201);
+});
+
+//DELETE al conjunto de recursos
+
+app.delete("/api/v1/biofuels-production", (request, response) =>{
+    
+    biofuels = []
+    response.sendStatus(200);
+});
+
+//GET a un recurso concreto
+
+app.get("/api/v1/biofuels-production/:country", (request, response) =>{
+
+    var country = request.params.country;
+    
+    var filteredBiofuels = biofuels.filter((n) => {
+        
+        return n.country == country;
+    });
+    
+    if (filteredBiofuels.length >= 1){
+        
+        response.send(filteredBiofuels[0]);
+        
+    }else{
+        
+        response.sendStatus(404);
+        
+    }
+    
+
+    //response.sendStatus(200)
+});
+
+//PUT a un recurso concreto
+
+app.put("/api/v1/biofuels-production/:country", (request, response) =>{
+
+    var country = request.params.country;
+    var updatedBiofuel = request.body;
+    var found = false;
+    
+    var updatedBiofuels = biofuels.map((n) => {
+        
+        if (n.country == country){
+            
+            found = true;
+            return updatedBiofuel;
+            
+        }else{
+            
+            return n;
+            
+        }
+    
+    });
+    
+    
+    if (found == false){
+        
+        response.sendStatus(404);      
+    
+        
+    }else{
+        
+        biofuels = updatedBiofuels;
+        response.sendStatus(200);
+    }
+    
+    
+});
+
+// DELETE a un recurso concreto
+
+app.delete("/api/v1/biofuels-production/:country", (request,response)=>{
+
+    var country = request.params.country;
+    var found = false;
+
+    var updatedBiofuels = biofuels.filter((n) =>{
+        
+            if(n.country == country)  
+                found = true;
+        
+            return n.country != country;
+    });
+    
+    if (found == false){
+        response.sendStatus(404);
+    }else{
+        biofuels = updatedBiofuels;
+        response.sendStatus(200);
+    }
+
 });
