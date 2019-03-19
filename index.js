@@ -6,8 +6,6 @@ var bodyParser = require("body-parser");
 var app = express();
 app.use(bodyParser.json());
 
-app.use(bodyParser.json());
-
 var port = process.env.PORT || 8080;
 
 app.use("/",express.static(__dirname+"/public"));
@@ -15,6 +13,7 @@ app.use("/",express.static(__dirname+"/public"));
 app.listen(port,()=>{
     console.log("Magic is happening in port "+port);
 });
+
 //*****************************
 //-------- api j-carlos--------
 //*****************************
