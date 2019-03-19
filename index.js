@@ -477,9 +477,7 @@ app.put("/datos", (req, res) => {
     res.sendStatus(405);
 });
 
-app.listen(port, () => {
-    console.log("Super server ready on port " + port);
-});
+
 
 //Fin api Francisco Pardillo
 //---------------------------
