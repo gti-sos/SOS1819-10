@@ -163,6 +163,8 @@ app.put("/api/v1/e-car-statics", (req, res) => {
     res.sendStatus(409);
 });
 
+
+
 /*##########################
   API FRAN ALONSO
 ##########################*/
@@ -194,6 +196,8 @@ app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
     
     response.send(biofuels);
 });
+
+
 // GET al conjunto de recursos            
 app.get("/api/v1/biofuels-production", (request, response) =>{
     
@@ -305,6 +309,23 @@ app.delete("/api/v1/biofuels-production/:country", (request,response)=>{
     }
 
 });
+
+//POST a un recurso
+
+app.post("/api/v1/biofuels-production/:country", (request, response) =>{
+    
+    response.sendStatus(405);
+});
+
+// PUT al conjunto de recursos
+
+app.put("/api/v1/biofuels-production/", (req, res) => {
+    
+    res.sendStatus(405);
+});
+
+
+//
 
 /*##########################
 -----Api Francisco Pardillo-
