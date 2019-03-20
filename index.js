@@ -331,15 +331,6 @@ app.put("/api/v1/biofuels-production/", (req, res) => {
 -----Api Francisco Pardillo-
 ##########################*/
 
-var express = require("express");
-
-var body = require("body-parser");
-
-var app = express();
-
-app.use(body.json());
-
-var port = process.env.PORT || 8080;
 
 var datos =[{}];
 
