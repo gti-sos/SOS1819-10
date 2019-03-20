@@ -345,7 +345,7 @@ var datos =[{}];
 
 //Carga de datos.
 
-app.post("/datos/loadInitialData", (req, res) => {
+app.get("/api/v1/issue-dioxid/loadInitialData", (req, res) => {
 
     datos = [{
         nombre_del_pais: "Albania",
@@ -374,13 +374,13 @@ app.post("/datos/loadInitialData", (req, res) => {
 
 // GET a un conjunto
 
-app.get("/datos", (req, res) => {     
+app.get("/api/v1/issue-dioxid", (req, res) => {     
     res.send(datos);
 });
 
 // POST de un recurso
 
-app.post("/datos", (req, res) => {
+app.post("/api/v1/issue-dioxid", (req, res) => {
     
     var newData = req.body;
     
@@ -391,7 +391,7 @@ app.post("/datos", (req, res) => {
 
 // DELETE a un conjunto
 
-app.delete("/datos", (req, res) => {
+app.delete("/api/v1/issue-dioxid", (req, res) => {
     
     datos = [];
     
@@ -400,7 +400,7 @@ app.delete("/datos", (req, res) => {
 
 // GET a un dato
 
-app.get("/datos/:nombre_del_pais", (req, res) => {
+app.get("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
     
     var name = req.params.nombre_del_pais;
     
@@ -420,7 +420,7 @@ app.get("/datos/:nombre_del_pais", (req, res) => {
 
 // PUT a uno concreto
 
-app.put("/datos/:name", (req, res) => {
+app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     
     var name = req.params.name;
     
@@ -459,7 +459,7 @@ app.put("/datos/:name", (req, res) => {
 
 //DELETE a un dato
 
-app.delete("/datos/:nombre_del_pais", (req, res) => {
+app.delete("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
     
     var name = req.params.nombre_del_pais;
     
@@ -490,19 +490,14 @@ app.delete("/datos/:nombre_del_pais", (req, res) => {
 
 // POST a un recurso(error)
 
-app.post("/datos/:name", (req, res) => {
+app.post("/api/v1/issue-dioxid/:name", (req, res) => {
     
     res.sendStatus(405);
 });
 
 // PUT al conjunto(error)
 
-app.put("/datos", (req, res) => {
+app.put("/api/v1/issue-dioxid", (req, res) => {
     
     res.sendStatus(405);
 });
-
-
-
-//Fin api Francisco Pardillo
-//---------------------------
