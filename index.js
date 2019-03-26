@@ -15,10 +15,30 @@ app.listen(port,()=>{
     console.log("Magic is happening in port "+port);
 });
 
+const MongoClient = require("mongodb").MongoClient;
+
 //*****************************
-//-------- api j-carlos--------
+//--José Carlos García Pavón--
 //*****************************
 
+
+
+
+const urijcgp = "mongodb+srv://test:test@sos1819-xwvxt.mongodb.net/sos1819?retryWrites=true";
+const clientjcgp = new MongoClient(urijcgp, { useNewUrlParser: true });
+
+var ecarstatics;
+
+clientjcgp.connect(err => {
+    if (err) {
+        console.error("Error accesing DB " + err);
+        process.exit(1);
+    }
+    ecarstatics = clientjcgp.db("sos1819").collection("e-car-statics");
+    console.log("Conected!")
+});
+
+/*
 var eCarStatics =[{
     country: "Norway",
     year: "2015",
@@ -38,19 +58,29 @@ var eCarStatics =[{
     rankingPosition : 1,
     existsVehicles : 43432
 }];
+*/
 
 // GET /api/v1/e-car-statics/loadInitialData
 
+/*
 app.get("/api/v1/e-car-statics/loadInitialData", (req,res)=>{
     
     res.send(eCarStatics);
     res.sendStatus(200);
 });
+*/
 
-// GET /api/v1/e-car-statics
+//  GET /e-car-statics
 
 app.get("/api/v1/e-car-statics", (req,res)=>{
-    res.send(eCarStatics);
+    
+    ecarstatics.find({}).toArray((err, ecarstaticsArray)=>{
+        if(err)
+            console.log("Error: " + err);
+            
+        res.send(ecarstaticsArray);  
+    });
+    
 });
 
 
