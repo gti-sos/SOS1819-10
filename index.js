@@ -34,7 +34,7 @@ clientjcgp.connect(err => {
         process.exit(1);
     }
     ecarstatics = clientjcgp.db("sos1819").collection("e-car-statics");
-    console.log("Conected!")
+    console.log("Conected!");
 });
 
 //Get /api/v1/e-car-statics/docs
@@ -169,8 +169,8 @@ app.get("/api/v1/e-car-statics/:year", (req, res) => {
             res.sendStatus(404);
         }
 
+    });
 });
-
 
 // PUT /api/v1/e-car-statics/2015
 
@@ -188,6 +188,7 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
         if(err){
             console.log("Error! :"+err);
         }
+        
         if(filteredCarStatics.length == 0){
             res.sendStatus(400);
         }
@@ -231,34 +232,68 @@ app.put("/api/v1/e-car-statics", (req, res) => {
   API FRAN ALONSO
 ##########################*/
 
-var biofuels = []
+const urifjap = "mongodb+srv://test:test@sos-iwqc4.mongodb.net/sos1819?retryWrites=true";
+const clientfjap = new MongoClient(urifjap, { useNewUrlParser: true });
 
 
-app.get("/api/v1/biofuels-production/loadInitialData", (request,response)=>{
-    biofuels =[{
-    country: "China",
-    year: "2003",
-    ethanolFuel: 14,
-    dryNaturalGas : 1211,
-    biodiesel : 0.1
-},{
-    country: "Brazil",
-    year: "2004",
-    ethanolFuel: 252,
-    dryNaturalGas : 341,
-    biodiesel : 0
-}, {
-    country: "Canada",
-    year: "2005",
-    ethanolFuel: 4.4,
-    dryNaturalGas : 6561,
-    biodiesel : 0
-}];
-    
-    
-    response.send(biofuels);
+var biofuels;
+
+clientfjap.connect(err => {
+    if (err) {
+        console.error("Error accesing DB " + err);
+        process.exit(1);
+    }
+    biofuels = clientfjap.db("sos1819").collection("biofuels-production");
 });
 
+
+
+app.get("/api/v1/biofuels-production/loadInitialData", (req, res) => {
+    var newBiofuels = [{
+        country: "China",
+        year: "2003",
+        ethanolFuel: 14,
+        dryNaturalGas: 1211,
+        biodiesel: 0.1
+    }, {
+        country: "Brazil",
+        year: "2004",
+        ethanolFuel: 252,
+        dryNaturalGas: 341,
+        biodiesel: 0
+    }, {
+        country: "Canada",
+        year: "2005",
+        ethanolFuel: 4.4,
+        dryNaturalGas: 6561,
+        biodiesel: 0.2
+    }, {
+        country: "Brazil",
+        year: "2006",
+        ethanolFuel: 306,
+        dryNaturalGas: 349,
+        biodiesel: 0.2
+    }, {
+        country: "Bulgaria",
+        year: "2006",
+        ethanolFuel: 0,
+        dryNaturalGas: 0,
+        biodiesel: 0.1
+    }];
+
+    biofuels.find({}).toArray((err, biofuelsArray) => {
+
+        if (biofuelsArray.length == 0) {
+            console.log("Empty db");
+            biofuels.insertMany(newBiofuels);
+            res.sendStatus(200);
+        }
+        else {
+            res.sendStatus(409);
+        }
+    });
+
+});
 
 // GET al conjunto de recursos            
 app.get("/api/v1/biofuels-production", (request, response) =>{
@@ -279,10 +314,9 @@ app.post("/api/v1/biofuels-production", (request, response) =>{
 
 //DELETE al conjunto de recursos
 
-app.delete("/api/v1/biofuels-production", (request, response) =>{
-    
-    biofuels = []
-    response.sendStatus(200);
+app.delete("/api/v1/biofuels-production", (req, res) => {
+    biofuels.remove();
+    res.sendStatus(200);
 });
 
 //GET a un recurso concreto
@@ -312,40 +346,45 @@ app.get("/api/v1/biofuels-production/:country", (request, response) =>{
 
 //PUT a un recurso concreto
 
-app.put("/api/v1/biofuels-production/:country", (request, response) =>{
+app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
 
-    var country = request.params.country;
-    var updatedBiofuel = request.body;
-    var found = false;
+    var year = req.params.year;
+    var country = req.params.country;
+    var reqBiofuels = req.body;
     
-    var updatedBiofuels = biofuels.map((n) => {
-        
-        if (n.country == country){
-            
-            found = true;
-            return updatedBiofuel;
-            
-        }else{
-            
-            return n;
-            
-        }
-    
-    });
-    
-    
-    if (found == false){
-        
-        response.sendStatus(404);      
-    
+/*if (!reqBiofuels.id || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
+
+        res.sendStatus(400);
         
     }else{
+  */      
+    
+        biofuels.find({ "country": country, "year": year }).toArray((err, biofuelsArray) => {
+
+        if (biofuelsArray.length == 0) {
+            console.log("No existe el recurso del pais: " + country);
+
+            res.sendStatus(404);
+        } else {
+            
+            
+           if( reqBiofuels.length == 0){
+                res.sendStatus(400);
+                
+            }else{
+                biofuels.replaceOne({ "country": country, "year":year}, reqBiofuels);
+                 res.sendStatus(200);
+            }
+            
+            
+        }
         
-        biofuels = updatedBiofuels;
-        response.sendStatus(200);
-    }
-    
-    
+       
+
+            
+            });
+   //}
+
 });
 
 // DELETE a un recurso concreto
@@ -603,5 +642,4 @@ app.post("/api/v1/issue-dioxid/:name", (req, res) => {
 app.put("/api/v1/issue-dioxid", (req, res) => {
     
     res.sendStatus(405);
-});
 });
