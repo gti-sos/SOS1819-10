@@ -338,23 +338,22 @@ var datos =[{}];
 
 app.get("/api/v1/issue-dioxid/loadInitialData", (req, res) => {
 
-    datos = [{
-        nombre_del_pais: "Albania",
-        año: "1960",
-        emisiones_de_co2: "0,05"
-        },{
-        nombre_del_pais: "Alemania",
-        año: "1991",
-        emisiones_de_co2: "11,62"
-        },{
-        nombre_del_pais: "España",
-        año: "1990",
-        emisiones_de_co2: "5,624"
-        }]
+    if (datos.length == 0){
+        datos = [{
+            nombre_del_pais: "Albania",
+            año: "1960",
+            emisiones_de_co2: "0,05"
+            },{
+            nombre_del_pais: "Alemania",
+            año: "1991",
+            emisiones_de_co2: "11,62"
+            },{
+            nombre_del_pais: "España",
+            año: "1990",
+            emisiones_de_co2: "5,624"
+            }]
         
-    if (datos.length > 0){
-        
-        res.send(201);
+            res.send(201);
     }
     
     else{
