@@ -11,65 +11,141 @@ var port = process.env.PORT || 8080;
 
 app.use("/",express.static(__dirname+"/public"));
 
-app.listen(port,()=>{
-    console.log("Magic is happening in port "+port);
+app.listen(port, () => {
+    console.log("Magic is happening in port " + port);
+
 });
 
+const MongoClient = require("mongodb").MongoClient;
+
 //*****************************
-//-------- api j-carlos--------
+//--José Carlos García Pavón--
 //*****************************
 
-var eCarStatics =[{
-    country: "Norway",
-    year: "2015",
-    marketPart : 22.39,
-    rankingPosition : 1,
-    existsVehicles : 84401
-},{
-    country: "Holand",
-    year: "2015",
-    marketPart : 9.74,
-    rankingPosition : 2,
-    existsVehicles : 88991
-}, {
-    country: "Norway",
-    year: "2014",
-    marketPart : 13.84,
-    rankingPosition : 1,
-    existsVehicles : 43432
-}];
+
+const urijcgp = "mongodb+srv://test:test@sos1819-xwvxt.mongodb.net/sos1819?retryWrites=true";
+const clientjcgp = new MongoClient(urijcgp, { useNewUrlParser: true });
+
+var ecarstatics;
+
+clientjcgp.connect(err => {
+    if (err) {
+        console.error("Error accesing DB " + err);
+        process.exit(1);
+    }
+    ecarstatics = clientjcgp.db("sos1819").collection("e-car-statics");
+    console.log("Conected!")
+});
+
+//Get /api/v1/e-car-statics/docs
+
+app.get("/api/v1/e-car-statics/docs", (req,res) =>{
+    res.redirect("/api/v1/e-car-statics/docs");
+});
 
 // GET /api/v1/e-car-statics/loadInitialData
 
+
 app.get("/api/v1/e-car-statics/loadInitialData", (req,res)=>{
     
-    res.send(eCarStatics);
-    res.sendStatus(200);
+    var newecarstatics = [{
+        country: "Norway",
+        year: "2015",
+        marketPart : 22.39,
+        rankingPosition : 1,
+        existsVehicles : 84401
+    }, {
+        country: "Norway",
+        year: "2014",
+        marketPart : 13.84,
+        rankingPosition : 1,
+        existsVehicles : 43432
+    }, {
+        country: "Norway",
+        year: "2013",
+        marketPart : 6.1,
+        rankingPosition : 1,
+        existsVehicles : 20486
+    }, {
+        country: "Holand",
+        year: "2015",
+        marketPart : 9.74,
+        rankingPosition : 2,
+        existsVehicles : 88991
+    }, {
+        country: "Holand",
+        year: "2014",
+        marketPart : 3.87,
+        rankingPosition : 2,
+        existsVehicles : 45020
+    }];
+    
+    ecarstatics.find({}).toArray((err, eCarStaticsArray) => {
+        
+        if(eCarStaticsArray.length == 0){
+            console.log("Empty db");
+            ecarstatics.insert(newecarstatics);
+            res.sendStatus(200);
+        }
+        else {
+            console.log("Err : "+err);
+            res.sendStatus(409);
+        }
+    });
 });
 
-// GET /api/v1/e-car-statics
+
+//  GET /api/v1/e-car-statics
 
 app.get("/api/v1/e-car-statics", (req,res)=>{
-    res.send(eCarStatics);
+    
+    ecarstatics.find({}).toArray((err, ecarstaticsArray)=>{
+        if(err)
+            console.log("Error: " + err);
+            
+        res.send(ecarstaticsArray);  
+    });
+    
 });
 
 
-// POST /api/v1/e-car-statics
+//   POST /api/v1/e-car-statics
 
 app.post("/api/v1/e-car-statics", (req,res)=>{
     
-    var newECarStatics = req.body;
-    
-    eCarStatics.push(newECarStatics);
-    
-    res.sendStatus(201);
+    var newCarStatics = req.body;
+
+    if (newCarStatics.length > 5 || !newCarStatics.country || !newCarStatics.year || !newCarStatics.marketPart ||
+        !newCarStatics.rankingPosition || !newCarStatics.existsVehicles) {
+
+        res.sendStatus(400);
+        return;
+    }
+
+    ecarstatics.find({ "country": newCarStatics["country"], "year": newCarStatics["year"] }).toArray((err, ecarstaticsArray) => {
+        if (err) {
+            console.error("Error accesing DB");
+            res.sendStatus(500);
+            return;
+        }
+
+        if (ecarstaticsArray.length > 0) {
+            res.sendStatus(409);
+            return;
+        }
+        else {
+            ecarstatics.insert(newCarStatics);
+            res.sendStatus(201);
+        }
+
+    });
 });
 
 // DELETE /api/v1/e-car-statics
 
 app.delete("/api/v1/e-car-statics", (req, res) => {
 
-    eCarStatics = [];
+    ecarstatics.remove({});
 
     res.sendStatus(200);
 });
@@ -80,16 +156,18 @@ app.get("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
 
-    var filteredCarStatics = eCarStatics.filter((c) => {
-        return c.year == year;
-    });
-
-    if (filteredCarStatics.length >= 1) {
-        res.send(filteredCarStatics);
-    }
-    else {
-        res.sendStatus(404);
-    }
+    ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) =>{
+        if(err){
+            console.log("Error: "+err);
+            res.sendStatus(500);
+            return;
+        }
+        if (filteredCarStatics.length >= 1) {
+            res.send(filteredCarStatics);
+        }
+        else {
+            res.sendStatus(404);
+        }
 
 });
 
@@ -129,23 +207,10 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
 app.delete("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
-    var found = false;
-
-    var updatedYear = eCarStatics.filter((c) => {
-
-        if (c.year == year)
-            found = true;
-
-        return c.year != year;
-    });
-
-    if (found == false) {
-        res.sendStatus(404);
-    }
-    else {
-        eCarStatics = updatedYear;
-        res.sendStatus(200);
-    }
+    
+    ecarstatics.remove({ "year":year});
+    
+    res.sendStatus(200);
 
 });
 
@@ -153,14 +218,14 @@ app.delete("/api/v1/e-car-statics/:year", (req, res) => {
 
 app.post("/api/v1/e-car-statics/:year", (req, res) => {
 
-    res.sendStatus(409);
+    res.sendStatus(405);
 });
 
 // PUT /api/v1/e-car-statics
 
 app.put("/api/v1/e-car-statics", (req, res) => {
 
-    res.sendStatus(409);
+    res.sendStatus(405);
 });
 
 
@@ -490,4 +555,6 @@ app.post("/api/v1/issue-dioxid/:name", (req, res) => {
 app.put("/api/v1/issue-dioxid", (req, res) => {
     
     res.sendStatus(405);
+});
+
 });
