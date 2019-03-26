@@ -22,8 +22,6 @@ const MongoClient = require("mongodb").MongoClient;
 //*****************************
 
 
-
-
 const urijcgp = "mongodb+srv://test:test@sos1819-xwvxt.mongodb.net/sos1819?retryWrites=true";
 const clientjcgp = new MongoClient(urijcgp, { useNewUrlParser: true });
 
@@ -38,37 +36,51 @@ clientjcgp.connect(err => {
     console.log("Conected!")
 });
 
-/*
-var eCarStatics =[{
-    country: "Norway",
-    year: "2015",
-    marketPart : 22.39,
-    rankingPosition : 1,
-    existsVehicles : 84401
-},{
-    country: "Holand",
-    year: "2015",
-    marketPart : 9.74,
-    rankingPosition : 2,
-    existsVehicles : 88991
-}, {
-    country: "Norway",
-    year: "2014",
-    marketPart : 13.84,
-    rankingPosition : 1,
-    existsVehicles : 43432
-}];
-*/
+//Get /api/v1/e-car-statics/docs
+
+app.get("/api/v1/uefa-club-rankings/docs", (req,res) =>{
+    res.redirect("/api/v1/e-car-statics/docs");
+});
 
 // GET /api/v1/e-car-statics/loadInitialData
 
-/*
+
 app.get("/api/v1/e-car-statics/loadInitialData", (req,res)=>{
     
-    res.send(eCarStatics);
-    res.sendStatus(200);
+    var newecarstatics = [{
+        country: "Norway",
+        year: "2015",
+        marketPart : 22.39,
+        rankingPosition : 1,
+        existsVehicles : 84401
+    }, {
+        country: "Holand",
+        year: "2015",
+        marketPart : 9.74,
+        rankingPosition : 2,
+        existsVehicles : 88991
+    }, {
+        country: "Norway",
+        year: "2014",
+        marketPart : 13.84,
+        rankingPosition : 1,
+        existsVehicles : 43432
+    }];
+    
+    ecarstatics.find({}).toArray((err, eCarStaticsArray) => {
+        
+        if(eCarStaticsArray.length == 0){
+            console.log("Empty db");
+            ecarstatics.insert(newecarstatics);
+            res.sendStatus(200);
+        }
+        else {
+            console.log("Err : "+err);
+            res.sendStatus(409);
+        }
+    });
 });
-*/
+
 
 //  GET /e-car-statics
 
