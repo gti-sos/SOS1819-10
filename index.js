@@ -392,43 +392,80 @@ app.put("/api/v1/biofuels-production/", (req, res) => {
 /*##########################
 -----Api Francisco Pardillo-
 ##########################*/
+var datos;
 
+const uri = "mongodb+srv://usuario1:1234@sos-fraparcas-g12k3.mongodb.net/sos-fraparcas?retryWrites=true";
 
-var datos =[{}];
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  datos = client.db("sos1819-10").collection("issues-dioxids");
+});
+
 
 //Carga de datos.
 
 app.get("/api/v1/issue-dioxid/loadInitialData", (req, res) => {
-
-    datos = [{
+    
+    datos.insert({
         nombre_del_pais: "Albania",
         año: "1960",
         emisiones_de_co2: "0,05"
-        },{
+        });
+    
+    datos.insert({
         nombre_del_pais: "Alemania",
         año: "1991",
         emisiones_de_co2: "11,62"
-        },{
+        });
+    
+    datos.insert({
         nombre_del_pais: "España",
         año: "1990",
         emisiones_de_co2: "5,624"
-        }]
-        
-    if (datos.length > 0){
-        
-        res.send(201);
-    }
+        });
     
-    else{
+    datos.insert({
+        nombre_del_pais: "Angola",
+        año: "1995",
+        emisiones_de_co2: "0,769"
+        });
+    
+    datos.insert({
+        nombre_del_pais: "Bahamas",
+        año: "1992",
+        emisiones_de_co2: "6,738"
+        });
         
-        res.send(400);
-    }
+        
+    res.send(201);
+
+});
+
+//Portal de POSTMAN.
+
+app.get("/api/v1/issue-dioxid/docs", (req, res) => {     
+    
+    res.redirect("https://documenter.getpostman.com/view/6918673/S17tRoCL");
+    
 });
 
 // GET a un conjunto
 
 app.get("/api/v1/issue-dioxid", (req, res) => {     
-    res.send(datos);
+    
+    datos.find({}).toArray((err, datosArray) => {
+       
+       if(err){
+           
+           console.log("Error " + err);
+       }
+       else{
+           
+           res.send(datosArray);
+           
+       }
+        
+    });
 });
 
 // POST de un recurso
@@ -437,17 +474,37 @@ app.post("/api/v1/issue-dioxid", (req, res) => {
     
     var newData = req.body;
     
-    datos.push(newData);
+    datos.find({"nombre_del_pais": newData.nombre_del_pais}).toArray((err, datosArray) => {
+       
+       if(err){
+           
+           res.sendStatus(409);
+       }
+       else{
+           
+           if(datosArray.length > 0){
+       
+                res.sendStatus(409);
+           } 
+           else{
+        
+                datos.insert(newData);
     
-    res.sendStatus(201);
+                res.sendStatus(201);
+       
+        }
+           
+       }
+        
+    });
 });
 
 // DELETE a un conjunto
 
 app.delete("/api/v1/issue-dioxid", (req, res) => {
     
-    datos = [];
-    
+    datos.remove({});
+
     res.sendStatus(200);
 });
 
@@ -457,18 +514,26 @@ app.get("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
     
     var name = req.params.nombre_del_pais;
     
-    var dato = datos.filter((c) => {
-        return c.nombre_del_pais == name;
-    })
-    
-    if (dato.length >= 1){
+    datos.find({"nombre_del_pais":name}).toArray((err, dato) => {
+       
+       if(err){
+           
+           res.sendStatus(404);
+       }
+       else{
+           
+           if(dato.length > 0){
+                
+                res.send(dato);
+           }
+           else{
+               
+               res.sendStatus(404);
+           }
+           
+       }
         
-        res.send(dato[0]);
-    }
-    
-    else{
-        res.send(404);
-    }
+    });
 });
 
 // PUT a uno concreto
@@ -479,35 +544,22 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     
     var act = req.body;
     
-    var found = false;
+    var id = act._id;
     
-    var lista = datos.map((c) => {
+    datos.find({"_id": id}).toArray((err, dato) =>{
         
-        if(c.nombre_del_pais == name){
+        if(err){
             
-            found = true;
+            res.sendStatus(400);
             
-            return act;
         }
-        
         else{
-            
-            return c;
+                
+            datos.update({"nombre_del_pais": name}, {act});
+   
+            res.sendStatus(200);
         }
-    })
-    
-    
-    if (found == false){
-        
-         res.send(404);
-    }
-    
-    else{
-        
-        datos = lista;
-        
-        res.send(200);
-    }
+    });
 });
 
 //DELETE a un dato
@@ -516,29 +568,27 @@ app.delete("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
     
     var name = req.params.nombre_del_pais;
     
-    var found = false;
-    
-    var lista = datos.filter((c) => {
+    datos.find({"nombre_del_pais": name}).toArray((err, dato) =>{
         
-        if (c.nombre_del_pais == name){
+        if(err){
             
-            found = true;
+            res.sendStatus(404);
+            
         }
-        return c.nombre_del_pais != name;
-    })
+        else{
+           
+           if(dato.length > 0){
+                
+                datos.remove({"nombre_del_pais":name});
     
-    
-    if (found == false){
-        
-         res.send(404);
-    }
-    
-    else{
-        
-        datos = lista;
-        
-        res.send(200);
-    }
+                res.sendStatus(200);
+           }
+           else{
+               
+               res.sendStatus(404);
+           }
+        }
+    });
 });
 
 // POST a un recurso(error)
@@ -554,5 +604,4 @@ app.put("/api/v1/issue-dioxid", (req, res) => {
     
     res.sendStatus(405);
 });
-
 });
