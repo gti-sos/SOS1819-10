@@ -178,27 +178,24 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
     var updatedCarStatics = req.body;
-    var updated = false;
-
-    var updatedCarStatics2 = eCarStatics.map((c) => {
-
-        if (c.year == year) {
-            updated = true;
-            return updatedCarStatics;
-        }
-        else {
-            return c;
-        }
-
-    });
-
-    if (updated == false) {
-        res.sendStatus(404);
-    }else{
-        
-        eCarStatics = updatedCarStatics2;
-        res.sendStatus(200);
+    
+    if(updatedCarStatics.year != year){
+        res.sendStatus(400);
+        return;
     }
+    
+    ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) => {
+        if(err){
+            console.log("Error! :"+err);
+        }
+        if(filteredCarStatics.length == 0){
+            res.sendStatus(400);
+        }
+        else{
+            ecarstatics.update({ "year": year}, { $set: updatedCarStatics});
+            res.sendStatus(200);
+        }
+    });
 
 });
 
