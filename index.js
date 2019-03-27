@@ -39,7 +39,7 @@ clientjcgp.connect(err => {
 //Get /api/v1/e-car-statics/docs
 
 app.get("/api/v1/e-car-statics/docs", (req, res) => {
-    res.redirect("/api/v1/e-car-statics/docs");
+    res.redirect("https://documenter.getpostman.com/view/7062681/S17us6hd");
 });
 
 // GET /api/v1/e-car-statics/loadInitialData
