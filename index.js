@@ -352,12 +352,12 @@ app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
     var country = req.params.country;
     var reqBiofuels = req.body;
 
-    /*if (!reqBiofuels.id || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
+    if (!reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
 
             res.sendStatus(400);
             
-        }else{
-      */
+    }
+      
 
     biofuels.find({ "country": country, "year": year }).toArray((err, biofuelsArray) => {
 
@@ -385,7 +385,7 @@ app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
 
 
     });
-    //}
+    
 
 });
 
@@ -428,6 +428,10 @@ app.put("/api/v1/biofuels-production/", (req, res) => {
     res.sendStatus(405);
 });
 
+// GET /api/v1/gas-increases/docs/
+app.get("/api/v1/gas-increases/docs", (req,res)=>{
+    res.redirect("url postman");
+});
 
 //
 
