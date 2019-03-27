@@ -603,28 +603,17 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     var name = req.params.name;
 
     var act = req.body;
-
-    datos.find({ "nombre_del_pais": act.nombre_del_pais }).toArray((err, dato) => {
-
-        if (err) {
-
-            res.sendStatus(400);
-
-        }
-        else {
             
-            if(dato["nombre_del_pais"] != name){
+    if(act.nombre_del_pais != name){
                 
-                res.sendStatus(400);
-            }
-            else{
+        res.sendStatus(400);
+    }
+    else{
 
-                datos.replaceOne({ "nombre_del_pais": name }, { act });
+        datos.replaceOne({ "nombre_del_pais": name }, { act });
 
-                res.sendStatus(200);
-            }
-        }
-    });
+        res.sendStatus(200);
+    }
 });
 
 //DELETE a un dato
