@@ -580,7 +580,7 @@ app.get("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
 
             if (dato.length > 0) {
 
-                res.send(dato);
+                res.send(dato[0]);
             }
             else {
 
