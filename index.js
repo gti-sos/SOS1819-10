@@ -1,5 +1,4 @@
-
-var express= require("express");
+var express = require("express");
 
 var bodyParser = require("body-parser");
 
@@ -9,7 +8,7 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.use("/",express.static(__dirname+"/public"));
+app.use("/", express.static(__dirname + "/public"));
 
 app.listen(port, () => {
     console.log("Magic is happening in port " + port);
@@ -39,56 +38,56 @@ clientjcgp.connect(err => {
 
 //Get /api/v1/e-car-statics/docs
 
-app.get("/api/v1/e-car-statics/docs", (req,res) =>{
+app.get("/api/v1/e-car-statics/docs", (req, res) => {
     res.redirect("/api/v1/e-car-statics/docs");
 });
 
 // GET /api/v1/e-car-statics/loadInitialData
 
 
-app.get("/api/v1/e-car-statics/loadInitialData", (req,res)=>{
-    
+app.get("/api/v1/e-car-statics/loadInitialData", (req, res) => {
+
     var newecarstatics = [{
         country: "Norway",
         year: "2015",
-        marketPart : 22.39,
-        rankingPosition : 1,
-        existsVehicles : 84401
+        marketPart: 22.39,
+        rankingPosition: 1,
+        existsVehicles: 84401
     }, {
         country: "Norway",
         year: "2014",
-        marketPart : 13.84,
-        rankingPosition : 1,
-        existsVehicles : 43432
+        marketPart: 13.84,
+        rankingPosition: 1,
+        existsVehicles: 43432
     }, {
         country: "Norway",
         year: "2013",
-        marketPart : 6.1,
-        rankingPosition : 1,
-        existsVehicles : 20486
+        marketPart: 6.1,
+        rankingPosition: 1,
+        existsVehicles: 20486
     }, {
         country: "Holand",
         year: "2015",
-        marketPart : 9.74,
-        rankingPosition : 2,
-        existsVehicles : 88991
+        marketPart: 9.74,
+        rankingPosition: 2,
+        existsVehicles: 88991
     }, {
         country: "Holand",
         year: "2014",
-        marketPart : 3.87,
-        rankingPosition : 2,
-        existsVehicles : 45020
+        marketPart: 3.87,
+        rankingPosition: 2,
+        existsVehicles: 45020
     }];
-    
+
     ecarstatics.find({}).toArray((err, eCarStaticsArray) => {
-        
-        if(eCarStaticsArray.length == 0){
+
+        if (eCarStaticsArray.length == 0) {
             console.log("Empty db");
             ecarstatics.insert(newecarstatics);
             res.sendStatus(200);
         }
         else {
-            console.log("Err : "+err);
+            console.log("Err : " + err);
             res.sendStatus(409);
         }
     });
@@ -97,22 +96,22 @@ app.get("/api/v1/e-car-statics/loadInitialData", (req,res)=>{
 
 //  GET /api/v1/e-car-statics
 
-app.get("/api/v1/e-car-statics", (req,res)=>{
-    
-    ecarstatics.find({}).toArray((err, ecarstaticsArray)=>{
-        if(err)
+app.get("/api/v1/e-car-statics", (req, res) => {
+
+    ecarstatics.find({}).toArray((err, ecarstaticsArray) => {
+        if (err)
             console.log("Error: " + err);
-            
-        res.send(ecarstaticsArray);  
+
+        res.send(ecarstaticsArray);
     });
-    
+
 });
 
 
 //   POST /api/v1/e-car-statics
 
-app.post("/api/v1/e-car-statics", (req,res)=>{
-    
+app.post("/api/v1/e-car-statics", (req, res) => {
+
     var newCarStatics = req.body;
 
     if (newCarStatics.length > 5 || !newCarStatics.country || !newCarStatics.year || !newCarStatics.marketPart ||
@@ -156,9 +155,9 @@ app.get("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
 
-    ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) =>{
-        if(err){
-            console.log("Error: "+err);
+    ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) => {
+        if (err) {
+            console.log("Error: " + err);
             res.sendStatus(500);
             return;
         }
@@ -178,22 +177,22 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
     var updatedCarStatics = req.body;
-    
-    if(updatedCarStatics.year != year){
+
+    if (updatedCarStatics.year != year) {
         res.sendStatus(400);
         return;
     }
-    
+
     ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) => {
-        if(err){
-            console.log("Error! :"+err);
+        if (err) {
+            console.log("Error! :" + err);
         }
-        
-        if(filteredCarStatics.length == 0){
+
+        if (filteredCarStatics.length == 0) {
             res.sendStatus(400);
         }
-        else{
-            ecarstatics.update({ "year": year}, { $set: updatedCarStatics});
+        else {
+            ecarstatics.update({ "year": year }, { $set: updatedCarStatics });
             res.sendStatus(200);
         }
     });
@@ -205,9 +204,9 @@ app.put("/api/v1/e-car-statics/:year", (req, res) => {
 app.delete("/api/v1/e-car-statics/:year", (req, res) => {
 
     var year = req.params.year;
-    
-    ecarstatics.remove({ "year":year});
-    
+
+    ecarstatics.remove({ "year": year });
+
     res.sendStatus(200);
 
 });
@@ -296,19 +295,19 @@ app.get("/api/v1/biofuels-production/loadInitialData", (req, res) => {
 });
 
 // GET al conjunto de recursos            
-app.get("/api/v1/biofuels-production", (request, response) =>{
-    
- response.send(biofuels);
+app.get("/api/v1/biofuels-production", (request, response) => {
+
+    response.send(biofuels);
 });
 
 //POST al conjunto de recursos
 
-app.post("/api/v1/biofuels-production", (request, response) =>{
-    
+app.post("/api/v1/biofuels-production", (request, response) => {
+
     var newBiofuel = request.body;
-    
+
     biofuels.push(newBiofuel);
-    
+
     response.sendStatus(201);
 });
 
@@ -321,25 +320,26 @@ app.delete("/api/v1/biofuels-production", (req, res) => {
 
 //GET a un recurso concreto
 
-app.get("/api/v1/biofuels-production/:country", (request, response) =>{
+app.get("/api/v1/biofuels-production/:country", (request, response) => {
 
     var country = request.params.country;
-    
+
     var filteredBiofuels = biofuels.filter((n) => {
-        
+
         return n.country == country;
     });
-    
-    if (filteredBiofuels.length >= 1){
-        
+
+    if (filteredBiofuels.length >= 1) {
+
         response.send(filteredBiofuels[0]);
-        
-    }else{
-        
-        response.sendStatus(404);
-        
+
     }
-    
+    else {
+
+        response.sendStatus(404);
+
+    }
+
 
     //response.sendStatus(200)
 });
@@ -351,60 +351,63 @@ app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
     var year = req.params.year;
     var country = req.params.country;
     var reqBiofuels = req.body;
-    
-/*if (!reqBiofuels.id || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
 
-        res.sendStatus(400);
-        
-    }else{
-  */      
-    
-        biofuels.find({ "country": country, "year": year }).toArray((err, biofuelsArray) => {
+    /*if (!reqBiofuels.id || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
+
+            res.sendStatus(400);
+            
+        }else{
+      */
+
+    biofuels.find({ "country": country, "year": year }).toArray((err, biofuelsArray) => {
 
         if (biofuelsArray.length == 0) {
             console.log("No existe el recurso del pais: " + country);
 
             res.sendStatus(404);
-        } else {
-            
-            
-           if( reqBiofuels.length == 0){
-                res.sendStatus(400);
-                
-            }else{
-                biofuels.replaceOne({ "country": country, "year":year}, reqBiofuels);
-                 res.sendStatus(200);
-            }
-            
-            
         }
-        
-       
+        else {
 
-            
-            });
-   //}
+
+            if (reqBiofuels.length == 0) {
+                res.sendStatus(400);
+
+            }
+            else {
+                biofuels.replaceOne({ "country": country, "year": year }, reqBiofuels);
+                res.sendStatus(200);
+            }
+
+
+        }
+
+
+
+
+    });
+    //}
 
 });
 
 // DELETE a un recurso concreto
 
-app.delete("/api/v1/biofuels-production/:country", (request,response)=>{
+app.delete("/api/v1/biofuels-production/:country", (request, response) => {
 
     var country = request.params.country;
     var found = false;
 
-    var updatedBiofuels = biofuels.filter((n) =>{
-        
-            if(n.country == country)  
-                found = true;
-        
-            return n.country != country;
+    var updatedBiofuels = biofuels.filter((n) => {
+
+        if (n.country == country)
+            found = true;
+
+        return n.country != country;
     });
-    
-    if (found == false){
+
+    if (found == false) {
         response.sendStatus(404);
-    }else{
+    }
+    else {
         biofuels = updatedBiofuels;
         response.sendStatus(200);
     }
@@ -413,15 +416,15 @@ app.delete("/api/v1/biofuels-production/:country", (request,response)=>{
 
 //POST a un recurso
 
-app.post("/api/v1/biofuels-production/:country", (request, response) =>{
-    
+app.post("/api/v1/biofuels-production/:country", (request, response) => {
+
     response.sendStatus(405);
 });
 
 // PUT al conjunto de recursos
 
 app.put("/api/v1/biofuels-production/", (req, res) => {
-    
+
     res.sendStatus(405);
 });
 
@@ -437,111 +440,123 @@ const uri = "mongodb+srv://usuario1:1234@sos-fraparcas-g12k3.mongodb.net/sos-fra
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
-  datos = client.db("sos1819-10").collection("issues-dioxids");
+    datos = client.db("sos1819-10").collection("issues-dioxids");
 });
 
 
 //Carga de datos.
 
 app.get("/api/v1/issue-dioxid/loadInitialData", (req, res) => {
-    
-    datos.insert({
-        nombre_del_pais: "Albania",
-        año: "1960",
-        emisiones_de_co2: "0,05"
-        });
-    
-    datos.insert({
-        nombre_del_pais: "Alemania",
-        año: "1991",
-        emisiones_de_co2: "11,62"
-        });
-    
-    datos.insert({
-        nombre_del_pais: "España",
-        año: "1990",
-        emisiones_de_co2: "5,624"
-        });
-    
-    datos.insert({
-        nombre_del_pais: "Angola",
-        año: "1995",
-        emisiones_de_co2: "0,769"
-        });
-    
-    datos.insert({
-        nombre_del_pais: "Bahamas",
-        año: "1992",
-        emisiones_de_co2: "6,738"
-        });
-        
-        
-    res.send(201);
 
+
+    datos.find({}).toArray((err, datosArray) => {
+
+
+        if (datosArray.length == 0) {
+
+
+            datos.insert({
+                nombre_del_pais: "Albania",
+                año: "1960",
+                emisiones_de_co2: "0,05"
+            });
+
+            datos.insert({
+                nombre_del_pais: "Alemania",
+                año: "1991",
+                emisiones_de_co2: "11,62"
+            });
+
+            datos.insert({
+                nombre_del_pais: "España",
+                año: "1990",
+                emisiones_de_co2: "5,624"
+            });
+
+            datos.insert({
+                nombre_del_pais: "Angola",
+                año: "1995",
+                emisiones_de_co2: "0,769"
+            });
+
+            datos.insert({
+                nombre_del_pais: "Bahamas",
+                año: "1992",
+                emisiones_de_co2: "6,738"
+            });
+
+
+            res.send(201);
+        }
+        else {
+
+            res.send(409);
+        }
+    });
 });
 
 //Portal de POSTMAN.
 
-app.get("/api/v1/issue-dioxid/docs", (req, res) => {     
-    
+app.get("/api/v1/issue-dioxid/docs", (req, res) => {
+
     res.redirect("https://documenter.getpostman.com/view/6918673/S17tRoCL");
-    
+
 });
 
 // GET a un conjunto
 
-app.get("/api/v1/issue-dioxid", (req, res) => {     
-    
+app.get("/api/v1/issue-dioxid", (req, res) => {
+
     datos.find({}).toArray((err, datosArray) => {
-       
-       if(err){
-           
-           console.log("Error " + err);
-       }
-       else{
-           
-           res.send(datosArray);
-           
-       }
-        
+
+        if (err) {
+
+            console.log("Error " + err);
+        }
+        else {
+
+            res.send(datosArray);
+
+        }
+
     });
 });
 
 // POST de un recurso
 
 app.post("/api/v1/issue-dioxid", (req, res) => {
-    
+
     var newData = req.body;
-    
-    datos.find({"nombre_del_pais": newData.nombre_del_pais}).toArray((err, datosArray) => {
-       
-       if(err){
-           
-           res.sendStatus(409);
-       }
-       else{
-           
-           if(datosArray.length > 0){
-       
-                res.sendStatus(409);
-           } 
-           else{
-        
-                datos.insert(newData);
-    
-                res.sendStatus(201);
-       
+
+    datos.find({ "nombre_del_pais": newData.nombre_del_pais }).toArray((err, datosArray) => {
+
+        if (err) {
+
+            res.sendStatus(409);
         }
-           
-       }
-        
+        else {
+
+            if (datosArray.length > 0) {
+
+                res.sendStatus(409);
+            }
+            else {
+
+                datos.insert(newData);
+
+                res.sendStatus(201);
+
+            }
+
+        }
+
     });
 });
 
 // DELETE a un conjunto
 
 app.delete("/api/v1/issue-dioxid", (req, res) => {
-    
+
     datos.remove({});
 
     res.sendStatus(200);
@@ -550,53 +565,58 @@ app.delete("/api/v1/issue-dioxid", (req, res) => {
 // GET a un dato
 
 app.get("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
-    
+
     var name = req.params.nombre_del_pais;
-    
-    datos.find({"nombre_del_pais":name}).toArray((err, dato) => {
-       
-       if(err){
-           
-           res.sendStatus(404);
-       }
-       else{
-           
-           if(dato.length > 0){
-                
+
+    datos.find({ "nombre_del_pais": name }).toArray((err, dato) => {
+
+        if (err) {
+
+            res.sendStatus(404);
+        }
+        else {
+
+            if (dato.length > 0) {
+
                 res.send(dato);
-           }
-           else{
-               
-               res.sendStatus(404);
-           }
-           
-       }
-        
+            }
+            else {
+
+                res.sendStatus(404);
+            }
+
+        }
+
     });
 });
 
 // PUT a uno concreto
 
 app.put("/api/v1/issue-dioxid/:name", (req, res) => {
-    
+
     var name = req.params.name;
-    
+
     var act = req.body;
-    
-    var id = act._id;
-    
-    datos.find({"_id": id}).toArray((err, dato) =>{
-        
-        if(err){
-            
+
+    datos.find({ "nombre_del_pais": act.nombre_del_pais }).toArray((err, dato) => {
+
+        if (err) {
+
             res.sendStatus(400);
-            
+
         }
-        else{
+        else {
+            
+            if(dato["nombre_del_pais"] != name){
                 
-            datos.update({"nombre_del_pais": name}, {act});
-   
-            res.sendStatus(200);
+                res.sendStatus(400);
+            }
+            else{
+
+                datos.replaceOne({ "nombre_del_pais": name }, { act });
+
+                res.sendStatus(200);
+            }
         }
     });
 });
@@ -604,28 +624,28 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
 //DELETE a un dato
 
 app.delete("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
-    
+
     var name = req.params.nombre_del_pais;
-    
-    datos.find({"nombre_del_pais": name}).toArray((err, dato) =>{
-        
-        if(err){
-            
+
+    datos.find({ "nombre_del_pais": name }).toArray((err, dato) => {
+
+        if (err) {
+
             res.sendStatus(404);
-            
+
         }
-        else{
-           
-           if(dato.length > 0){
-                
-                datos.remove({"nombre_del_pais":name});
-    
+        else {
+
+            if (dato.length > 0) {
+
+                datos.remove({ "nombre_del_pais": name });
+
                 res.sendStatus(200);
-           }
-           else{
-               
-               res.sendStatus(404);
-           }
+            }
+            else {
+
+                res.sendStatus(404);
+            }
         }
     });
 });
@@ -633,13 +653,13 @@ app.delete("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
 // POST a un recurso(error)
 
 app.post("/api/v1/issue-dioxid/:name", (req, res) => {
-    
+
     res.sendStatus(405);
 });
 
 // PUT al conjunto(error)
 
 app.put("/api/v1/issue-dioxid", (req, res) => {
-    
+
     res.sendStatus(405);
 });
