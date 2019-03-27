@@ -39,7 +39,7 @@ clientjcgp.connect(err => {
 //Get /api/v1/e-car-statics/docs
 
 app.get("/api/v1/e-car-statics/docs", (req, res) => {
-    res.redirect("/api/v1/e-car-statics/docs");
+    res.redirect("https://documenter.getpostman.com/view/7062681/S17us6hd");
 });
 
 // GET /api/v1/e-car-statics/loadInitialData
@@ -634,7 +634,7 @@ app.get("/api/v1/issue-dioxid/:nombre_del_pais", (req, res) => {
 
             if (dato.length > 0) {
 
-                res.send(dato);
+                res.send(dato[0]);
             }
             else {
 
@@ -653,28 +653,17 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     var name = req.params.name;
 
     var act = req.body;
-
-    datos.find({ "nombre_del_pais": act.nombre_del_pais }).toArray((err, dato) => {
-
-        if (err) {
-
-            res.sendStatus(400);
-
-        }
-        else {
             
-            if(dato["nombre_del_pais"] != name){
+    if(act.nombre_del_pais != name){
                 
-                res.sendStatus(400);
-            }
-            else{
+        res.sendStatus(400);
+    }
+    else{
 
-                datos.replaceOne({ "nombre_del_pais": name }, { act });
+        datos.updateOne({ "nombre_del_pais": name }, { $set: act });
 
-                res.sendStatus(200);
-            }
-        }
-    });
+        res.sendStatus(200);
+    }
 });
 
 //DELETE a un dato
