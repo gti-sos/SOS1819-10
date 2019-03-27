@@ -606,10 +606,17 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
 
         }
         else {
+            
+            if(dato.length == 0){
+                
+                res.sendStatus(400);
+            }
+            else{
 
-            datos.replaceOne({ "nombre_del_pais": name }, { act });
+                datos.replaceOne({ "nombre_del_pais": name }, { act });
 
-            res.sendStatus(200);
+                res.sendStatus(200);
+            }
         }
     });
 });
