@@ -607,7 +607,7 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
         }
         else {
             
-            if(dato.length == 0){
+            if(dato["nombre_del_pais"] != name){
                 
                 res.sendStatus(400);
             }
