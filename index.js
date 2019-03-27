@@ -149,7 +149,7 @@ app.delete("/api/v1/e-car-statics", (req, res) => {
     res.sendStatus(200);
 });
 
-// GET /api/v1/e-car-statics/2015
+// GET /api/v1/e-car-statics/2015/Spain
 
 app.get("/api/v1/e-car-statics/:year/:country", (req, res) => {
 
@@ -157,17 +157,13 @@ app.get("/api/v1/e-car-statics/:year/:country", (req, res) => {
     var country = req.params.country;
     
     ecarstatics.find({ "year": year },{"country": country}).toArray((err, filteredCarStatics) =>{
-        if(err){
-            console.log("Error: "+err);
-
-    ecarstatics.find({ "year": year }).toArray((err, filteredCarStatics) => {
         if (err) {
             console.log("Error: " + err);
             res.sendStatus(500);
             return;
         }
         if (filteredCarStatics.length >= 1) {
-            res.send(filteredCarStatics);
+            res.send(filteredCarStatics[0]);
         }
         else {
             res.sendStatus(404);
