@@ -297,20 +297,69 @@ app.get("/api/v1/biofuels-production/loadInitialData", (req, res) => {
 });
 
 // GET al conjunto de recursos            
-app.get("/api/v1/biofuels-production", (request, response) => {
+app.get("/api/v1/biofuels-production", (req, res) => {
 
-    response.send(biofuels);
+    biofuels.find({}).toArray((err, biofuelsArray) => {
+
+        if (err) {
+
+            console.log("Error " + err);
+        }
+        else {
+
+            res.send(biofuelsArray);
+
+        }
+
+    });
 });
 
 //POST al conjunto de recursos
 
-app.post("/api/v1/biofuels-production", (request, response) => {
+app.post("/api/v1/biofuels-production", (req, res) => {
 
-    var newBiofuel = request.body;
+    var reqBiofuels = req.body;
+   
+    biofuels.insert(reqBiofuels);
 
-    biofuels.push(newBiofuel);
 
-    response.sendStatus(201);
+ if (!reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel ) {
+
+            res.sendStatus(400);
+            
+    }else{
+    
+    biofuels.find({ "country": reqBiofuels.country, "year": reqBiofuels.year }).toArray((err, biofuelsArray) => {
+
+        if (biofuelsArray.length == 0) {
+             biofuels.insert(reqBiofuels);
+            console.log("No existe el recurso del pais: " + reqBiofuels.country);
+
+            res.sendStatus(201);
+        }
+        else {
+
+
+            if (reqBiofuels.length == 0) {
+                res.sendStatus(400);
+
+            } else {
+               
+                res.sendStatus(409);
+            }
+
+
+        }
+
+    
+
+
+    });
+        
+        
+    }    
+        
+    
 });
 
 //DELETE al conjunto de recursos
@@ -358,7 +407,7 @@ app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
 
             res.sendStatus(400);
             
-    }
+    }else{
       
 
     biofuels.find({ "country": country, "year": year }).toArray((err, biofuelsArray) => {
@@ -382,12 +431,13 @@ app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
 
 
         }
+    
 
 
 
 
     });
-    
+    }
 
 });
 
