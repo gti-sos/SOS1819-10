@@ -606,7 +606,7 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     }
     else{
 
-        datos.replaceOne({ "nombre_del_pais": name }, { act });
+        datos.updateOne({ "nombre_del_pais": name }, { $set: act });
 
         res.sendStatus(200);
     }
