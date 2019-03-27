@@ -448,53 +448,51 @@ client.connect(err => {
 
 app.get("/api/v1/issue-dioxid/loadInitialData", (req, res) => {
 
-    var lista = [];
 
     datos.find({}).toArray((err, datosArray) => {
 
-        lista = datosArray;
-    })
 
-    if (lista.length == 0) {
+        if (datosArray.length == 0) {
 
 
-        datos.insert({
-            nombre_del_pais: "Albania",
-            año: "1960",
-            emisiones_de_co2: "0,05"
-        });
+            datos.insert({
+                nombre_del_pais: "Albania",
+                año: "1960",
+                emisiones_de_co2: "0,05"
+            });
 
-        datos.insert({
-            nombre_del_pais: "Alemania",
-            año: "1991",
-            emisiones_de_co2: "11,62"
-        });
+            datos.insert({
+                nombre_del_pais: "Alemania",
+                año: "1991",
+                emisiones_de_co2: "11,62"
+            });
 
-        datos.insert({
-            nombre_del_pais: "España",
-            año: "1990",
-            emisiones_de_co2: "5,624"
-        });
+            datos.insert({
+                nombre_del_pais: "España",
+                año: "1990",
+                emisiones_de_co2: "5,624"
+            });
 
-        datos.insert({
-            nombre_del_pais: "Angola",
-            año: "1995",
-            emisiones_de_co2: "0,769"
-        });
+            datos.insert({
+                nombre_del_pais: "Angola",
+                año: "1995",
+                emisiones_de_co2: "0,769"
+            });
 
-        datos.insert({
-            nombre_del_pais: "Bahamas",
-            año: "1992",
-            emisiones_de_co2: "6,738"
-        });
+            datos.insert({
+                nombre_del_pais: "Bahamas",
+                año: "1992",
+                emisiones_de_co2: "6,738"
+            });
 
 
-        res.send(201);
-    }
-    else {
+            res.send(201);
+        }
+        else {
 
-        res.send(409);
-    }
+            res.send(409);
+        }
+    });
 });
 
 //Portal de POSTMAN.
@@ -600,9 +598,7 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
 
     var act = req.body;
 
-    var id = act._id;
-
-    datos.find({ "_id": id }).toArray((err, dato) => {
+    datos.find({ "nombre_del_pais": act.nombre_del_pais }).toArray((err, dato) => {
 
         if (err) {
 
