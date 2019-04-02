@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
 
+var issue_dioxid = require("./issue-dioxid");
+
 var app = express();
 
 const BASE_PATH = "/api"
@@ -64,7 +66,18 @@ clientfjap.connect(err => {
         }
 
         datos = client.db("sos1819-10").collection("issues-dioxids");
-        console.log("Connected to mongodb-carlos!!");
+
+        issue_dioxid.gets(app, datos);
+
+        issue_dioxid.posts(app, datos);
+
+        issue_dioxid.puts(app, datos);
+
+        issue_dioxid.deletes(app, datos);
+
+        issue_dioxid.busqs(app, datos);
+        
+        console.log("Connected to mongodb-francisco-pardillo!!");
         //issuesDioxidAPI.register(app, BASE_PATH, datos);
 
         //Una vez hechas las tres conexiones abrimos la conexion con el servidor    
