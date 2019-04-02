@@ -506,7 +506,12 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
 
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
+
 
                 });
 
@@ -519,7 +524,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
 
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
 
                 });
 
@@ -531,7 +540,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
 
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
 
                 });
 
@@ -543,7 +556,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
 
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
 
                 });
 
@@ -555,7 +572,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
 
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
 
                 });
 
@@ -567,13 +588,21 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         res.sendStatus(500); // internal server error
                     }
                     console.log(fromBiodiesel + " " + toBiodiesel);
-                    res.send(biofuelsFilteredArraySearch);
+                    res.send(biofuelsFilteredArraySearch.map((c) => {
+                        delete c._id;
+                        return c;
+
+                    }));
 
                 });
 
             } else {
 
-                res.send(biofuelsFilteredArray);
+                res.send(biofuelsFilteredArray.map((c) => {
+                    delete c._id;
+                    return c;
+
+                }));
             }
 
 
