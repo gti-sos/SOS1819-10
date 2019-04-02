@@ -1,4 +1,3 @@
-
 var express = require("express");
 
 var bodyParser = require("body-parser");
@@ -56,6 +55,7 @@ clientfjap.connect(err => {
     });
 
     //***************API FRANCISCO*************************
+    const MongoClient = require("mongodb").MongoClient;
     const uri = "mongodb+srv://usuario1:1234@sos-fraparcas-g12k3.mongodb.net/sos-fraparcas?retryWrites=true";
     const client = new MongoClient(uri, { useNewUrlParser: true });
 
@@ -69,16 +69,6 @@ clientfjap.connect(err => {
 
         datos = client.db("sos1819-10").collection("issues-dioxids");
 
-        issue_dioxid.gets(app, datos);
-
-        issue_dioxid.posts(app, datos);
-
-        issue_dioxid.puts(app, datos);
-
-        issue_dioxid.deletes(app, datos);
-
-        issue_dioxid.busqs(app, datos);
-        
         console.log("Connected to mongodb-francisco-pardillo!!");
         //issuesDioxidAPI.register(app, BASE_PATH, datos);
 
