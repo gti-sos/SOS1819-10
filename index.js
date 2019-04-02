@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
 var eCarStaticsAPI = require("./ecarstatics-api");
-var issue_dioxid = require("./issue-dioxid");
+//var issue_dioxid = require("./issue-dioxid");
 
 var app = express();
 
@@ -54,7 +54,6 @@ clientfjap.connect(err => {
     });
 
     //***************API FRANCISCO*************************
-    const MongoClient = require("mongodb").MongoClient;
     const uri = "mongodb+srv://usuario1:1234@sos-fraparcas-g12k3.mongodb.net/sos-fraparcas?retryWrites=true";
     const client = new MongoClient(uri, { useNewUrlParser: true });
 
@@ -67,20 +66,6 @@ clientfjap.connect(err => {
         }
 
         datos = client.db("sos1819-10").collection("issues-dioxids");
-
-<<<<<<< HEAD
-        issue_dioxid.gets(app, datos);
-
-        issue_dioxid.posts(app, datos);
-
-        issue_dioxid.puts(app, datos);
-
-        issue_dioxid.deletes(app, datos);
-
-        issue_dioxid.busqs(app, datos);
-
-=======
->>>>>>> 50379d35c2d7c398c3e55efc2730d151e2af43c3
         console.log("Connected to mongodb-francisco-pardillo!!");
         //issuesDioxidAPI.register(app, BASE_PATH, datos);
 
