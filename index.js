@@ -538,7 +538,7 @@ app.post("/api/v1/issue-dioxid", (req, res) => {
         }
         else {
 
-            if (datosArray.length > 0) {
+            if (datosArray.length > 0 || newData.length != 3) {
 
                 res.sendStatus(409);
             }
@@ -599,8 +599,12 @@ app.put("/api/v1/issue-dioxid/:name", (req, res) => {
     var name = req.params.name;
 
     var act = req.body;
+    
+    for(var i in act){
+        
+    }
             
-    if(act.nombre_del_pais != name){
+    if(act.length != 3 || act.nombre_del_pais != name){
                 
         res.sendStatus(400);
     }
