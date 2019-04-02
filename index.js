@@ -1,4 +1,3 @@
-
 var express = require("express");
 
 var bodyParser = require("body-parser");
@@ -77,7 +76,7 @@ clientfjap.connect(err => {
         issue_dioxid.deletes(app, datos);
 
         issue_dioxid.busqs(app, datos);
-        
+
         console.log("Connected to mongodb-francisco-pardillo!!");
         //issuesDioxidAPI.register(app, BASE_PATH, datos);
 

@@ -26,7 +26,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
     console.log("get " + path + " registered.");
     console.log("Greetings api registered");
 */
-    app.get("/api/v1/biofuels-production/loadInitialData", (req, res) => {
+    app.get(BASE_PATH + "/biofuels-production/loadInitialData", (req, res) => {
         var newBiofuels = [{
             country: "China",
             year: "2003",
@@ -76,7 +76,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     // GET al conjunto de recursos         
 
-    app.get("/api/v1/biofuels-production", (req, res) => {
+    app.get(BASE_PATH + "/biofuels-production", (req, res) => {
 
         biofuels.find({}).toArray((err, biofuelsArray) => {
 
@@ -93,7 +93,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //POST al conjunto de recursos
 
-    app.post("/api/v1/biofuels-production", (req, res) => {
+    app.post(BASE_PATH + "/biofuels-production", (req, res) => {
 
         var reqBiofuels = req.body;
 
@@ -116,8 +116,9 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
 
                 if (biofuelsArray.length > 0) {
-
+                    console.log("Ya existe el recurso: " + biofuelsArray["country"] + " " + biofuelsArray["year"]);
                     res.sendStatus(409);
+
 
                 } else {
 
@@ -132,7 +133,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //DELETE al conjunto de recursos
 
-    app.delete("/api/v1/biofuels-production", (req, res) => {
+    app.delete(BASE_PATH + "/biofuels-production", (req, res) => {
         biofuels.remove({});
         res.sendStatus(200);
     });
@@ -140,7 +141,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //GET a un recurso concreto
 
-    app.get("/api/v1/biofuels-production/:country/:year", (req, res) => {
+    app.get(BASE_PATH + "/biofuels-production/:country/:year", (req, res) => {
 
         var country = req.params.country;
         var year = req.params.year;
@@ -151,7 +152,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
         }).toArray((err, biofuelsFilteredArray) => {
 
             if (err) {
-                console.error("Error accesing DB in post to biofuels-production ");
+                console.error("Error accesing DB get to biofuels-production/country/year ");
                 res.sendStatus(500);
             }
 
@@ -175,7 +176,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //PUT a un recurso concreto
 
-    app.put("/api/v1/biofuels-production/:country/:year", (req, res) => {
+    app.put(BASE_PATH + "/biofuels-production/:country/:year", (req, res) => {
 
         var year = req.params.year;
         var country = req.params.country;
@@ -194,13 +195,13 @@ module.exports = function(app, BASE_PATH, biofuels) {
             }).toArray((err, biofuelsArray) => {
 
                 if (err) {
-                    console.error("Error accesing DB in post to biofuels-production ");
+                    console.error("Error accesing DB in put to biofuels-production/country/year ");
                     res.sendStatus(500);
                 }
 
                 if (biofuelsArray.length == 0) {
 
-                    console.log("No existe el recurso del pais: " + country);
+                    console.log("No existe el recurso del pais: " + country + " " + year);
                     res.sendStatus(404);
 
                 } else {
@@ -222,7 +223,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     // DELETE a un recurso concreto
 
-    app.delete("/api/v1/biofuels-production/:country/:year", (req, res) => {
+    app.delete(BASE_PATH + "/biofuels-production/:country/:year", (req, res) => {
 
         var country = req.params.country;
         var year = req.params.year;
@@ -235,13 +236,13 @@ module.exports = function(app, BASE_PATH, biofuels) {
         }).toArray((err, biofuelsArray) => {
 
             if (err) {
-                console.error("Error accesing DB in post to biofuels-production ");
+                console.error("Error accesing DB in delete to biofuels-production/country/year ");
                 res.sendStatus(500);
             }
 
             if (biofuelsArray.length == 0) {
 
-                console.log("No existe el recurso del pais: " + country);
+                console.log("No existe el recurso del pais: " + country + " " + year);
                 res.sendStatus(404);
 
             } else {
@@ -260,17 +261,15 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //POST a un recurso
 
-    app.post("/api/v1/biofuels-production/:country/:year", (request, response) => {
+    app.post(BASE_PATH + "/biofuels-production/:country/:year", (request, response) => {
 
         response.sendStatus(405);
     });
 
     // PUT al conjunto de recursos
 
-    app.put("/api/v1/biofuels-production/", (req, res) => {
+    app.put(BASE_PATH + "/biofuels-production/", (req, res) => {
 
         res.sendStatus(405);
     });
-
-
 }
