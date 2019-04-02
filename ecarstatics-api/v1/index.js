@@ -10,14 +10,14 @@ var ecarstatics;
 
 //Get /api/v1/e-car-statics/docs
 
-app.get(path + "/api/v1/e-car-statics/docs", (req, res) => {
+app.get(path + "/e-car-statics/docs", (req, res) => {
     res.redirect("https://documenter.getpostman.com/view/7062681/S17us6hd");
 });
 
 // GET /api/v1/e-car-statics/loadInitialData
 
 
-app.get(path + "/api/v1/e-car-statics/loadInitialData", (req, res) => {
+app.get(path + "/e-car-statics/loadInitialData", (req, res) => {
 
     var newecarstatics = [{
         country: "Norway",
@@ -68,7 +68,7 @@ app.get(path + "/api/v1/e-car-statics/loadInitialData", (req, res) => {
 
 //  GET /api/v1/e-car-statics
 
-app.get(path + "/api/v1/e-car-statics", (req, res) => {
+app.get(path + "/e-car-statics", (req, res) => {
 
     var limit = parseInt(req.query.limit);
     var offset = parseInt(req.query.offset);
@@ -175,7 +175,7 @@ app.get(path + "/api/v1/e-car-statics", (req, res) => {
 
 //   POST /api/v1/e-car-statics
 
-app.post(path + "/api/v1/e-car-statics", (req, res) => {
+app.post(path + "/e-car-statics", (req, res) => {
 
     var newCarStatics = req.body;
 
@@ -207,7 +207,7 @@ app.post(path + "/api/v1/e-car-statics", (req, res) => {
 
 // DELETE /api/v1/e-car-statics
 
-app.delete(path + "/api/v1/e-car-statics", (req, res) => {
+app.delete(path + "/e-car-statics", (req, res) => {
 
     ecarstatics.remove({});
 
@@ -215,7 +215,7 @@ app.delete(path + "/api/v1/e-car-statics", (req, res) => {
 });
 
 // GET /api/v1/e-car-statics/Spain
-app.get(path + "/api/v1/e-car-statics/:country", (req, res) => {
+app.get(path + "/e-car-statics/:country", (req, res) => {
 
     var country = req.params.country;
     var fromYear = parseInt(req.query.from);
@@ -249,9 +249,9 @@ app.get(path + "/api/v1/e-car-statics/:country", (req, res) => {
                 return;
             }
             if (ecarstaticsArray.length >= 1) {
-                res.send(ecarstaticsArray.map((ob) => {
-                    delete ob._id;
-                    return ob;
+                res.send(ecarstaticsArray.map((o) => {
+                    delete o._id;
+                    return o;
                 }));
             }
             else {
@@ -263,7 +263,7 @@ app.get(path + "/api/v1/e-car-statics/:country", (req, res) => {
 
 // GET /api/v1/e-car-statics/Holand/2015
 
-app.get(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
+app.get(path + "/e-car-statics/:country/:year", (req, res) => {
 
     var country = req.params.country;
     var year = parseInt(req.params.year);
@@ -290,7 +290,7 @@ app.get(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
 
 // PUT /api/v1/e-car-statics/Holand/2015
 
-app.put(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
+app.put(path + "/e-car-statics/:country/:year", (req, res) => {
 
     var country = req.params.country;
     var year = parseInt(req.params.year);
@@ -325,7 +325,7 @@ app.put(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
 
 // DELETE /api/v1/e-car-statics/Holand/2013
 
-app.delete(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
+app.delete(path + "/e-car-statics/:country/:year", (req, res) => {
 
     var country = req.params.country;
     var year = parseInt(req.params.year);
@@ -338,14 +338,14 @@ app.delete(path + "/api/v1/e-car-statics/:country/:year", (req, res) => {
 
 // POST /api/v1/e-car-statics/2015
 
-app.post(path + "/api/v1/e-car-statics/:year", (req, res) => {
+app.post(path + "/e-car-statics/:country/:year", (req, res) => {
 
     res.sendStatus(405);
 });
 
 // PUT /api/v1/e-car-statics
 
-app.put(path + "/api/v1/e-car-statics", (req, res) => {
+app.put(path + "/e-car-statics", (req, res) => {
 
     res.sendStatus(405);
 });
