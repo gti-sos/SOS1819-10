@@ -1,3 +1,4 @@
+
 var express = require("express");
 
 var bodyParser = require("body-parser");
@@ -48,7 +49,7 @@ clientfjap.connect(err => {
         }
         ecarstatics = clientjcgp.db("sos1819").collection("e-car-statics");
         console.log("Connected to mongodb-carlos!!");
-        //eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
+        eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
     });
 
     //***************API FRANCISCO*************************
