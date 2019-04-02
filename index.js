@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
 var eCarStaticsAPI = require("./ecarstatics-api");
-//var issue_dioxid = require("./issue-dioxid");
+var issueDioxidAPI = require("./issue-dioxid");
 
 var app = express();
 
@@ -67,7 +67,7 @@ clientfjap.connect(err => {
 
         datos = client.db("sos1819-10").collection("issues-dioxids");
         console.log("Connected to mongodb-francisco-pardillo!!");
-        //issuesDioxidAPI.register(app, BASE_PATH, datos);
+        issueDioxidAPI.register(app, BASE_PATH, datos);
 
         //Una vez hechas las tres conexiones abrimos la conexion con el servidor    
         app.listen(port, () => {
