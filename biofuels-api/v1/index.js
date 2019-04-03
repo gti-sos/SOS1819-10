@@ -8,7 +8,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     //GET /api/v1/biofuels-production/docs
 
-    app.get(path + "/e-car-statics/docs", (req, res) => {
+    app.get(path + "/biofuels-production/docs", (req, res) => {
         res.redirect("https://documenter.getpostman.com/view/7128730/S1EH21ic");
     });
 
