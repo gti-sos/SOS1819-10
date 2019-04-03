@@ -68,12 +68,10 @@ clientfjap.connect(err => {
         datos = client.db("sos1819-10").collection("issues-dioxids");
         console.log("Connected to mongodb-francisco-pardillo!!");
         issueDioxidAPI.register(app, BASE_PATH, datos);
-
+        
         //Una vez hechas las tres conexiones abrimos la conexion con el servidor    
         app.listen(port, () => {
             console.log("Magic is happening in port " + port);
         });
-
-
     });
 });

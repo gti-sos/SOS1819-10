@@ -2,7 +2,7 @@ var api = require("./v1");
 
 module.exports = {
 
-    register: register, 
+    register: register 
 }
 
 

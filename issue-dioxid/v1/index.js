@@ -4,7 +4,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
     var path = "";
 
-    var datos;
+    var datos = issue_dioxid;
 
     path = BASE_PATH + "issue_dioxid/loadInitialData";
 
@@ -427,11 +427,11 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
     //Paginación.
 
-    app.get(BASE_PATH + "/issue-dioxid/limit=:limit/offset=:offset", (req, res) => {
+    app.get(BASE_PATH + "/issue-dioxid?limit=:limit&offset=:offset", (req, res) => {
 
-        var limit = req.params.limit;
+        var limit = req.query.limit;
 
-        var offset = req.params.offset;
+        var offset = req.query.offset;
 
         datos.find({}).toArray((err, datosArray) => {
 
