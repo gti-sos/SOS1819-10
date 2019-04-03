@@ -100,7 +100,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
                 if (err)
                     console.log("Error: " + err);
                 if (ecarstaticsArray.length == 0) {
-                    res.sendStatus(404);
+                    res.send(ecarstaticsArray);
                     return;
                 } else {
                     res.send(ecarstaticsArray.map((o) => {
@@ -115,7 +115,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
                 if (err)
                     console.log("Error: " + err);
                 if (ecarstaticsArray.length == 0) {
-                    res.sendStatus(404);
+                    res.send(ecarstaticsArray);
                     return;
                 } else {
                     res.send(ecarstaticsArray.map((o) => {
@@ -130,7 +130,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
                 if (err)
                     console.log("Error: " + err);
                 if (ecarstaticsArray.length == 0) {
-                    res.sendStatus(404);
+                    res.send(ecarstaticsArray);
                     return;
                 } else {
                     res.send(ecarstaticsArray.map((o) => {
@@ -145,7 +145,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
                 if (err)
                     console.log("Error: " + err);
                 if (ecarstaticsArray.length == 0) {
-                    res.sendStatus(404);
+                    res.send(ecarstaticsArray);
                     return;
                 } else {
                     res.send(ecarstaticsArray.map((o) => {
