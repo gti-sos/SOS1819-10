@@ -75,7 +75,5 @@ clientfjap.connect(err => {
         });
 
 
-
-
     });
 });
