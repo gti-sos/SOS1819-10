@@ -6,6 +6,13 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     path = BASE_PATH + "biofuels-production/loadInitialData";
 
+    //GET /api/v1/biofuels-production/docs
+
+    app.get(path + "/e-car-statics/docs", (req, res) => {
+        res.redirect("https://documenter.getpostman.com/view/7128730/S1EH21ic");
+    });
+
+    //GET LOADINITIALDATA
     app.get(BASE_PATH + "/biofuels-production/loadInitialData", (req, res) => {
         var newBiofuels = [{
             country: "China",
@@ -40,6 +47,10 @@ module.exports = function(app, BASE_PATH, biofuels) {
         }];
 
         biofuels.find({}).toArray((err, biofuelsArray) => {
+            if (err) {
+                console.error("Error accesing DB in loadInitialData to biofuels-production ");
+                res.sendStatus(500);
+            }
 
             if (biofuelsArray.length == 0) {
                 console.log("Empty db");
@@ -54,27 +65,6 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     });
 
-    /*    // GET al conjunto de recursos         
-
-        app.get(BASE_PATH + "/biofuels-production", (req, res) => {
-
-            biofuels.find({}).toArray((err, biofuelsArray) => {
-
-                if (err) {
-
-                    console.log("Error " + err);
-
-                } else {
-
-                    res.send(biofuelsArray.map((c) => {
-                        delete c._id;
-                        return c;
-
-                    }));
-                }
-            });
-        });
-    */
     //POST al conjunto de recursos
 
     app.post(BASE_PATH + "/biofuels-production", (req, res) => {
@@ -260,204 +250,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
         res.sendStatus(405);
     });
 
-    /*
-        //Método para buscar 
-        var buscador = function(base, aux_set, param_country, param_year, param_ethanolFuel, param_dryNaturalGas, param_biodiesel) {
-
-            /*
-                    if (param_country != undefined || param_year != undefined || param_ethanolFuel != undefined || param_dryNaturalGas != undefined || param_biodiesel != undefined) {
-
-                        for (var j = 0; j < base.length; j++) {
-
-                            var year = base[j].year;
-                            var country = base[j].country;
-                            var ethanolFuel = base[j].ethanolFuel;
-                            var dryNaturalGas = base[j].dryNaturalGas;
-                            var biodiesel = base[j].biodiesel;
-
-          // Country
-                    if (param_country != undefined && param_year == undefined && param_ethanolFuel == undefined && param_dryNaturalGas == undefined && param_biodiesel == undefined) {
-
-                        if (param_country == country) {
-                            aux_set.push(base[j]);
-                        }
-                        biofuels.find({
-                            $or: [
-                                { Edad: { $gt: 20 } },
-                                { Nombre: "Marisa" }
-                            ]
-                        })
-
-                    }
-
-                    //Year
-                    if (param_country == undefined && param_year != undefined && param_ethanolFuel == undefined && param_dryNaturalGas == undefined && param_biodiesel == undefined) {
-
-                        if (param_year == year) {
-                            aux_set.push(base[j]);
-                        }
-
-
-                    }
-                    
-                                        // Rightfoot
-                                        else if (param_city == undefined && param_year == undefined && param_team == undefined && param_rightfoot != undefined && param_head == undefined && param_penalty == undefined) {
-
-                                            if (param_rightfoot == rightfoot) {
-                                                aux_set.push(base[j]);
-                                            }
-                                        }
-                                        // Head
-                                        else if (param_city == undefined && param_year == undefined && param_team == undefined && param_rightfoot == undefined && param_head != undefined && param_penalty == undefined) {
-
-                                            if (param_head == head) {
-                                                aux_set.push(base[j]);
-                                            }
-
-                                            //Penalty
-                                        } else if (param_city == undefined && param_year == undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty != undefined) {
-
-                                            if (param_penalty == penalty) {
-                                                aux_set.push(base[j]);
-                                            }
-
-
-                                        } //Year
-                                        else if (param_city == undefined && param_year != undefined && param_team == undefined && param_rightfoot == undefined && param_head == undefined && param_penalty == undefined) {
-
-                                            if (param_year == year) {
-                                                aux_set.push(base[j]);
-                                            }
-
-                                            // Rightfoot, head, penalty
-                                        } else if (param_city == undefined && param_year == undefined && param_team == undefined && param_rightfoot != undefined && param_head != undefined && param_penalty != undefined) {
-
-                                            if (param_rightfoot == rightfoot && param_head == head && param_penalty == penalty) {
-                                                aux_set.push(base[j]);
-                                            }
-
-                                        }
-                                        
-                }
-
-        }
-
-
-        return aux_set;
-
-
-        }
-
-        //Busqueda
-        app.get(BASE_PATH + "/biofuels-production", (req, res) => {
-
-
-            console.log("New get request to /biofuels-production");
-
-            //PRUEBA DE BUSQUEDA 
-            var limit = parseInt(req.query.limit);
-            var offset = parseInt(req.query.offset);
-            var country = req.query.country;
-            var year = req.query.year;
-            var ethanolFuel = req.query.ethanolFuel;
-            var dryNaturalGas = req.query.dryNaturalGas;
-            var biodiesel = req.query.biodiesel;
-
-            var aux = [];
-            var aux2 = [];
-            var aux3 = [];
-
-
-            if (limit >= 0 || offset >= 0) {
-                biofuels.find({}).skip(offset).limit(limit).toArray((err, biofuelsFilteredArray) => {
-
-                    if (err) {
-                        console.error('WARNING: Error getting data from DB');
-                        res.sendStatus(500); // internal server error
-                        return;
-                    } else {
-                        if (biofuelsFilteredArray.length === 0) {
-                            res.send(biofuelsFilteredArray);
-                            //response.sendStatus(404); //No have content
-                            //return;
-                        }
-
-                        console.log("INFO: Sending biofuels :: " + JSON.stringify(biofuelsFilteredArray, 2, null));
-
-                        if (country || year || ethanolFuel || dryNaturalGas || biodiesel) {
-
-                            aux = biofuels.find({
-
-                                $and: [
-                                    { country: { $eq: country } },
-                                    { year: { $eq: year } }
-                                ]
-                            }).toArray();
-
-                            //aux = buscador(biofuelsFilteredArray, aux, country, year, ethanolFuel, dryNaturalGas, biodiesel);
-
-                            if (aux.length > 0) {
-                                aux2 = aux.slice(offset, offset + limit);
-
-                                res.send(aux2);
-                            } else {
-
-                                res.send(aux3); // No content 
-                                return;
-                            }
-                        } else {
-                            res.send(biofuelsFilteredArray.map((c) => {
-                                delete c._id;
-                                return c;
-                            }));
-                        }
-                    }
-                });
-
-            } else {
-
-                biofuels.find({}).toArray((err, biofuelsFilteredArray) => {
-                    if (err) {
-                        console.error('ERROR from database');
-                        res.sendStatus(500); // internal server error
-                    } else {
-                        if (biofuelsFilteredArray.length === 0) {
-
-                            res.send(biofuelsFilteredArray);
-                            return;
-                        }
-
-                        if (country || year || ethanolFuel || dryNaturalGas || biodiesel) {
-
-                            aux = biofuels.find({
-
-                                $and: [
-                                    { country: { $eq: country } } //,
-                                    //{ year: { $eq: year } }
-                                ]
-                            }).toArray();
-
-                            //aux = buscador(biofuelsFilteredArray, aux, country, year, ethanolFuel, dryNaturalGas, biodiesel);
-                            if (aux.length > 0) {
-                                console.log("enviando cosas");
-                                res.send(aux);
-                            } else {
-                                res.sendStatus(404); //No content
-                                return;
-                            }
-                        } else {
-                            res.send(biofuelsFilteredArray.map((c) => {
-                                delete c._id;
-                                return c;
-                            }));
-                        }
-                    }
-                });
-            }
-
-        });
-
-    */
+    //GET al conjunto de recursos
 
     app.get(BASE_PATH + "/biofuels-production", (req, res) => {
 

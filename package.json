@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test-api-biofuels": "newman run https://www.getpostman.com/collections/41e06ed6d0150bf94c1b",
+     "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a",
+    "test-api-biofuels": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99",
     "test-api-carstatics": "newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a"
   },
   "author": "",
