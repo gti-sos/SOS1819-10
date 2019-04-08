@@ -429,23 +429,21 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
     app.get(BASE_PATH + "/issue-dioxid?limit=:limit&offset=:offset", (req, res) => {
 
-        var limit = req.query.limit;
+        var limit = parseInt(req.query.limit);
 
-        var offset = req.query.offset;
+        var offset = parseInt(req.query.offset);
 
-        datos.find({}).toArray((err, datosArray) => {
+        datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
 
             if (err) {
 
-                console.log("Error " + err);
+                res.sendStatus(404);
             }
             else {
 
-                var sublista = datosArray.slice(offset, (datosArray.length));
-
-                var subsub = sublista.slice(0, limit + 1);
-
-                res.send(subsub);
+                res.send(datosArray);
+                
+                res.sendStatus(200);
 
             }
 
