@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app= "MiniPostmanApp">
+    
+    <head>
+        <title>
+            MiniPostman
+        </title>
+        
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+        
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="/bower_components/angular/angular.min.js"></script>
+        
+        <script src="minipostman-app.js"></script>
+        
+        <script src="main-ctrl.js"></script>
+        
+    </head>
+    
+    <body ng-controller= "MainCtrl">
+        <h1>My Postman</h1>
+        <div>
+            <label>URL: <input class="form-control text-center" ng-model= "url"/></label>
+            <button class="btn btn-primary" ng-click= "get()">Search</button>
+        </div>
+        <div>
+            <textarea class="form-control" rows="10" ng-model= "data"></textarea>
+        </div>
+        
+        <div>
+            <label>URL: <input class="form-control text-center" ng-model= "url2"/></label>
+            <button class="btn btn-primary" ng-click= "post()">Send</button>
+        </div>
+        <div>
+            <textarea class="form-control" rows="10" ng-model= "data2"></textarea>
+        </div>
+    </body>
+</html>

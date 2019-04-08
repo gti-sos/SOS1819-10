@@ -1,4 +1,4 @@
-var api = require("./v1");
+var api = require("./v2");
 
 module.exports = {
 

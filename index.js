@@ -2,6 +2,8 @@ var express = require("express");
 
 var bodyParser = require("body-parser");
 
+var path = require("path");
+
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
 var eCarStaticsAPI = require("./ecarstatics-api");
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.use("/", express.static(__dirname + "/public"));
+app.use("/", express.static(path.join(__dirname,"public/public_api")));
 
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
