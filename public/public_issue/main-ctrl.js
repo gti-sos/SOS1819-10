@@ -8,7 +8,18 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                 
                 $scope.url = "/api/v1/issue-dioxid";
                 
-                $scope.url2 = "/api/v1/issue-dioxid";
+                $scope.nombre = "";
+                
+                $scope.anyo = "";
+                
+                $scope.emisiones = "";
+                
+                var objeto = ({
+                    
+                        nombre_del_pais: $scope.nombre,
+                        año: $scope.anyo,
+                        emisiones_de_co2: $scope.emisiones
+                    });
                 
                 $scope.get = function (){
                     
@@ -19,11 +30,11 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                     });
                 };
                 
-                $scope.post = function (object){
+                $scope.post = function (){
                     
-                    $http.post($scope.url2, object).then(function (response){
+                    $http.post($scope.url2, objeto).then(function (response){
                         
-                        $scope.data2 = JSON.stringify(response.data2, null, 2);
+                        $scope.data2 = response.data2;
                         
                     });
                 };

@@ -1,5 +1,5 @@
- /* global angular $scope*/
+ /* global angular*/
             
-var app =angular.module("MiniPostmanApp", []);
+angular.module("MiniPostmanApp", []);
             
 console.log("App init");
