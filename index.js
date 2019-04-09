@@ -52,7 +52,10 @@ clientfjap.connect(err => {
         }
         ecarstatics = clientjcgp.db("sos1819").collection("e-car-statics");
         console.log("Connected to mongodb-carlos!!");
+        // Hacemos acceso a la api
         eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
+        // Acceso al frontend
+        app.use("/e-car-statics-minipostman", express.static(path.join(__dirname,"public/e-cars-statics")));
     });
 
     //***************API FRANCISCO*************************
