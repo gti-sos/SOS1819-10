@@ -11,19 +11,16 @@
     
     <body ng-controller="MainCtrl">
 
-        <div class = "container-fluid ml-2">
+        <div class = "container-fluid">
             <div class = row>
-                <div class = "col-sm">
-                    <h1>My minipostman</h1>
+                <div class = "col-sm" style="background-color:lavenderblush;">
+                    <h3>My minipostman</h3>
                     <label>URL : <input class="form-control text-center"ng-model="url"/></label>
                     
-                    <div style="color: blue;">
-                        <button class="btn btn-primary btn-xs" ng-click="send()">GET</button>
-                        <button class="btn btn-primary btn-xs" ng-click="post()">POST</button>
-                        <button class="btn btn-primary btn-xs" ng-click="put()">PUT</button>
-                        <button class="btn btn-primary btn-xs" ng-click="delete()">DELETE</button>
-                    </div>
-                    
+                    <button class="btn btn-primary btn-xs" ng-click="send()">GET</button>
+                    <button class="btn btn-primary btn-xs" ng-click="post()">POST</button>
+                    <button class="btn btn-primary btn-xs" ng-click="put()">PUT</button>
+                    <button class="btn btn-primary btn-xs" ng-click="delete()">DELETE</button>
                 </div>
             </div>
             
@@ -33,16 +30,19 @@
                 </div>
             </div>
             
-            <div class = "row">
-                <div class="col-sm">
-                    <h2>Body</h2>
+            
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                    <h4>Body</h4>
                     <textarea class="form-control" rows="20" ng-model="body"></textarea>
                 </div>
-                 <div class="col-sm">
-                    <h2>Response</h2>
+                 <div class="col">
+                    <h4>Response</h4>
                     <textarea class="form-control" rows="20" ng-model="data"></textarea>
-                </div>
             </div>
+            
+            
         </div>
         
     </body>
