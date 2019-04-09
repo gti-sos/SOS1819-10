@@ -3,10 +3,9 @@
 var app = angular.module("MiniPostmanApp");
 
 app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
-                console.log("Modular MainCtrl initialized");
+                console.log("MainCtrl initialized");
                 $scope.url = "/api/v1/e-cars-statics";
-                
-                // GET
+            
                 
                 $scope.send = function(){
                     $http.get($scope.url).then(function (response){
@@ -18,8 +17,6 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                     });
                 };
                 
-                // POST
-                
                 $scope.post = function(){
                     $http.post($scope.url,$scope.body).then(function (response){
                         $scope.status = response.status;
@@ -30,8 +27,6 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                     });
                 };
                 
-                // PUT
-                
                 $scope.put = function(){
                     $http.put($scope.url,$scope.body).then(function (response){
                         $scope.status = response.status;
@@ -41,8 +36,6 @@ app.controller("MainCtrl", ["$scope","$http", function ($scope,$http){
                         $scope.data = "";
                     });
                 };
-                
-                // DELETE
                 
                 $scope.delete = function(){
                     $http.delete($scope.url).then(function(response){
