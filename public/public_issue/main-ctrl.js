@@ -20,6 +20,10 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                         
                         $scope.data = JSON.stringify(response.data, null, 2);
                         
+                    }, function (error){
+                        
+                        $scope.data = JSON.stringify(error.data, null, 2);
+                        
                     });
                 };
                 
@@ -28,6 +32,10 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                     $http.get($scope.url).then(function (response){
                         
                         $scope.data = JSON.stringify(response.data, null, 2);
+                        
+                    }, function (error){
+                        
+                        $scope.data = JSON.stringify(error.data, null, 2);
                         
                     });
                 };
@@ -45,6 +53,10 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                         
                         $scope.data2 = JSON.stringify(response.data, null, 2);
                         
+                    }, function (error){
+                        
+                        $scope.data2 = JSON.stringify(error.data, null, 2);
+                        
                     });
                 };
                 
@@ -61,6 +73,10 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                         
                         $scope.data2 = JSON.stringify(response.data, null, 2);
                         
+                    }, function (error){
+                        
+                        $scope.data2 = JSON.stringify(error.data, null, 2);
+                        
                     });
                 };
                 
@@ -69,6 +85,10 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                     $http.delete($scope.url).then(function (response){
                         
                         $scope.data = JSON.stringify(response.data, null, 2);
+                        
+                    }, function (error){
+                        
+                        $scope.data = JSON.stringify(error.data, null, 2);
                         
                     });
                 };
