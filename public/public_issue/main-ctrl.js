@@ -14,13 +14,6 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                 
                 $scope.emisiones = "1,05";
                 
-                var objeto = ({
-                    
-                        nombre_del_pais: $scope.nombre,
-                        año: $scope.anyo,
-                        emisiones_de_co2: $scope.emisiones
-                    });
-                
                 $scope.get = function (){
                     
                     $http.get($scope.url).then(function (response){
@@ -32,9 +25,16 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                 
                 $scope.post = function (){
                     
+                    var objeto = ({
+                    
+                        nombre_del_pais: $scope.nombre,
+                        año: $scope.anyo,
+                        emisiones_de_co2: $scope.emisiones
+                    });
+                    
                     $http.post($scope.url, objeto).then(function (response){
                         
-                        $scope.data2 = response;
+                        $scope.data2 = JSON.stringify(response.data, null, 2);
                         
                     });
                 };
