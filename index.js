@@ -55,7 +55,7 @@ clientfjap.connect(err => {
         // Hacemos acceso a la api
         eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
         // Acceso al frontend
-        app.use("/e-car-statics-minipostman", express.static(path.join(__dirname,"public/e-cars-statics")));
+        app.use("/e-car-statics-minipostman", express.static(path.join(__dirname,"public/e-car-statics")));
     });
 
     //***************API FRANCISCO*************************
