@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.use("/", express.static(path.join(__dirname,"public/public_issue")));
+app.use("/", express.static(path.join(__dirname,"public")));
 
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
@@ -73,7 +73,7 @@ clientfjap.connect(err => {
         datos = client.db("sos1819-10").collection("issues-dioxids");
         console.log("Connected to mongodb-francisco-pardillo!!");
         issueDioxidAPI.register(app, BASE_PATH, datos);
-        
+        app.use("/issue-dioxid", express.static(path.join(__dirname,"public/public_issue")));
         //Una vez hechas las tres conexiones abrimos la conexion con el servidor    
         app.listen(port, () => {
             console.log("Magic is happening in port " + port);
