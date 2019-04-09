@@ -8,11 +8,11 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                 
                 $scope.url = "/api/v1/issue-dioxid";
                 
-                $scope.nombre = "";
+                $scope.nombre = "Africa";
                 
-                $scope.anyo = "";
+                $scope.anyo = "1960";
                 
-                $scope.emisiones = "";
+                $scope.emisiones = "1,05";
                 
                 var objeto = ({
                     
@@ -32,9 +32,9 @@ app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
                 
                 $scope.post = function (){
                     
-                    $http.post($scope.url2, objeto).then(function (response){
+                    $http.post($scope.url, objeto).then(function (response){
                         
-                        $scope.data2 = response.data2;
+                        $scope.data2 = response;
                         
                     });
                 };

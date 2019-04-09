@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.use("/issue-dioxid", express.static(path.join(__dirname,"public/public_issue")));
+app.use("/", express.static(path.join(__dirname,"public/public_issue")));
 
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
