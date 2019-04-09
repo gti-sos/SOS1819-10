@@ -77,9 +77,10 @@ client.connect(err => {
     console.log("Connected to mongodb-francisco-pardillo!!");
     issueDioxidAPI.register(app, BASE_PATH, datos);
     app.use("/issue-dioxid", express.static(path.join(__dirname, "public/public_issue")));
-    //Una vez hechas las tres conexiones abrimos la conexion con el servidor    
-    app.listen(port, () => {
-        console.log("Magic is happening in port " + port);
-    });
+
 });
 
+//Una vez hechas las tres conexiones abrimos la conexion con el servidor    
+app.listen(port, () => {
+    console.log("Magic is happening in port " + port);
+});
