@@ -150,6 +150,68 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     });
 
+    //GET a un conjunto de recursos :country
+
+
+    app.get(BASE_PATH + "/biofuels-production/:rec", (req, res) => {
+
+        var rec = parseInt(req.params.rec);
+
+        console.log(rec);
+        if (!Number.isInteger(rec)) {
+            rec = req.params.rec
+            biofuels.find({
+                "country": rec
+
+            }).toArray((err, biofuelsFilteredArray) => {
+
+                if (err) {
+                    console.error("Error accesing DB get to biofuels-production/country ");
+                    res.sendStatus(500);
+                }
+
+
+                if (biofuelsFilteredArray.length > 0) {
+
+                    res.send(biofuelsFilteredArray.map((c) => {
+                        delete c._id;
+                        return c;
+                    }));
+
+                }
+
+            });
+
+        } else {
+            biofuels.find({
+                "year": rec
+
+            }).toArray((err, biofuelsFilteredArray) => {
+
+                if (err) {
+                    console.error("Error accesing DB get to biofuels-production/year");
+                    res.sendStatus(500);
+                }
+
+
+                if (biofuelsFilteredArray.length > 0) {
+
+                    res.send(biofuelsFilteredArray.map((c) => {
+                        delete c._id;
+                        return c;
+                    }));
+
+                }
+
+            });
+
+        }
+
+
+
+    });
+
+
 
     //PUT a un recurso concreto
 
