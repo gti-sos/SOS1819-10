@@ -15,33 +15,51 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             if (datosArray.length == 0) {
 
                 datos.insert({
-                    nombre_del_pais: "Albania",
-                    año: "1960",
-                    emisiones_de_co2: "0,05"
+                    country: "España",
+                    year: "2010",
+                    issue_metric_ton: "5,861",
+                    issue_liquid_fuel: "155.506,469",
+                    issue_solid_fuel: "31.033,821"
                 });
 
                 datos.insert({
-                    nombre_del_pais: "Alemania",
-                    año: "1991",
-                    emisiones_de_co2: "11,62"
+                    country: "España",
+                    year: "2012",
+                    issue_metric_ton: "5,661",
+                    issue_liquid_fuel: "133.093,765",
+                    issue_solid_fuel: "58.290,632"
                 });
 
                 datos.insert({
-                    nombre_del_pais: "España",
-                    año: "1990",
-                    emisiones_de_co2: "5,624"
+                    country: "España",
+                    year: "2014",
+                    issue_metric_ton: "5,03",
+                    issue_liquid_fuel: "129.038,06",
+                    issue_solid_fuel: "43.461,28"
                 });
 
                 datos.insert({
-                    nombre_del_pais: "Angola",
-                    año: "1995",
-                    emisiones_de_co2: "0,769"
+                    country: "Albania",
+                    year: "2010",
+                    issue_metric_ton: "1,579",
+                    issue_liquid_fuel: "3.494,651",
+                    issue_solid_fuel: "429,039"
                 });
 
                 datos.insert({
-                    nombre_del_pais: "Bahamas",
-                    año: "1992",
-                    emisiones_de_co2: "6,738"
+                    country: "Albania",
+                    year: "2012",
+                    issue_metric_ton: "1,693",
+                    issue_liquid_fuel: "3.157,287",
+                    issue_solid_fuel: "627,057"
+                });
+
+                datos.insert({
+                    country: "Albania",
+                    year: "2014",
+                    issue_metric_ton: "1,979",
+                    issue_liquid_fuel: "3.861,351",
+                    issue_solid_fuel: "700,397"
                 });
 
 
@@ -67,11 +85,11 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
     // GET a un conjunto
 
     app.get(BASE_PATH + "/issue-dioxid", (req, res) => {
-        
+
         var limit = parseInt(req.query.limit);
-        
+
         var offset = parseInt(req.query.offset);
-        
+
         if (!limit && !offset) {
             limit = 0;
             offset = 0;
@@ -98,6 +116,70 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
         });
     });
 
+    //GET por una clave.
+
+    app.get(BASE_PATH + "/issue-dioxid/:data", (req, res) => {
+
+        var data = parseInt(req.params.data);
+
+        var limit = parseInt(req.query.limit);
+
+        var offset = parseInt(req.query.offset);
+
+        if (!limit && !offset) {
+            limit = 0;
+            offset = 0;
+
+        }
+
+        if (!Number.isInteger(data)) {
+
+            var name = req.params.data;
+
+
+            datos.find({ "country": name }).skip(offset).limit(limit).toArray((err, datosArray) => {
+
+                if (err) {
+
+                    console.log("Error " + err);
+                }
+                else {
+
+                    res.send(datosArray.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato;
+                    }));
+
+                }
+
+            });
+        }
+        else{
+            
+            datos.find({ "year": data }).skip(offset).limit(limit).toArray((err, datosArray) => {
+
+                if (err) {
+
+                    console.log("Error " + err);
+                }
+                else {
+
+                    res.send(datosArray.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato;
+                    }));
+
+                }
+
+            });
+            
+        }
+    });
+
     // GET a un dato
 
     console.log("get a un dato");
@@ -109,7 +191,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
         var anyo = req.params.anyo;
 
 
-        datos.find({ "nombre_del_pais": name, "año": anyo }).toArray((err, dato) => {
+        datos.find({ "country": name, "year": anyo }).toArray((err, dato) => {
 
             if (err) {
 
@@ -119,12 +201,14 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato.map((dato) => {
+                    var newDato = (dato.map((dato) => {
 
                         delete dato._id;
 
-                        return dato[0];
+                        return dato;
                     }));
+
+                    res.send(newDato[0]);
                 }
                 else {
 
@@ -142,7 +226,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var newData = req.body;
 
-        datos.find({ "nombre_del_pais": newData.nombre_del_pais, "año": newData.año }).toArray((err, datosArray) => {
+        datos.find({ "country": newData.country, "year": newData.year }).toArray((err, datosArray) => {
 
             if (err) {
 
@@ -156,8 +240,8 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 }
                 else {
 
-                    if (Object.keys(newData).length >= 3 && newData.nombre_del_pais && newData.año &&
-                        newData.emisiones_de_co2) {
+                    if (Object.keys(newData).length >= 5 && newData.country && newData.year &&
+                        newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel) {
 
                         datos.insert(newData);
 
@@ -194,7 +278,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var newData = req.body;
 
-        datos.find({ "nombre_del_pais": name, "año": anyo }).toArray((err, dato) => {
+        datos.find({ "country": name, "year": anyo }).toArray((err, dato) => {
 
             if (err) {
 
@@ -203,10 +287,10 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             }
             else {
 
-                if (Object.keys(newData).length >= 3 && newData.nombre_del_pais && newData.año &&
-                    newData.emisiones_de_co2 && newData.nombre_del_pais == name && newData.año == anyo) {
+                if (Object.keys(newData).length >= 5 && newData.country && newData.year &&
+                        newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel) {
 
-                    datos.update({ "nombre_del_pais": name, "año": anyo }, { $set: newData });
+                    datos.update({ "country": name, "year": anyo }, { $set: newData });
 
                     res.sendStatus(200);
                 }
@@ -242,7 +326,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var anyo = req.params.anyo;
 
-        datos.find({ "nombre_del_pais": name, "año": anyo }).toArray((err, dato) => {
+        datos.find({ "country": name, "year": anyo }).toArray((err, dato) => {
 
             if (err) {
 
@@ -253,7 +337,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    datos.remove({ "nombre_del_pais": name, "año": anyo });
+                    datos.remove({ "country": name, "year": anyo });
 
                     res.sendStatus(200);
                 }
@@ -469,36 +553,6 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                     res.sendStatus(404);
                 }
-
-            }
-
-        });
-    });
-
-    //Paginación.
-
-    app.get(BASE_PATH + "/issue-dioxid", (req, res) => {
-
-        var limit = parseInt(req.query.limit);
-
-        var offset = parseInt(req.query.offset);
-
-        datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                res.send(datosArray.map((dato) => {
-
-                    delete dato._id;
-
-                    return dato;
-                }));
-
-                res.sendStatus(200);
 
             }
 
