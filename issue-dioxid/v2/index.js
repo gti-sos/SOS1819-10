@@ -67,8 +67,18 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
     // GET a un conjunto
 
     app.get(BASE_PATH + "/issue-dioxid", (req, res) => {
+        
+        var limit = parseInt(req.query.limit);
+        
+        var offset = parseInt(req.query.offset);
+        
+        if (!limit && !offset) {
+            limit = 0;
+            offset = 0;
 
-        datos.find({}).toArray((err, datosArray) => {
+        }
+
+        datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
 
             if (err) {
 
@@ -76,7 +86,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             }
             else {
 
-                res.send(datosArray);
+                res.send(datosArray.map((dato) => {
+
+                    delete dato._id;
+
+                    return dato;
+                }));
 
             }
 
@@ -104,7 +119,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato[0]);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -262,7 +282,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -291,7 +316,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -320,7 +350,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -351,7 +386,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -382,7 +422,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -413,7 +458,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                 if (dato.length > 0) {
 
-                    res.send(dato);
+                    res.send(dato.map((dato) => {
+
+                        delete dato._id;
+
+                        return dato[0];
+                    }));
                 }
                 else {
 
@@ -427,7 +477,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
     //Paginación.
 
-    app.get(BASE_PATH + "/issue-dioxid?limit=:limit&offset=:offset", (req, res) => {
+    app.get(BASE_PATH + "/issue-dioxid", (req, res) => {
 
         var limit = parseInt(req.query.limit);
 
@@ -441,8 +491,13 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             }
             else {
 
-                res.send(datosArray);
-                
+                res.send(datosArray.map((dato) => {
+
+                    delete dato._id;
+
+                    return dato;
+                }));
+
                 res.sendStatus(200);
 
             }
