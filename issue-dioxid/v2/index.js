@@ -90,30 +90,43 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var offset = parseInt(req.query.offset);
 
+        var country = (req.query.country);
+
+        var year = req.query.year;
+
+        var issue_metric_ton = req.query.issue_metric_ton;
+
+        var issue_liquid_fuel = req.query.issue_liquid_fuel;
+
+        var issue_solid_fuel = req.query.issue_solid_fuel;
+
         if (!limit && !offset) {
+
             limit = 0;
             offset = 0;
-
         }
 
-        datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
+        if (!country && !year && !issue_metric_ton && !issue_liquid_fuel && !issue_solid_fuel) {
 
-            if (err) {
+            datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
 
-                console.log("Error " + err);
-            }
-            else {
+                if (err) {
 
-                res.send(datosArray.map((dato) => {
+                    console.log("Error " + err);
+                }
+                else {
 
-                    delete dato._id;
+                    res.send(datosArray.map((dato) => {
 
-                    return dato;
-                }));
+                        delete dato._id;
 
-            }
+                        return dato;
+                    }));
 
-        });
+                    res.sendStatus(200);
+                }
+            })
+        };
     });
 
     //GET por una clave.
@@ -155,9 +168,11 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 }
 
             });
+
+            res.sendStatus(200);
         }
-        else{
-            
+        else {
+
             datos.find({ "year": data }).skip(offset).limit(limit).toArray((err, datosArray) => {
 
                 if (err) {
@@ -176,7 +191,8 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 }
 
             });
-            
+
+            res.sendStatus(200);
         }
     });
 
@@ -288,7 +304,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             else {
 
                 if (Object.keys(newData).length >= 5 && newData.country && newData.year &&
-                        newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel) {
+                    newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel) {
 
                     datos.update({ "country": name, "year": anyo }, { $set: newData });
 
@@ -348,214 +364,4 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             }
         });
     });
-
-    //Búsqueda por país.
-
-    app.get(BASE_PATH + "/issue-dioxid/nombre_del_pais=:name", (req, res) => {
-
-        var name = req.params.name;
-
-
-        datos.find({ "nombre_del_pais": name }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-
-    //Búsqueda por año.
-
-    app.get(BASE_PATH + "/issue-dioxid/anyo=:anyo", (req, res) => {
-
-        var anyo = req.params.anyo;
-
-
-        datos.find({ "año": anyo }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-
-    //Búsqueda por emisiones.
-
-    app.get(BASE_PATH + "/issue-dioxid/emisiones_de_co2=:emi", (req, res) => {
-
-        var em = req.params.emi;
-
-
-        datos.find({ "emisiones_de_co2": em }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-
-    //Búsqueda por país y año.
-
-    app.get(BASE_PATH + "/issue-dioxid/nombre_del_pais=:name/anyo=:anyo", (req, res) => {
-
-        var name = req.params.name;
-
-        var anyo = req.params.anyo;
-
-
-        datos.find({ "nombre_del_pais": name, "año": anyo }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-
-    //Búsqueda por año y emisiones.
-
-    app.get(BASE_PATH + "/issue-dioxid/anyo=:anyo/emisiones_de_co2=:emi", (req, res) => {
-
-        var anyo = req.params.anyo;
-
-        var em = req.params.emi;
-
-
-        datos.find({ "año": anyo, "emisiones_de_co2": em }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-
-    //Búsqueda por país y emisiones.
-
-    app.get(BASE_PATH + "/issue-dioxid/nombre_del_pais=:name/emisiones_de_co2=:emi", (req, res) => {
-
-        var name = req.params.name;
-
-        var em = req.params.emi;
-
-
-        datos.find({ "nombre_del_pais": name, "emisiones_de_co2": em }).toArray((err, dato) => {
-
-            if (err) {
-
-                res.sendStatus(404);
-            }
-            else {
-
-                if (dato.length > 0) {
-
-                    res.send(dato.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato[0];
-                    }));
-                }
-                else {
-
-                    res.sendStatus(404);
-                }
-
-            }
-
-        });
-    });
-}
+};
