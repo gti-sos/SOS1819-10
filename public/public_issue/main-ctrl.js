@@ -36,11 +36,11 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             });
         };
 
-        $scope.updateData = function() {
+        $scope.updateData = function(country, year) {
 
             var updateData = $scope.updateData;
 
-            $http.put($scope.url, updateData).then(function(response) {
+            $http.put($scope.url + "/" + country + "/" + year, updateData).then(function(response) {
 
                 refresh();
 
@@ -55,11 +55,11 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
             });
         };
-        
-        $scope.deleteAllData = function(){
-            
-            $http.delete($scope.url).then(function(response){
-                
+
+        $scope.deleteAllData = function() {
+
+            $http.delete($scope.url).then(function(response) {
+
                 refresh();
             });
         };

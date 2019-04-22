@@ -63,12 +63,12 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 });
 
 
-                res.send(201);
+                res.sendStatus(201);
 
             }
             else {
 
-                res.send(409);
+                res.sendStatus(409);
             }
         });
     });
