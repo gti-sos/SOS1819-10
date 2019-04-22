@@ -118,10 +118,9 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                             return dato;
                         }));
-
-                        res.sendStatus(200);
                     }
                     else {
+                        
                         res.sendStatus(404);
                     }
                 }
@@ -147,8 +146,6 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                                 return dato;
                             }));
-
-                            res.sendStatus(200);
                         }
                         else {
                             res.sendStatus(404);
@@ -174,8 +171,6 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
                                 return dato;
                             }));
-
-                            res.sendStatus(200);
                         }
                         else {
                             res.sendStatus(404);

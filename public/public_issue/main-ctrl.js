@@ -14,10 +14,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
             $scope.datos = response.data;
 
-        }, function(error) {
-
-            console.log("error");
-
         });
 
         $scope.loadData = function() {
@@ -25,10 +21,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $http.get("/api/v1/issue-dioxid/loadInitialData").then(function(response) {
 
                 refresh();
-
-            }, function(error) {
-
-                console.log("error");
 
             });
         };
@@ -41,10 +33,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                 refresh();
 
-            }, function(error) {
-
-                console.log("error");
-
             });
         };
 
@@ -56,10 +44,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                 refresh();
 
-            }, function(error) {
-
-                console.log("error");
-
             });
         };
 
@@ -69,12 +53,16 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                 refresh();
 
-            }, function(error) {
-
-                console.log("error");
-
             });
-        }
+        };
+        
+        $scope.deleteAllData = function(){
+            
+            $http.delete($scope.url).then(function(response){
+                
+                refresh();
+            });
+        };
     }
 
     refresh();
