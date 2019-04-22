@@ -3,7 +3,7 @@
     
     <head>
         <title>
-            MiniPostman1
+            MiniPostman2
         </title>
         
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -20,25 +20,94 @@
     
     <body ng-controller= "MainCtrl">
         <h1>Issue-Dioxid Postman</h1>
-        <div>
-            <label>URL: <input class="form-control text-center" ng-model= "url"/></label>
-            <button class="btn btn-primary" ng-click= "load()">Load</button>
-            <button class="btn btn-primary" ng-click= "get()">Search</button>
-            <button class="btn btn-danger" ng-click= "delete()">Delete</button>
-        </div>
-        <div>
-            <textarea class="form-control" rows="10" ng-model= "data"></textarea>
-        </div>
-        
-        <div>
-            <label>Nombre_Pais: <input class="form-control text-center" ng-model= "nombre"/></label>
-            <label>Año: <input class="form-control text-center" ng-model= "anyo"/></label>
-            <label>Emisiones: <input class="form-control text-center" ng-model= "emisiones"/></label>
-            <button class="btn btn-primary" ng-click= "post()">Created</button>
-            <button class="btn btn-primary" ng-click= "put()">Update</button>
-        </div>
-        <div>
-            <textarea class="form-control" rows="10" ng-model= "data2"></textarea>
-        </div>
-    </body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Issue_metric_ton
+                    </th>
+                    <th>
+                        Issue_liquid_fuel
+                    </th>
+                    <th>
+                        Issue_solid_fuel
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dato in datos">
+                    <td>{{ dato.country }}</td>
+                    <td>{{ dato.year }}</td>
+                    <td>{{ dato.issue_metric_ton }}</td>
+                    <td>{{ dato.issue_liquid_fuel }}</td>
+                    <td>{{ dato.issue_solid_fuel }}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteData(dato.country, dato.year)">Borrar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="from-control" value="update country" ng-model="updateData.country"/>
+                    </td>
+                
+                    <td>
+                        <input class="from-control" value="update year" ng-model="updateData.year"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="update issue_metric_ton" ng-model="updateData.issue_metric_ton"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="update issue_liquid_fuel" ng-model="updateData.issue_liquid_fuel"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="update issue_solid_fuel" ng-model="updateData.issue_solid_fuel"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="updateData()">Actualizar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="from-control" value="new country" ng-model="newData.country"/>
+                    </td>
+                
+                    <td>
+                        <input class="from-control" value="new year" ng-model="newData.year"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="new issue_metric_ton" ng-model="newData.issue_metric_ton"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="new issue_liquid_fuel" ng-model="newData.issue_liquid_fuel"/>
+                    </td>
+                    
+                    <td>
+                        <input class="from-control" value="new issue_solid_fuel" ng-model="newData.issue_solid_fuel"/>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="addData()">Crear</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="loadData()">Cargar Datos</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </html>

@@ -2,94 +2,80 @@
 
 var app = angular.module("MiniPostmanApp");
 
-app.controller("MainCtrl", ["$scope", "$http", function ($scope, $http){
-                
-                console.log("MainCtrl ready");
-                
-                $scope.url = "/api/v1/issue-dioxid";
-                
-                $scope.nombre = "Africa";
-                
-                $scope.anyo = "1960";
-                
-                $scope.emisiones = "1,05";
-                
-                $scope.load = function (){
-                    
-                    $http.get("/api/v1/issue-dioxid/loadInitialData").then(function (response){
-                        
-                        $scope.data = JSON.stringify(response.data, null, 2);
-                        
-                    }, function (error){
-                        
-                        $scope.data = JSON.stringify(error.data, null, 2);
-                        
-                    });
-                };
-                
-                $scope.get = function (){
-                    
-                    $http.get($scope.url).then(function (response){
-                        
-                        $scope.data = JSON.stringify(response.data, null, 2);
-                        
-                    }, function (error){
-                        
-                        $scope.data = JSON.stringify(error.data, null, 2);
-                        
-                    });
-                };
-                
-                $scope.post = function (){
-                    
-                    var objeto = ({
-                    
-                        nombre_del_pais: $scope.nombre,
-                        año: $scope.anyo,
-                        emisiones_de_co2: $scope.emisiones
-                    });
-                    
-                    $http.post($scope.url, objeto).then(function (response){
-                        
-                        $scope.data2 = JSON.stringify(response.data, null, 2);
-                        
-                    }, function (error){
-                        
-                        $scope.data2 = JSON.stringify(error.data, null, 2);
-                        
-                    });
-                };
-                
-                $scope.put = function (){
-                    
-                    var objeto = ({
-                    
-                        nombre_del_pais: $scope.nombre,
-                        año: $scope.anyo,
-                        emisiones_de_co2: $scope.emisiones
-                    });
-                    
-                    $http.put($scope.url, objeto).then(function (response){
-                        
-                        $scope.data2 = JSON.stringify(response.data, null, 2);
-                        
-                    }, function (error){
-                        
-                        $scope.data2 = JSON.stringify(error.data, null, 2);
-                        
-                    });
-                };
-                
-                $scope.delete = function (){
-                    
-                    $http.delete($scope.url).then(function (response){
-                        
-                        $scope.data = JSON.stringify(response.data, null, 2);
-                        
-                    }, function (error){
-                        
-                        $scope.data = JSON.stringify(error.data, null, 2);
-                        
-                    });
-                };
+app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
+
+    console.log("MainCtrl ready");
+
+    $scope.url = "/api/v1/issue-dioxid";
+
+    function refresh() {
+
+        $http.get($scope.url).then(function(response) {
+
+            $scope.datos = response.data;
+
+        }, function(error) {
+
+            console.log("error");
+
+        });
+
+        $scope.loadData = function() {
+
+            $http.get("/api/v1/issue-dioxid/loadInitialData").then(function(response) {
+
+                refresh();
+
+            }, function(error) {
+
+                console.log("error");
+
+            });
+        };
+
+        $scope.addData = function() {
+
+            var newData = $scope.newData;
+
+            $http.post($scope.url, newData).then(function(response) {
+
+                refresh();
+
+            }, function(error) {
+
+                console.log("error");
+
+            });
+        };
+
+        $scope.updateData = function() {
+
+            var updateData = $scope.updateData;
+
+            $http.put($scope.url, updateData).then(function(response) {
+
+                refresh();
+
+            }, function(error) {
+
+                console.log("error");
+
+            });
+        };
+
+        $scope.deleteData = function(country, year) {
+
+            $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
+
+                refresh();
+
+            }, function(error) {
+
+                console.log("error");
+
+            });
+        }
+    }
+
+    refresh();
 }]);

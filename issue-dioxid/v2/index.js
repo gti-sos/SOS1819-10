@@ -92,13 +92,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var country = (req.query.country);
 
-        var year = req.query.year;
-
-        var issue_metric_ton = req.query.issue_metric_ton;
-
-        var issue_liquid_fuel = req.query.issue_liquid_fuel;
-
-        var issue_solid_fuel = req.query.issue_solid_fuel;
+        var year = parseInt(req.query.year);
 
         if (!limit && !offset) {
 
@@ -106,7 +100,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             offset = 0;
         }
 
-        if (!country && !year && !issue_metric_ton && !issue_liquid_fuel && !issue_solid_fuel) {
+        if (!country && !year) {
 
             datos.find({}).skip(offset).limit(limit).toArray((err, datosArray) => {
 
@@ -116,17 +110,80 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 }
                 else {
 
-                    res.send(datosArray.map((dato) => {
+                    if (datosArray.length > 0) {
 
-                        delete dato._id;
+                        res.send(datosArray.map((dato) => {
 
-                        return dato;
-                    }));
+                            delete dato._id;
 
-                    res.sendStatus(200);
+                            return dato;
+                        }));
+
+                        res.sendStatus(200);
+                    }
+                    else {
+                        res.sendStatus(404);
+                    }
                 }
             })
-        };
+        }
+        else {
+
+            if (country && !year) {
+
+                datos.find({ "country": country }).toArray((err, datosArray) => {
+
+                    if (err) {
+
+                        console.log("Error " + err);
+                    }
+                    else {
+
+                        if (datosArray.length > 0) {
+
+                            res.send(datosArray.map((dato) => {
+
+                                delete dato._id;
+
+                                return dato;
+                            }));
+
+                            res.sendStatus(200);
+                        }
+                        else {
+                            res.sendStatus(404);
+                        }
+                    }
+                })
+            }
+            else {
+
+                datos.find({ "year": year }).toArray((err, datosArray) => {
+
+                    if (err) {
+
+                        console.log("Error " + err);
+                    }
+                    else {
+
+                        if (datosArray.length > 0) {
+
+                            res.send(datosArray.map((dato) => {
+
+                                delete dato._id;
+
+                                return dato;
+                            }));
+
+                            res.sendStatus(200);
+                        }
+                        else {
+                            res.sendStatus(404);
+                        }
+                    }
+                })
+            }
+        }
     });
 
     //GET por una clave.
