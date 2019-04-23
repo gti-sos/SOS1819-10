@@ -71,6 +71,19 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                 
         };
         
+        /* Realizar búsqueda por país */
+        $scope.buscarPais = function(country) {
+            console.log("Buscando ... ");
+            $http({
+                url: $scope.url + "/" + country,
+                method: "GET",
+            }).then(function(response) {
+                $scope.ecarstatics = response.data;
+                console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
+                refresh();
+            });
+        }
+        
     refresh();
 }]);
 
