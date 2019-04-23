@@ -90,9 +90,9 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
         var offset = parseInt(req.query.offset);
 
-        var country = (req.query.country);
+        var country = req.query.country;
 
-        var year = parseInt(req.query.year);
+        var year = req.query.year;
 
         if (!limit && !offset) {
 
@@ -121,7 +121,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     }
                     else {
                         
-                        res.sendStatus(404);
+                        res.send(datosArray);
                     }
                 }
             })
@@ -178,73 +178,6 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     }
                 })
             }
-        }
-    });
-
-    //GET por una clave.
-
-    app.get(BASE_PATH + "/issue-dioxid/:data", (req, res) => {
-
-        var data = parseInt(req.params.data);
-
-        var limit = parseInt(req.query.limit);
-
-        var offset = parseInt(req.query.offset);
-
-        if (!limit && !offset) {
-            limit = 0;
-            offset = 0;
-
-        }
-
-        if (!Number.isInteger(data)) {
-
-            var name = req.params.data;
-
-
-            datos.find({ "country": name }).skip(offset).limit(limit).toArray((err, datosArray) => {
-
-                if (err) {
-
-                    console.log("Error " + err);
-                }
-                else {
-
-                    res.send(datosArray.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato;
-                    }));
-
-                }
-
-            });
-
-            res.sendStatus(200);
-        }
-        else {
-
-            datos.find({ "year": data }).skip(offset).limit(limit).toArray((err, datosArray) => {
-
-                if (err) {
-
-                    console.log("Error " + err);
-                }
-                else {
-
-                    res.send(datosArray.map((dato) => {
-
-                        delete dato._id;
-
-                        return dato;
-                    }));
-
-                }
-
-            });
-
-            res.sendStatus(200);
         }
     });
 
