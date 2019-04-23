@@ -66,7 +66,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     /* Los delete funcionan */
     $scope.deleteCarStatics = function(country, year) {
 
-        $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
+        $http.delete($scope.url+"/"+country+"/"+year).then(function(response) {
             /* debug */
             console.log("Deleting field with country " + country + " and year " + year);
 
