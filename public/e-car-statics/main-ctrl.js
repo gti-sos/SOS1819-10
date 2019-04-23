@@ -7,6 +7,8 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     console.log("MainCtrl ready");
 
     $scope.url = "/api/v1/e-car-statics";
+    
+    $scope.mensaje = "No se ha realizado ninguna acción";
 
     function refresh() {
 
@@ -16,6 +18,14 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         });
     };
+    
+    $scope.cargaInicial = function(){
+        $http.get("api/v1/e-car-statics/loadInitialData").then(function(response){
+            
+            $scope.mensaje = "Carga inicial exitosa";
+            refresh();
+        });
+    }
         /* El añadir un nuevo campo funciona */
         $scope.addNewCarStatics = function() {
 

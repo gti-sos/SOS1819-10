@@ -102,32 +102,21 @@
                     <button class="btn btn-primary" ng-click="addNewCarStatics()">Añadir nuevo</button>
                 </td>
             </tr>
+            <div class="row">
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
+                <div class="col-sm">
                     <button class="btn btn-primary" ng-click="loadData()">Cargar Datos</button>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
+                </div>
+                <div class="col-sm">
                     <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
-                </td>
-            </tr>
+                </div>
+            </div>
+
         </tbody>
     </table>
     <div class="alert alert-success">
-        <div class= "col-sm">
-            <p> Mensaje :  {{ mensaje }}</p>
+        <div class="col-sm">
+            <p> Mensaje : {{ mensaje }}</p>
         </div>
     </div>
 
