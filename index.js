@@ -18,8 +18,9 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/ui/v1/biofuels-production", express.static(path.join(__dirname, "public/biofuels")));
 
+app.use("/ui/v1/biofuels-production", express.static(path.join(__dirname, "public/biofuels")));
+app.use("/ui/v1/e-car-statics", express.static(path.join(__dirname, "public/e-car-statics")));
 
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
@@ -59,8 +60,6 @@ clientjcgp.connect(err => {
     console.log("Connected to mongodb-carlos!!");
     // Hacemos acceso a la api
     eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
-    // Acceso al frontend
-    app.use("/e-car-statics-minipostman", express.static(path.join(__dirname, "public/e-car-statics")));
 });
 
 //***************API FRANCISCO*************************
