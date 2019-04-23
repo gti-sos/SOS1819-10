@@ -1,7 +1,6 @@
 module.exports = function(app, BASE_PATH, biofuels) {
 
-    console.log("Registering biofuels API (v1)....");
-
+    console.log("Registering biofuels API (v2)....");
 
 
     //GET /api/v1/biofuels-production/docs
@@ -68,7 +67,10 @@ module.exports = function(app, BASE_PATH, biofuels) {
     app.post(BASE_PATH + "/biofuels-production", (req, res) => {
 
         var reqBiofuels = req.body;
-
+        var year = parseInt(reqBiofuels.year);
+        var ethanolFuel = parseFloat(reqBiofuels.ethanolFuel);
+        var dryNaturalGas = parseFloat(reqBiofuels.dryNaturalGas);
+        var biodiesel = parseFloat(reqBiofuels.biodiesel);
 
         if (Object.keys(reqBiofuels).length != 5 || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel || !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel) {
 
@@ -78,7 +80,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
             biofuels.find({
                 "country": reqBiofuels["country"],
-                "year": reqBiofuels["year"]
+                "year": year
             }).toArray((err, biofuelsArray) => {
 
                 if (err) {
@@ -94,7 +96,13 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
                 } else {
 
-                    biofuels.insert(reqBiofuels);
+                    biofuels.insert({
+                        "country": reqBiofuels["country"],
+                        "year": year,
+                        "ethanolFuel": ethanolFuel,
+                        "dryNaturalGas": dryNaturalGas,
+                        "biodiesel": biodiesel
+                    });
                     res.sendStatus(201);
 
                 }
@@ -217,7 +225,18 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
         var year = parseInt(req.params.year);
         var country = req.params.country;
-        var reqBiofuels = req.body;
+
+        //var reqBiofuels = req.body;
+        var ethanolFuel = parseFloat(req.body.ethanolFuel);
+        var dryNaturalGas = parseFloat(req.body.dryNaturalGas);
+        var biodiesel = parseFloat(req.body.biodiesel);
+        var reqBiofuels = {
+            "country": country,
+            "year": year,
+            "ethanolFuel": ethanolFuel,
+            "dryNaturalGas": dryNaturalGas,
+            "biodiesel": biodiesel
+        };
 
         if (Object.keys(reqBiofuels).length != 5 || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel ||
             !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel) {

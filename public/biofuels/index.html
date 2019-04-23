@@ -1,51 +1,91 @@
-<html ng-app="MiniPostmanApp">
+<html ng-app="BiofuelsApp">
 
 <head>
-    <title>
-        MiniPostman
-    </title>
+    <title>Biofuels App</title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
     <script src="/bower_components/angular/angular.min.js"></script>
-
-    <script src="minipostman-app.js"></script>
-
+    <script src="biofuels-app.js"></script>
     <script src="main-ctrl.js"></script>
 </head>
 
 <body ng-controller="MainCtrl">
+    <h1>Biocombustibles</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>País</th>
+                <th>Año</th>
+                <th>Ethanol</th>
+                <th>Gas Natural</th>
+                <th>Biodiesel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="biofuel in biofuels">
+                <td>{{ biofuel.country }}</td>
+                <td>{{ biofuel.year }}</td>
+                <td>{{ biofuel.ethanolFuel }}</td>
+                <td>{{ biofuel.dryNaturalGas }}</td>
+                <td>{{ biofuel.biodiesel }}</td>
+                <td><button class="btn btn-danger" ng-click="deleteBiofuel(biofuel.country,biofuel.year)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control" ng-model="newBiofuel.country" />
+                </td>
 
+                <td>
+                    <input class="form-control" ng-model="newBiofuel.year" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="newBiofuel.ethanolFuel" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="newBiofuel.dryNaturalGas" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="newBiofuel.biodiesel" />
+                </td>
+
+                <td><button class="btn btn-primary" ng-click="addBiofuel()">Añadir</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control" ng-model="biofuel.country" />
+                </td>
+
+                <td>
+                    <input class="form-control" ng-model="biofuel.year" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="biofuel.ethanolFuel" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="biofuel.dryNaturalGas" />
+                </td>
+                <td>
+                    <input class="form-control" ng-model="biofuel.biodiesel" />
+                </td>
+
+                <td><button class="btn btn-primary" ng-click="updatedBiofuel()">Actualizar</button></td>
+            </tr>
+
+        </tbody>
+    </table>
     <div class="container-fluid">
-        <div class=r ow>
+        <div>
             <div class="col-sm" style="background-color:lightblue;">
-                <h3>My minipostman</h3>
-                <label>URL : <input class="form-control text-center"ng-model="url"/></label>
-                <button class="btn btn-primary btn-xs" ng-click="load()">LOAD</button>
-                <button class="btn btn-primary btn-xs" ng-click="send()">GET</button>
-                <button class="btn btn-primary btn-xs" ng-click="post()">POST</button>
-                <button class="btn btn-primary btn-xs" ng-click="put()">PUT</button>
-                <button class="btn btn-primary btn-xs" ng-click="delete()">DELETE</button>
+                <label>Campo para búsquedas: <input class="form-control text-center" size="50" ng-model="search"/></label>
+                <button class="btn btn-primary btn-xs" ng-click="searchBiofuels()">Buscar</button>
+                <button class="btn btn-primary btn-xs" ng-click="loadBiofuels()">Cargar recursos</button>
+                <button class="btn btn-primary btn-xs" ng-click="deleteBiofuels()">Borrar recursos</button>
             </div>
         </div>
-
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h4>Body</h4>
-                    <textarea class="form-control" rows="20" ng-model="body"></textarea>
-                </div>
-                <div class="col">
-                    <h4>Response</h4>
-                    <textarea class="form-control" rows="20" ng-model="data"></textarea>
-                </div>
-            </div>
+            <h3>http status code: {{status}}</h3>
         </div>
-        <div class="row" align="center">
-            <pre>http status code: {{status}}</pre>
-        </div>
-    </div>
 </body>
 
 </html>

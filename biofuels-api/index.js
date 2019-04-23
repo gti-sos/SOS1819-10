@@ -1,4 +1,5 @@
-var api = require("./v1");
+var api1 = require("./v1");
+var api2 = require("./v2");
 
 module.exports = {
 
@@ -11,6 +12,7 @@ module.exports = {
 
 function register(app, BASE_PATH, biofuels) {
 
-    api(app, BASE_PATH + "/v1", biofuels);
+    api1(app, BASE_PATH + "/v1", biofuels);
+    api2(app, BASE_PATH + "/v2", biofuels);
 
 }
