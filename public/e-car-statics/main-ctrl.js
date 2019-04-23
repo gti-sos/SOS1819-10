@@ -7,105 +7,106 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     console.log("MainCtrl ready");
 
     $scope.url = "/api/v1/e-car-statics";
-    
+
     $scope.mensaje = "No se ha realizado ninguna acción";
 
     function refresh() {
 
         $http.get($scope.url).then(function(response) {
-            console.log("Datos recibidos "+JSON.stringify(response.data,null,2));
+            console.log("Datos recibidos " + JSON.stringify(response.data, null, 2));
             $scope.ecarstatics = response.data;
 
         });
     };
-    
-    $scope.cargaInicial = function(){
-        $http.get("api/v1/e-car-statics/loadInitialData").then(function(response){
-            
+
+    $scope.cargaInicial = function() {
+        $http.get($scope.url + "/loadInitialData").then(function(response) {
+
             $scope.mensaje = "Carga inicial exitosa";
             refresh();
-        }, function(error){
-            $scope.mensaje = "Error : "+ error.status + " = Base de datos contiene elementos";
+        }, function(error) {
+            $scope.mensaje = "Error : " + error.status + " = Base de datos contiene elementos";
             refresh();
         });
     }
-        /* El añadir un nuevo campo funciona */
-        $scope.addNewCarStatics = function() {
+    /* El añadir un nuevo campo funciona */
+    $scope.addNewCarStatics = function() {
 
-            var newStatic = $scope.newCarStatic;
-            console.log("añadiendo una nueva estadística "+ JSON.stringify(newStatic, null, 2));
+        var newStatic = $scope.newCarStatic;
+        console.log("añadiendo una nueva estadística " + JSON.stringify(newStatic, null, 2));
 
-            $http.post($scope.url, newStatic).then(function(response) {
-                console.log("Creado correctamente!");
-                $scope.mensaje = " Dato añadido correctamente.";
+        $http.post($scope.url, newStatic).then(function(response) {
+            console.log("Creado correctamente!");
+            $scope.mensaje = " Dato añadido correctamente.";
+            refresh();
+        }, function(error) {
+            if (error.status == 409) {
+                $scope.mensaje = "Error: " + error.status + " = El recurso ya existe en la base de datos";
                 refresh();
-            }, function(error){
-                if(error.status == 409){
-                    $scope.mensaje = "Error: " + error.status + " = El recurso ya existe en la base de datos";
-                    refresh();
-                
-            } else{
-                    $scope.mensaje = "Error: " + error.status + " => Los datos especificados no son validos";
-                    refresh();
+
+            }
+            else {
+                $scope.mensaje = "Error: " + error.status + " => Los datos especificados no son validos";
+                refresh();
             }
 
-            });
-        };
+        });
+    };
 
-        $scope.updateData = function(country, year) {
+    $scope.updateData = function(country, year) {
 
-            var updateData = $scope.updateData;
+        var updateData = $scope.updateData;
 
-            $http.put($scope.url + "/" + country + "/" + year, updateData).then(function(response) {
+        $http.put($scope.url + "/" + country + "/" + year, updateData).then(function(response) {
 
-                refresh();
+            refresh();
 
-            });
-        };
-        /* Los delete funcionan */
-        $scope.deleteCarStatics = function(country, year) {
+        });
+    };
+    /* Los delete funcionan */
+    $scope.deleteCarStatics = function(country, year) {
 
-            $http.delete($scope.url+"/"+country+"/"+year).then(function(response) {
-                console.log("Deleting field with country "+country+ " and year "+year);
-                refresh();
+        $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
+            console.log("Deleting field with country " + country + " and year " + year);
+            refresh();
 
-            });
-        };
+        });
+    };
 
-        $scope.deleteAllData = function() {
+    $scope.deleteAllData = function() {
 
-            $http.delete($scope.url).then(function(response) {
+        $http.delete($scope.url).then(function(response) {
 
-                refresh();
-            });
-        };
-        
-        /* Realizar búsqueda*/
-        $scope.buscarDesdeHasta = function(){
-            console.log("buscando...");
-            $http({
-                url: $scope.url, 
-                method: "GET",
-                params: {from: $scope.from, to: $scope.to}
-            }).then(function (response){
-                $scope.ecarstatics= response.data;
-                console.log("Búsqueda realizada "+JSON.stringify(response.data,null,2));
-            });
-                
-        };
-        
-        /* Realizar búsqueda por país */
-        $scope.buscarPais = function(country) {
-            console.log("Buscando ... ");
-            $http({
-                url: $scope.url + "/" + country,
-                method: "GET",
-            }).then(function(response) {
-                $scope.ecarstatics = response.data;
-                console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
-            });
-        }
-        
+            refresh();
+        });
+    };
+
+    /* Realizar búsqueda*/
+    $scope.buscarDesdeHasta = function() {
+        console.log("buscando...");
+        $http({
+            url: $scope.url,
+            method: "GET",
+            params: { from: $scope.from, to: $scope.to }
+        }).then(function(response) {
+            $scope.ecarstatics = response.data;
+            console.log("Búsqueda realizada " + JSON.stringify(response.data, null, 2));
+        });
+
+    };
+
+    /* Realizar búsqueda por país */
+    $scope.buscarPais = function(country) {
+        console.log("Buscando ... ");
+        $http({
+            url: $scope.url + "/" + country,
+            method: "GET",
+        }).then(function(response) {
+            $scope.ecarstatics = response.data;
+            console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
+        });
+    }
+
     refresh();
 }]);
 
