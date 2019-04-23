@@ -24,6 +24,9 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             
             $scope.mensaje = "Carga inicial exitosa";
             refresh();
+        }, function(error){
+            $scope.mensaje = "Error : "+ error.status + " = Base de datos contiene elementos";
+            refresh();
         });
     }
         /* El añadir un nuevo campo funciona */
@@ -34,7 +37,17 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
             $http.post($scope.url, newStatic).then(function(response) {
                 console.log("Creado correctamente!");
+                $scope.mensaje = " Dato añadido correctamente.";
                 refresh();
+            }, function(error){
+                if(error.status == 409){
+                    $scope.mensaje = "Error: " + error.status + " = El recurso ya existe en la base de datos";
+                    refresh();
+                
+            } else{
+                    $scope.mensaje = "Error: " + error.status + " => Los datos especificados no son validos";
+                    refresh();
+            }
 
             });
         };
