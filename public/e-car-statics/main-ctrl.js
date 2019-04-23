@@ -76,7 +76,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         }, function(error) {
 
-            $scope.mensaje = "Error: " + error.status + " = recurso no encontrado"
+            $scope.mensaje = "Error: " + error.status + " => Recurso no encontrado"
         });
     };
 
@@ -89,7 +89,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             refresh();
         }, function(error) {
 
-            $scope.mensaje = "Error: " + error.status + " = base de datos vacía";
+            $scope.mensaje = "Error: " + error.status + " => Base de datos vacía";
         });
     };
 
@@ -120,7 +120,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.mensaje = "Búsqueda realizada con éxito";
         }, function(error) {
             refresh();
-            $scope.mensaje = "Error: " + error.status + "=> No existen este País"
+            $scope.mensaje = "Error: " + error.status + " => No existe este País"
         });
     }
 
