@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/ui/v1/e-car-statics", express.static(path.join(__dirname, "public/e-car-statics")));
 
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
