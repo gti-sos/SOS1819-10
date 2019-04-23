@@ -69,27 +69,27 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
             /* debug */
             console.log("Deleting field with country " + country + " and year " + year);
-            
+
             $scope.mensaje = "Recurso borrado";
-            
+
             refresh();
-            
-        }, function(error){
-            
-            $scope.mensaje = "Error: "+error.status+ " = recurso no encontrado"
+
+        }, function(error) {
+
+            $scope.mensaje = "Error: " + error.status + " = recurso no encontrado"
         });
     };
 
     $scope.deleteAllData = function() {
 
         $http.delete($scope.url).then(function(response) {
-            
+
             $scope.mensaje = "Datos borrados con éxito";
 
             refresh();
-        }, function(error){
-            
-            $scope.mensaje = "Error: "+error.status+ " = base de datos vacía";
+        }, function(error) {
+
+            $scope.mensaje = "Error: " + error.status + " = base de datos vacía";
         });
     };
 
@@ -103,10 +103,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         }).then(function(response) {
             $scope.ecarstatics = response.data;
             console.log("Búsqueda realizada " + JSON.stringify(response.data, null, 2));
-            $scope.mensaje = "Búsqueda realizada con éxito";
-        }, function(error){
-            refresh();
-            $scope.mensaje ="Error: "+error.status+ "=> No existen estos recursos"
+            $scope.mensaje = "Búsqueda realizada";
         });
 
     };
@@ -121,9 +118,9 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.ecarstatics = response.data;
             console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
             $scope.mensaje = "Búsqueda realizada con éxito";
-        }, function(error){
+        }, function(error) {
             refresh();
-            $scope.mensaje ="Error: "+error.status+ "=> No existen este País"
+            $scope.mensaje = "Error: " + error.status + "=> No existen este País"
         });
     }
 
