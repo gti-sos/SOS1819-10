@@ -41,11 +41,11 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                 refresh();
             }, function(error){
                 if(error.status == 409){
-                    $scope.mensaje = "Error: " + error.status + " = el recurso ya existe en la base de datos";
+                    $scope.mensaje = "Error: " + error.status + " = El recurso ya existe en la base de datos";
                     refresh();
                 
             } else{
-                    $scope.mensaje = "Error: " + error.status + " = los datos especificados no son validos";
+                    $scope.mensaje = "Error: " + error.status + " => Los datos especificados no son validos";
                     refresh();
             }
 
