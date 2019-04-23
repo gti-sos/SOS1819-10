@@ -25,7 +25,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.mensaje = "Carga inicial exitosa";
             refresh();
         }, function(error) {
-            $scope.mensaje = "Error : " + error.status + " = Base de datos contiene elementos";
+            $scope.mensaje = "Error : " + error.status + " => Base de datos llena";
             refresh();
         });
     }
@@ -41,7 +41,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             refresh();
         }, function(error) {
             if (error.status == 409) {
-                $scope.mensaje = "Error: " + error.status + " = El recurso ya existe en la base de datos";
+                $scope.mensaje = "Error: " + error.status + " => El recurso ya existe en la base de datos";
                 refresh();
 
             }
@@ -67,17 +67,29 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     $scope.deleteCarStatics = function(country, year) {
 
         $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
+            /* debug */
             console.log("Deleting field with country " + country + " and year " + year);
+            
+            $scope.mensaje = "Recurso borrado";
+            
             refresh();
-
+            
+        }, function(error){
+            
+            $scope.mensaje = "Error: "+error.status+ " = recurso no encontrado"
         });
     };
 
     $scope.deleteAllData = function() {
 
         $http.delete($scope.url).then(function(response) {
+            
+            $scope.mensaje = "Datos borrados con éxito";
 
             refresh();
+        }, function(error){
+            
+            $scope.mensaje = "Error: "+error.status+ " = base de datos vacía";
         });
     };
 
@@ -91,6 +103,10 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         }).then(function(response) {
             $scope.ecarstatics = response.data;
             console.log("Búsqueda realizada " + JSON.stringify(response.data, null, 2));
+            $scope.mensaje = "Búsqueda realizada con éxito";
+        }, function(error){
+            
+            $scope.mensaje ="Error: "+error.status+ "=> No existen estos recursos"
         });
 
     };
@@ -104,6 +120,10 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         }).then(function(response) {
             $scope.ecarstatics = response.data;
             console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
+            $scope.mensaje = "Búsqueda realizada con éxito";
+        }, function(error){
+            
+            $scope.mensaje ="Error: "+error.status+ "=> No existen este País"
         });
     }
 
