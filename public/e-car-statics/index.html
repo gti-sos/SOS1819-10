@@ -31,6 +31,14 @@
                 <button class = "btn btn-warning" ng-click="buscarDesdeHasta()">Buscar</button>
             </div>
         </div>
+        <div class ="row">
+            <div class = "col-sm">
+                <input type ="text" placeholder="País" class ="form-control" ng-model = "country"/>
+            </div>
+            <div class = "col-sm">
+                <button class = "btn btn-warning" ng-click="buscarPais()">Buscar</button>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -41,7 +49,7 @@
                         Año
                     </th>
                     <th>
-                        Partición mercado
+                        Partición mercado (%)
                     </th>
                     <th>
                         Posición global
