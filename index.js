@@ -58,8 +58,6 @@ clientjcgp.connect(err => {
     console.log("Connected to mongodb-carlos!!");
     // Hacemos acceso a la api
     eCarStaticsAPI.register(app, BASE_PATH, ecarstatics);
-    // Acceso al frontend
-    app.use("/e-car-statics-minipostman", express.static(path.join(__dirname, "public/e-car-statics")));
 });
 
 //***************API FRANCISCO*************************
