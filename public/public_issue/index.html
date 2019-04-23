@@ -103,6 +103,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <input class="from-control" value="Nombre del país" ng-model="nombre_del_pais"/>
+                    </td>
+                    <td>
+                        <input class="from-control" value="Año" ng-model="anyo"/>
+                    </td>
+                    <td></td><td></td><td></td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="searchData(nombre_del_pais, anyo)">Buscar</button>
+                    </td>
+                </tr>
+                <tr>
                     <td></td><td></td><td></td><td></td><td></td>
                     <td>
                         <button class="btn btn-primary" ng-click="loadData()">Cargar Datos</button>
@@ -116,6 +128,6 @@
                 </tr>
             </tbody>
         </table>
-        <div class="alert alert-success"> Todo a salido bien.</div>
+        {{ mensaje }}
     </body>
 </html>
