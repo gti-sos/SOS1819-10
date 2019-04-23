@@ -105,7 +105,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             console.log("Búsqueda realizada " + JSON.stringify(response.data, null, 2));
             $scope.mensaje = "Búsqueda realizada con éxito";
         }, function(error){
-            
+            refresh();
             $scope.mensaje ="Error: "+error.status+ "=> No existen estos recursos"
         });
 
@@ -122,7 +122,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
             $scope.mensaje = "Búsqueda realizada con éxito";
         }, function(error){
-            
+            refresh();
             $scope.mensaje ="Error: "+error.status+ "=> No existen este País"
         });
     }
