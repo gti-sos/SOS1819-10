@@ -80,7 +80,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             }).then(function(response) {
                 $scope.ecarstatics = response.data;
                 console.log("Búsqueda realizada" + JSON.stringify(response.data, null, 2));
-                refresh();
             });
         }
         

@@ -17,26 +17,29 @@
 
 <body ng-controller= "MainCtrl">
         <center><h2>Electric Car Statics</h2></center>
-        <div class ="row">
-            <div class = "col-sm">
-                <h5>Realizar búsqueda</h5>
+        <div class="row" style="background-color:lightblue;">
+            <div class="col-sm">
+                <h6>Realizar búsqueda :</h6>
             </div>
-            <div class = "col-sm">
-                <input type ="text" placeholder="Desde" class ="form-control" ng-model = "from"/>
+            <div class="row">
+        
+                <div class="col-sm">
+                    <input type="text" placeholder="Desde" class="form-control" ng-model="from" />
+                </div>
+                <div class="col-sm">
+                    <input type="text" placeholder="Hasta" class="form-control" ng-model="to" />
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-warning" ng-click="buscarDesdeHasta()">Buscar</button>
+                </div>
             </div>
-            <div class = "col-sm">
-                <input type ="text" placeholder="Hasta" class ="form-control" ng-model = "to"/>
-            </div>
-            <div class = "col-sm">
-                <button class = "btn btn-warning" ng-click="buscarDesdeHasta()">Buscar</button>
-            </div>
-        </div>
-        <div class ="row">
-            <div class = "col-sm">
-                <input type ="text" placeholder="País" class ="form-control" ng-model = "country"/>
-            </div>
-            <div class = "col-sm">
-                <button class = "btn btn-warning" ng-click="buscarPais(country)">Buscar</button>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="text" placeholder="País" class="form-control" ng-model="country" />
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-warning" ng-click="buscarPais(country)">Buscar</button>
+                </div>
             </div>
         </div>
         <table class="table">
