@@ -49,7 +49,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                 if (error.status == 409) {
                     $scope.status = "Ya existe el recurso " + newBiofuel.country + "-" + newBiofuel.year;
                     refresh();
-                }else{
+                } else {
                     $scope.status = "Alguno de los campos no ha sido rellenado correctamente";
                     refresh();
                 }
@@ -80,7 +80,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         $http
             .delete(API)
             .then(function(response) {
-                $scope.status = response.status;
+                $scope.status = "Los recursos se han borrado correctamente";
                 refresh();
             });
     };
@@ -89,10 +89,12 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         //console.log("Delete biofuel with country: " + country + " and year: " + year);
 
         $http
-            .get("/api/v2/biofuels-production?country=" + $scope.searchCountry)
+            .get("/api/v2/biofuels-production/" + $scope.searchCountry)
             .then(function(response) {
                 console.log("SEARCH response: " + response.status + " " + response.data);
                 $scope.biofuels = response.data;
+            }, function(error) {
+                $scope.status = "No existe el recurso " + $scope.searchCountry;
             });
 
 

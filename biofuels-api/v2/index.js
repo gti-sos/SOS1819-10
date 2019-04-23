@@ -184,6 +184,8 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         return c;
                     }));
 
+                } else {
+                    res.sendStatus(404);
                 }
 
             });
@@ -207,6 +209,8 @@ module.exports = function(app, BASE_PATH, biofuels) {
                         return c;
                     }));
 
+                } else {
+                    res.sendStatus(404);
                 }
 
             });
