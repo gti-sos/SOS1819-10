@@ -11,6 +11,10 @@
 
 <body ng-controller="MainCtrl">
     <h1>Biocombustibles</h1>
+    <div>
+        <button class="btn btn-primary btn-xs" ng-click="loadBiofuels()">Cargar recursos</button>
+        <button class="btn btn-primary btn-xs" ng-click="deleteBiofuels()">Borrar recursos</button>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -77,15 +81,25 @@
     <div class="container-fluid">
         <div>
             <div class="col-sm" style="background-color:lightblue;">
-                <label>Campo para búsquedas: <input class="form-control text-center" size="50" ng-model="search"/></label>
-                <button class="btn btn-primary btn-xs" ng-click="searchBiofuels()">Buscar</button>
-                <button class="btn btn-primary btn-xs" ng-click="loadBiofuels()">Cargar recursos</button>
-                <button class="btn btn-primary btn-xs" ng-click="deleteBiofuels()">Borrar recursos</button>
+                <label>Busqueda por país: <input class="form-control text-center" size="50" ng-model="searchCountry"/></label>
+                <button class="btn btn-primary btn-xs" ng-click="searchByCountry()">Buscar</button>
+
+            </div>
+            <hr/>
+            <div class="col-sm" style="background-color:lightblue;">
+                <label for="">Mostrar combustibles desde el año
+                <input class="text-center" name="" ng-model="fromYear" />
+                <label for=""> hasta </label>
+                <input class="text-center" type="text" ng-model="toYear" />
+                <button class="btn btn-primary btn-xs" ng-click="searchByYear()">Buscar</button>
+                </label>
+            </div>
+            <hr/>
+            <div class="col-sm" style="background-color:lightgreen;">
+                <h3>Mensaje: {{status}}</h3>
             </div>
         </div>
-        <div class="container">
-            <h3>http status code: {{status}}</h3>
-        </div>
+
 </body>
 
 </html>

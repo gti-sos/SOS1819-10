@@ -52,8 +52,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                     refresh();
 
-                }
-                else {
+                } else {
 
                     $scope.mensaje = "Error: " + error.status + " = los datos especificados no son validos";
 
@@ -82,8 +81,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                     refresh();
 
-                }
-                else {
+                } else {
 
                     $scope.mensaje = "Error: " + error.status + " = los datos especificados no son validos";
 
@@ -108,8 +106,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
                     refresh();
                 });
-            }
-            else {
+            } else {
 
                 if (year && !country) {
 
@@ -126,8 +123,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
                         refresh();
 
                     });
-                }
-                else {
+                } else {
 
                     refresh();
                 }

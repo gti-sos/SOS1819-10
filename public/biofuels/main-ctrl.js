@@ -7,8 +7,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     console.log("Main Controller initialized.");
 
     var API = "/api/v2/biofuels-production";
-    var SEARCH = "/api/v2/";
-    $scope.search = "biofuels-production?country=Brazil";
     refresh();
 
     function refresh() {
@@ -28,27 +26,37 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         $http
             .get(API + "/loadInitialData").then(function(response) {
+                $scope.status = "Carga realizada con exito";
                 refresh();
-
             }, function(error) {
-
-
+                $scope.status = "Ya hay recursos cargados en la base de datos";
+                refresh();
             });
     };
 
     $scope.addBiofuel = function() {
         var newBiofuel = $scope.newBiofuel;
+
         console.log("Adding a new biofuel: " + JSON.stringify(newBiofuel));
 
         $http
             .post(API, newBiofuel)
             .then(function(response) {
-                console.log("POST response: " + response.status + " " + response.data)
+                console.log("POST response: " + response.status + " " + response.data);
+                $scope.status = "El recurso " + newBiofuel.country + "-" + newBiofuel.year + " se ha añadido con éxito"
                 refresh();
+            }, function(error) {
+                if (error.status == 409) {
+                    $scope.status = "Ya existe el recurso " + newBiofuel.country + "-" + newBiofuel.year;
+                    refresh();
+                }else{
+                    $scope.status = "Alguno de los campos no ha sido rellenado correctamente";
+                    refresh();
+                }
             });
 
 
-    }
+    };
 
     $scope.deleteBiofuel = function(country, year) {
         console.log("Delete biofuel with country: " + country + " and year: " + year);
@@ -56,13 +64,17 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         $http
             .delete(API + "/" + country + "/" + year)
             .then(function(response) {
-                console.log("DELETE response: " + response.status + " " + response.data)
+                console.log("DELETE response: " + response.status + " " + response.data);
+                $scope.status = "El recurso " + country + "-" + year + " se ha borrado con éxito";
+                refresh();
+            }, function(error) {
+                $scope.status = "El recurso con nombre " + country + " y año " + year + " no existe";
                 refresh();
             });
 
 
 
-    }
+    };
 
     $scope.deleteBiofuels = function() {
         $http
@@ -73,11 +85,25 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             });
     };
 
-    $scope.searchBiofuels = function() {
+    $scope.searchByCountry = function() {
         //console.log("Delete biofuel with country: " + country + " and year: " + year);
 
         $http
-            .get(SEARCH + $scope.search)
+            .get("/api/v2/biofuels-production?country=" + $scope.searchCountry)
+            .then(function(response) {
+                console.log("SEARCH response: " + response.status + " " + response.data);
+                $scope.biofuels = response.data;
+            });
+
+
+
+    };
+
+    $scope.searchByYear = function() {
+        //console.log("Delete biofuel with country: " + country + " and year: " + year);
+
+        $http
+            .get("/api/v2/biofuels-production?from=" + $scope.fromYear + "&to=" + $scope.toYear)
             .then(function(response) {
                 console.log("SEARCH response: " + response.status + " " + response.data)
                 $scope.biofuels = response.data;
@@ -85,7 +111,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
 
 
-    }
+    };
 
     $scope.updatedBiofuel = function() {
         console.log("Updating a new biofuel: " + JSON.stringify($scope.biofuel));
