@@ -6,7 +6,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
     console.log("MainCtrl ready");
 
-    $scope.url = "/api/v1/issue-dioxid";
+    $scope.url = "/api/v2/issue-dioxid";
 
     $scope.mensaje = "Esperando una acción";
 
@@ -20,7 +20,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         $scope.loadData = function() {
 
-            $http.get("/api/v1/issue-dioxid/loadInitialData").then(function(response) {
+            $http.get("/api/v2/issue-dioxid/loadInitialData").then(function(response) {
 
                 $scope.mensaje = "Carga de datos exitosa";
 
