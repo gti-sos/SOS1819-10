@@ -19,13 +19,11 @@ var port = process.env.PORT || 8080;
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
-<<<<<<< HEAD
+
 app.use("/ui/v1/biofuels-production", express.static(path.join(__dirname, "public/biofuels")));
 app.use("/ui/v1/e-car-statics", express.static(path.join(__dirname, "public/e-car-statics")));
 app.use("/ui/v1/issue-dioxid", express.static(path.join(__dirname, "public/public_issue")));
 
-=======
->>>>>>> d53381b3266d60e95ebd2129bcdae412ef51f23a
 //**************************API FRANALONSO*********************
 const MongoClient = require("mongodb").MongoClient;
 const urifjap = "mongodb+srv://test:test@sos-iwqc4.mongodb.net/sos1819?retryWrites=true";
