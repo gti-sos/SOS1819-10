@@ -1,86 +1,88 @@
 <h1>List of Issue-Dioxid</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Country
-                    </th>
-                    <th>
-                        Year
-                    </th>
-                    <th>
-                        Issue_metric_ton
-                    </th>
-                    <th>
-                        Issue_liquid_fuel
-                    </th>
-                    <th>
-                        Issue_solid_fuel
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="dato in datos">
-                    <td>{{ dato.country }}</td>
-                    <td>{{ dato.year }}</td>
-                    <td>{{ dato.issue_metric_ton }}</td>
-                    <td>{{ dato.issue_liquid_fuel }}</td>
-                    <td>{{ dato.issue_solid_fuel }}</td>
-                    <td>
-                        <button class="btn btn-danger" ng-click="deleteData(dato.country, dato.year)">Borrar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="from-control" value="update country" ng-model="updateData.country"/>
-                    </td>
-                
-                    <td>
-                        <input class="from-control" value="update year" ng-model="updateData.year"/>
-                    </td>
-                    
-                    <td>
-                        <input class="from-control" value="update issue_metric_ton" ng-model="updateData.issue_metric_ton"/>
-                    </td>
-                    
-                    <td>
-                        <input class="from-control" value="update issue_liquid_fuel" ng-model="updateData.issue_liquid_fuel"/>
-                    </td>
-                    
-                    <td>
-                        <input class="from-control" value="update issue_solid_fuel" ng-model="updateData.issue_solid_fuel"/>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" ng-click="updateData(updateData.country, updateData.year)">Actualizar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="from-control" value="Nombre del país" ng-model="nombre_del_pais"/>
-                    </td>
-                    <td>
-                        <input class="from-control" value="Año" ng-model="anyo"/>
-                    </td>
-                    <td></td><td></td><td></td>
-                    <td>
-                        <button class="btn btn-primary" ng-click="searchData(nombre_del_pais, anyo)">Buscar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td>
-                    <td>
-                        <button class="btn btn-primary" ng-click="addData()">Crear</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" ng-click="loadData()">Cargar Datos</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        {{ mensaje }}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Issue_metric_ton
+            </th>
+            <th>
+                Issue_liquid_fuel
+            </th>
+            <th>
+                Issue_solid_fuel
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datos">
+            <td>{{ dato.country }}</td>
+            <td>{{ dato.year }}</td>
+            <td>{{ dato.issue_metric_ton }}</td>
+            <td>{{ dato.issue_liquid_fuel }}</td>
+            <td>{{ dato.issue_solid_fuel }}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteData(dato.country, dato.year)">Borrar</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="from-control" value="new country" ng-model="newData.country" />
+            </td>
+
+            <td>
+                <input class="from-control" value="new year" ng-model="newData.year" />
+            </td>
+
+            <td>
+                <input class="from-control" value="new issue_metric_ton" ng-model="newData.issue_metric_ton" />
+            </td>
+
+            <td>
+                <input class="from-control" value="new issue_liquid_fuel" ng-model="newData.issue_liquid_fuel" />
+            </td>
+
+            <td>
+                <input class="from-control" value="new issue_solid_fuel" ng-model="newData.issue_solid_fuel" />
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addData()">Crear</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="from-control" value="Nombre del país" ng-model="nombre_del_pais" />
+            </td>
+            <td>
+                <input class="from-control" value="Año" ng-model="anyo" />
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-primary" ng-click="searchData(nombre_del_pais, anyo)">Buscar</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-primary" ng-click="loadData()">Cargar Datos</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{ mensaje }}

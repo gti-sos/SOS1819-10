@@ -1,6 +1,6 @@
 /*global angular*/
 
-var app = angular.module("MiniPostmanApp");
+var app = angular.module("Issue-DioxidApp");
 
 app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
