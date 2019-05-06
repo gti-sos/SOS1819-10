@@ -2,9 +2,9 @@
 
 var app = angular.module("MiniPostmanApp");
 
-app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
-    console.log("MainCtrl ready");
+    console.log("ListCtrl ready");
 
     $scope.url = "/api/v2/issue-dioxid";
 
