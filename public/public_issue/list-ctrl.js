@@ -8,7 +8,7 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
     $scope.url = "/api/v2/issue-dioxid";
 
-    $scope.mensaje = "Esperando una acción";
+    $scope.mensaje = '<div class="alert alert-info">"Esperando una acción"</div>';
 
     function refresh() {
 
@@ -147,43 +147,43 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
             switch (code) {
                 case 200:
                     
-                    $scope.mensaje = <div class="alert alert-success">Acción realizada con exito</div>;
+                    $scope.mensaje = '<div class="alert alert-success">Acción realizada con exito</div>';
                     
                     break;
                     
                 case 201:
                     
-                    $scope.mensaje = <div class="alert alert-success">"Recurso creado con exito"</div>;
+                    $scope.mensaje = '<div class="alert alert-success">"Recurso creado con exito"</div>';
                     
                     break;
                     
                 case 400:
                     
-                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = Datos especificados no validos"</div>;
+                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = Datos especificados no validos"</div>';
                     
                     break;
                     
                 case 404:
                     
-                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = Recurso no encontrado"</div>;
+                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = Recurso no encontrado"</div>';
                     
                     break;
                     
                 case 409:
                     
-                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = conflicto con la base de datos"</div>;
+                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = conflicto con la base de datos"</div>';
                     
                     break;
                     
                 case 405:
                     
-                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = metodo no permitido"</div>;
+                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = metodo no permitido"</div>';
                     
                     break;
                     
                 default:
                     
-                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = codigo no identificado"</div>;
+                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = codigo no identificado"</div>';
             }
             
         }
