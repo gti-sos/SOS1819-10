@@ -6,6 +6,10 @@ var app = angular.module("Issue-DioxidApp", ["ngRoute"]).config(function($routeP
                                         
                                         controller: "ListCtrl",
                                         templateUrl: "list.html"
+                        }).when("/edit/:country/:year", {
+                                
+                                controller: "EditCtrl",
+                                templateUrl: "edit.html"
                         });
 });
             

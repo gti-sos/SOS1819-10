@@ -24,7 +24,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="dato in datos">
-            <td>{{ dato.country }}</td>
+            <td><a href="#!/edit/{{ dato.country }}/{{dato.year}}">{{ dato.country }}</a></td>
             <td>{{ dato.year }}</td>
             <td>{{ dato.issue_metric_ton }}</td>
             <td>{{ dato.issue_liquid_fuel }}</td>
@@ -85,4 +85,4 @@
         </tr>
     </tbody>
 </table>
-{{ mensaje }}
+<div class="alert alert-success">{{ mensaje }}</div>

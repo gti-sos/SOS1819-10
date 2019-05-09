@@ -1,0 +1,38 @@
+<h1>Edit of Issue-Dioxid</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Issue_metric_ton
+            </th>
+            <th>
+                Issue_liquid_fuel
+            </th>
+            <th>
+                Issue_solid_fuel
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ dato.country }}</td>
+            <td>{{ dato.year }}</td>
+            <td><input class="form-control" ng-model="dato.issue_metric_ton"/></td>
+            <td><input class="form-control" ng-model="dato.issue_liquid_fuel"/></td>
+            <td><input class="form-control" ng-model="dato.issue_solid_fuel"/></td>
+            <td>
+                <button class="btn btn-primary" ng-click="updateData(dato.country, dato.year)">Actualizar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{ mensaje }}
