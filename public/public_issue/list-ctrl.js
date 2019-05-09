@@ -22,13 +22,13 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
             $http.get("/api/v2/issue-dioxid/loadInitialData").then(function(response) {
 
-                $scope.mensaje = "Carga de datos exitosa";
+                getMensaje(200);
 
                 refresh();
 
             }, function(error) {
 
-                $scope.mensaje = "Error: " + error.status + " = Base de datos no vacía";
+                getMensaje(error.status);
 
                 refresh();
             });
@@ -40,53 +40,15 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
             $http.post($scope.url, newData).then(function(response) {
 
-                $scope.mensaje = "Recurso creado con exito.";
+                getMensaje(201);
 
                 refresh();
 
             }, function(error) {
 
-                if (error.status == 409) {
-
-                    $scope.mensaje = "Error: " + error.status + " = el recurso ya existe en la base de datos";
-
-                    refresh();
-
-                } else {
-
-                    $scope.mensaje = "Error: " + error.status + " = los datos especificados no son validos";
-
-                    refresh();
-                }
-            });
-        };
-
-        $scope.updateData = function(country, year) {
-
-            var updateData = $scope.updateData;
-
-            var url = $scope.url + "/" + country + "/" + year;
-
-            $http.put(url, updateData).then(function(response) {
-
-                $scope.mensaje = "Recurso actualizado con exito.";
+                getMensaje(error.status);
 
                 refresh();
-
-            }, function(error) {
-
-                if (error.status == 409) {
-
-                    $scope.mensaje = "Error: " + error.status + " = el recurso no existe en la base de datos";
-
-                    refresh();
-
-                } else {
-
-                    $scope.mensaje = "Error: " + error.status + " = los datos especificados no son validos";
-
-                    refresh();
-                }
             });
         };
 
@@ -98,11 +60,11 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
                     $scope.datos = response.data;
 
-                    $scope.mensaje = "Recurso/s encontrado/s con exito";
+                    getMensaje(200);
 
                 }, function(error) {
 
-                    $scope.mensaje = "Error: " + error.status + " = recurso/s no encontrado/s";
+                    getMensaje(error.status);
 
                     refresh();
                 });
@@ -114,11 +76,11 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
                         $scope.datos = response.data;
 
-                        $scope.mensaje = "Recurso/s encontrado/s con exito";
+                        getMensaje(200);
 
                     }, function(error) {
 
-                        $scope.mensaje = "Error: " + error.status + " = recurso/s no encontrado/s";
+                        getMensaje(error.status);
 
                         refresh();
 
@@ -129,18 +91,34 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
                 }
             }
         };
+        
+        $scope.pagData = function(limit, offset) {
+
+            $http.get($scope.url + "?limit=" + limit + "?offset=" + offset).then(function(response) {
+
+                    $scope.datos = response.data;
+
+                    getMensaje(200);
+
+                }, function(error) {
+
+                    getMensaje(error.status);
+
+                    refresh();
+                });
+        };
 
         $scope.deleteData = function(country, year) {
 
             $http.delete($scope.url + "/" + country + "/" + year).then(function(response) {
 
-                $scope.mensaje = "Recurso borrado";
+                getMensaje(200);
 
                 refresh();
 
             }, function(error) {
 
-                $scope.mensaje = "Error: " + error.status + " = recurso no encontrado";
+                getMensaje(error.status);
 
                 refresh();
             });
@@ -150,17 +128,65 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
             $http.delete($scope.url).then(function(response) {
 
-                $scope.mensaje = "Datos borrados con exito";
+                getMensaje(200);
 
                 refresh();
 
             }, function(error) {
 
-                $scope.mensaje = "Error: " + error.status + " = base de datos vacía";
+                getMensaje(error.status);
 
                 refresh();
             });
         };
+        
+        function getMensaje (codigo){
+            
+            var code = parseInt(codigo);
+            
+            switch (code) {
+                case 200:
+                    
+                    $scope.mensaje = <div class="alert alert-success">Acción realizada con exito</div>;
+                    
+                    break;
+                    
+                case 201:
+                    
+                    $scope.mensaje = <div class="alert alert-success">"Recurso creado con exito"</div>;
+                    
+                    break;
+                    
+                case 400:
+                    
+                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = Datos especificados no validos"</div>;
+                    
+                    break;
+                    
+                case 404:
+                    
+                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = Recurso no encontrado"</div>;
+                    
+                    break;
+                    
+                case 409:
+                    
+                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = conflicto con la base de datos"</div>;
+                    
+                    break;
+                    
+                case 405:
+                    
+                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = metodo no permitido"</div>;
+                    
+                    break;
+                    
+                default:
+                    
+                    $scope.mensaje = <div class="alert alert-danger">"Error: " + code + " = codigo no identificado"</div>;
+            }
+            
+        }
     }
 
     refresh();
