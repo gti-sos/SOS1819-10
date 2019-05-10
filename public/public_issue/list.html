@@ -30,7 +30,7 @@
             <td>{{ dato.issue_liquid_fuel }}</td>
             <td>{{ dato.issue_solid_fuel }}</td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteData(dato.country, dato.year)">Borrar</button>
+                <button class="btn btn-danger" ng-click="deleteData(dato.country, dato.year)" value="delete">Borrar</button>
             </td>
         </tr>
         <tr>
@@ -54,7 +54,7 @@
                 <input class="from-control" value="new issue_solid_fuel" ng-model="newData.issue_solid_fuel" />
             </td>
             <td>
-                <button class="btn btn-primary" ng-click="addData()">Crear</button>
+                <button class="btn btn-primary" value="add" ng-click="addData()">Crear</button>
             </td>
         </tr>
         <tr>
