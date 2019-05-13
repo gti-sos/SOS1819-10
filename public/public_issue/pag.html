@@ -1,0 +1,47 @@
+<h1>Pagination of Issue-Dioxid</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Issue_metric_ton
+            </th>
+            <th>
+                Issue_liquid_fuel
+            </th>
+            <th>
+                Issue_solid_fuel
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datos">
+            <td>{{ dato.country }}</td>
+            <td>{{ dato.year }}</td>
+            <td>{{ dato.issue_metric_ton }}</td>
+            <td>{{ dato.issue_liquid_fuel }}</td>
+            <td>{{ dato.issue_solid_fuel }}</td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="allIssue()">Ver todos</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="nextPag()">Siguiente</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="beforePag()">Anterior</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{ mensaje }}

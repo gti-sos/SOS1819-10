@@ -2,7 +2,7 @@
 
 var app = angular.module("Issue-DioxidApp");
 
-app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("ListCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
     console.log("ListCtrl ready");
 
@@ -94,21 +94,19 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
         
         $scope.pagData = function(limit, offset) {
             
-            var limit2 = parseInt(limit);
-            var offset2 = parseInt(offset);
-
-            $http.get($scope.url + "?limit=" + limit2 + "&?offset=" + offset2).then(function(response) {
-
-                    $scope.datos = response.data;
-
-                    getMensaje(200);
-
-                }, function(error) {
-
-                    getMensaje(error.status);
-
-                    refresh();
-                });
+            if(!limit && !offset){
+                
+                refresh();
+                
+            }
+            else{
+                
+                var limit2 = parseInt(limit);
+                var offset2 = parseInt(offset);
+                
+                $location.path("/pag/" + limit2 + "/" + offset2);
+                
+            }
         };
 
         $scope.deleteData = function(country, year) {
