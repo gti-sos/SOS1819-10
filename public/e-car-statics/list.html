@@ -51,7 +51,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="ecarstatic in ecarstatics">
-                <td>{{ ecarstatic.country }}</td>
+                <td><a href="#!/edit/{{ ecarstatic.country }}/{{ecarstatic.year}}">{{ dato.country }}</a></td>
                 <td>{{ ecarstatic.year }}</td>
                 <td>{{ ecarstatic.marketPart }}</td>
                 <td>{{ ecarstatic.rankingPosition }}</td>
