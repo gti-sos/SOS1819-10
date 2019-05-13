@@ -1,102 +1,106 @@
 <center>
-        <h2>Electric Car Statics</h2>
-    </center>
-    <div class="row" style="border: 2px solid blue;">
-        <div class="col-sm">
-            <h6>Realizar búsqueda :</h6>
-        </div>
-        <div class="row">
-
-            <div class="col-sm">
-                <input type="text" placeholder="Desde" class="form-control" ng-model="from" />
-            </div>
-            <div class="col-sm">
-                <input type="text" placeholder="Hasta" class="form-control" ng-model="to" />
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-primary" ng-click="buscarDesdeHasta()">Buscar</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <input type="text" placeholder="País" class="form-control" ng-model="country" />
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-primary" ng-click="buscarPais(country)">Buscar</button>
-            </div>
-        </div>
+    <h2>Electric Car Statics</h2>
+</center>
+<div class="row" style="border: 2px solid blue;">
+    <div class="col-sm">
+        <h6>Realizar búsqueda :</h6>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    País
-                </th>
-                <th>
-                    Año
-                </th>
-                <th>
-                    Partición mercado (%)
-                </th>
-                <th>
-                    Posición global
-                </th>
-                <th>
-                    Vehículos
-                </th>
-                <th>
-                    Acción
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="ecarstatic in ecarstatics">
-                <td><a href="#!/edit/{{ ecarstatic.country }}/{{ecarstatic.year}}">{{ ecarstatic.country }}</a></td>
-                <td>{{ ecarstatic.year }}</td>
-                <td>{{ ecarstatic.marketPart }}</td>
-                <td>{{ ecarstatic.rankingPosition }}</td>
-                <td>{{ ecarstatic.existsVehicles }}</td>
-                <td>
-                    <button class="btn btn-warning" ng-click="deleteCarStatics(ecarstatic.country, ecarstatic.year)">Borrar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" class="form-control" value="new country" ng-model="newCarStatic.country" />
-                </td>
-
-                <td>
-                    <input type="number" class="form-control" value="new year" ng-model="newCarStatic.year" />
-                </td>
-
-                <td>
-                    <input type="number" class="form-control" value="new marketPart" ng-model="newCarStatic.marketPart" />
-                </td>
-
-                <td>
-                    <input type="number" class="form-control" value="new rankingPosition" ng-model="newCarStatic.rankingPosition" />
-                </td>
-
-                <td>
-                    <input type="number" class="form-control" value="new existsVehicles" ng-model="newCarStatic.existsVehicles" />
-                </td>
-                <td>
-                    <button class="btn btn-primary" ng-click="addNewCarStatics()">Añadir nuevo</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <div class="row">
 
         <div class="col-sm">
-            <button class="btn btn-primary" ng-click="cargaInicial()">Cargar Datos</button>
+            <input type="text" placeholder="Desde" class="form-control" ng-model="from" />
         </div>
         <div class="col-sm">
-            <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
+            <input type="text" placeholder="Hasta" class="form-control" ng-model="to" />
         </div>
-    </div>
-    <div class="alert alert-success">
         <div class="col-sm">
-            <p> Mensaje : {{ mensaje }}</p>
+            <button class="btn btn-primary" ng-click="buscarDesdeHasta()">Buscar</button>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm">
+            <input type="text" placeholder="País" class="form-control" ng-model="country" />
+        </div>
+        <div class="col-sm">
+            <button class="btn btn-primary" ng-click="buscarPais(country)">Buscar</button>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                País
+            </th>
+            <th>
+                Año
+            </th>
+            <th>
+                Partición mercado (%)
+            </th>
+            <th>
+                Posición global
+            </th>
+            <th>
+                Vehículos
+            </th>
+            <th>
+                Acción
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="ecarstatic in ecarstatics">
+            <td><a href="#!/edit/{{ ecarstatic.country }}/{{ecarstatic.year}}">{{ ecarstatic.country }}</a></td>
+            <td>{{ ecarstatic.year }}</td>
+            <td>{{ ecarstatic.marketPart }}</td>
+            <td>{{ ecarstatic.rankingPosition }}</td>
+            <td>{{ ecarstatic.existsVehicles }}</td>
+            <td>
+                <button class="btn btn-warning" ng-click="deleteCarStatics(ecarstatic.country, ecarstatic.year)">Borrar</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="form-control" value="new country" ng-model="newCarStatic.country" />
+            </td>
+
+            <td>
+                <input type="number" class="form-control" value="new year" ng-model="newCarStatic.year" />
+            </td>
+
+            <td>
+                <input type="number" class="form-control" value="new marketPart" ng-model="newCarStatic.marketPart" />
+            </td>
+
+            <td>
+                <input type="number" class="form-control" value="new rankingPosition" ng-model="newCarStatic.rankingPosition" />
+            </td>
+
+            <td>
+                <input type="number" class="form-control" value="new existsVehicles" ng-model="newCarStatic.existsVehicles" />
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addNewCarStatics()">Añadir nuevo</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+
+    <div class="col-sm">
+        <button class="btn btn-primary" ng-click="cargaInicial()">Cargar Datos</button>
+    </div>
+    <div class="col-sm">
+        <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
+    </div>
+</div>
+<div>
+    <button class="button btn-secondary" ng-click="previous()">Anterior</button>
+    <button class="button btn-secondary" ng-click="following()">Siguiente</button>
+</div>
+<div class="alert alert-success">
+    <div class="col-sm">
+        <p> Mensaje : {{ mensaje }}</p>
+    </div>
+</div>
