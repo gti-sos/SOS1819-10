@@ -2,7 +2,7 @@ describe("Check if a new issue is created", function(){
         
         it("List should grow after the issue creation", function(){
             
-            browser.get("http://localhost:8080");
+            browser.get("https://sos1819-general-sos1819fpc.c9users.io/issue-dioxid/#!/");
             
             element.all(by.repeater("dato in datos")).then(function(initialIssues){
                 
@@ -12,7 +12,7 @@ describe("Check if a new issue is created", function(){
                 element(by.model("newData.issue_liquid_fuel")).sendKeys("1234,67");
                 element(by.model("newData.issue_solid_fuel")).sendKeys("34,89");
                 
-                element(by.css('["value=add"]')).click();
+                element(by.css('[value="add"]')).click();
                 
                 element.all(by.repeater("dato in datos")).then(function(finalIssues){
                     
