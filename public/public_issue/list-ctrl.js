@@ -94,7 +94,7 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
         
         $scope.pagData = function(limit, offset) {
 
-            $http.get($scope.url + "?limit=" + limit + "?offset=" + offset).then(function(response) {
+            $http.get($scope.url + "?limit=" + limit + "&?offset=" + offset).then(function(response) {
 
                     $scope.datos = response.data;
 

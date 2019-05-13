@@ -77,7 +77,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
 
     app.get(BASE_PATH + "/issue-dioxid/docs", (req, res) => {
 
-        res.redirect("https://documenter.getpostman.com/view/6918673/S17xt6XH");
+        res.redirect("https://documenter.getpostman.com/view/6918673/S1LyUnWv");
 
     });
 
@@ -289,7 +289,8 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             else {
 
                 if (Object.keys(newData).length >= 5 && newData.country && newData.year &&
-                    newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel) {
+                    newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel
+                    && newData.country == name && newData.year == anyo) {
 
                     datos.update({ "country": name, "year": anyo }, { $set: newData });
 
