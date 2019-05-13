@@ -1,0 +1,38 @@
+<h1>Electric-Car-Statics</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                marketPart
+            </th>
+            <th>
+                rankingPosition
+            </th>
+            <th>
+                existsVehicles
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ ecarstatic.country }}</td>
+            <td>{{ ecarstatic.year }}</td>
+            <td><input class="form-control" ng-model="ecarstatic.marketPart"/></td>
+            <td><input class="form-control" ng-model="ecarstatic.rankingPosition"/></td>
+            <td><input class="form-control" ng-model="ecarstatic.existsVehicles"/></td>
+            <td>
+                <button class="btn btn-primary" ng-click="update(ecarstatic.country, ecarstatic.year)">Actualizar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{ mensaje }}
