@@ -14,14 +14,14 @@ app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", func
 
     $http.get($scope.url + "/" + country + "/" + year).then(function(response) {
 
-        $scope.ecarstatics = response.data;
+        $scope.ecarstatic = response.data;
     });
 
-    $scope.updateData = function(country, year) {
+    $scope.update = function(country, year) {
 
         var url = $scope.url + "/" + country + "/" + year;
 
-        $http.put(url, $scope.ecarstatics).then(function(response) {
+        $http.put(url, $scope.ecarstatic).then(function(response) {
 
             console.log("Bien");
 
