@@ -1,105 +1,18 @@
+<!DOCTYPE html>
 <html ng-app="BiofuelsApp">
 
 <head>
     <title>Biofuels App</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/bower_components/angular/angular.min.js"></script>
-    <script src="biofuels-app.js"></script>
-    <script src="main-ctrl.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="biofuels-app.js"></script>
+    <script type="text/javascript" src="list-biofuels-ctrl.js"></script>
+    <script type="text/javascript" src="edit-biofuels-ctrl.js"></script>
 </head>
 
-<body ng-controller="MainCtrl">
-    <h1>Biocombustibles</h1>
-    <div>
-        <button class="btn btn-primary btn-xs" ng-click="loadBiofuels()">Cargar recursos</button>
-        <button class="btn btn-primary btn-xs" ng-click="deleteBiofuels()">Borrar recursos</button>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>País</th>
-                <th>Año</th>
-                <th>Ethanol</th>
-                <th>Gas Natural</th>
-                <th>Biodiesel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="biofuel in biofuels">
-                <td>{{ biofuel.country }}</td>
-                <td>{{ biofuel.year }}</td>
-                <td>{{ biofuel.ethanolFuel }}</td>
-                <td>{{ biofuel.dryNaturalGas }}</td>
-                <td>{{ biofuel.biodiesel }}</td>
-                <td><button class="btn btn-danger" ng-click="deleteBiofuel(biofuel.country,biofuel.year)">Delete</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="form-control" ng-model="newBiofuel.country" />
-                </td>
-
-                <td>
-                    <input class="form-control" ng-model="newBiofuel.year" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="newBiofuel.ethanolFuel" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="newBiofuel.dryNaturalGas" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="newBiofuel.biodiesel" />
-                </td>
-
-                <td><button class="btn btn-primary" ng-click="addBiofuel()">Añadir</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="form-control" ng-model="biofuel.country" />
-                </td>
-
-                <td>
-                    <input class="form-control" ng-model="biofuel.year" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="biofuel.ethanolFuel" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="biofuel.dryNaturalGas" />
-                </td>
-                <td>
-                    <input class="form-control" ng-model="biofuel.biodiesel" />
-                </td>
-
-                <td><button class="btn btn-primary" ng-click="updatedBiofuel()">Actualizar</button></td>
-            </tr>
-
-        </tbody>
-    </table>
-    <div class="container-fluid">
-        <div>
-            <div class="col-sm" style="background-color:lightblue;">
-                <label>Busqueda por país: <input class="form-control text-center" size="50" ng-model="searchCountry"/></label>
-                <button class="btn btn-primary btn-xs" ng-click="searchByCountry()">Buscar</button>
-
-            </div>
-            <hr/>
-            <div class="col-sm" style="background-color:lightblue;">
-                <label for="">Mostrar combustibles desde el año
-                <input class="text-center" name="" ng-model="fromYear" />
-                <label for=""> hasta </label>
-                <input class="text-center" type="text" ng-model="toYear" />
-                <button class="btn btn-primary btn-xs" ng-click="searchByYear()">Buscar</button>
-                </label>
-            </div>
-            <hr/>
-            <div class="alert alert-success">
-                <h2>Mensaje: {{status}}</h2>
-            </div>
-        </div>
-
+<body ng-view>
 </body>
 
 </html>

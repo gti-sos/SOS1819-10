@@ -2,9 +2,10 @@
 
 var app = angular.module("BiofuelsApp");
 
-app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
-
-    console.log("Main Controller initialized.");
+app.controller("ListBiofuelsCtrl", ["$scope", "$http", function($scope, $http) {
+    var limit = 10;
+    var offset = 0;
+    console.log("List Biofuels Controller initialized.");
 
     var API = "/api/v2/biofuels-production";
     refresh();
@@ -13,7 +14,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         console.log("Requesting biofuels to <" + API + ">...");
         $http
-            .get(API)
+            .get(API + "?limit=" + limit + "&offset=" + offset)
             .then(function(response) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
@@ -22,6 +23,35 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             });
     }
 
+    $scope.getSiguiente = function() {
+
+        $http.get(API + "?limit=" + limit + "&offset=" + offset).then(function(response) {
+            if ((response.data).length == 10) {
+                offset = offset + 10;
+            }
+            $http.get(API + "?limit=" + limit + "&offset=" + offset).then(function(response) {
+                $scope.biofuels = response.data;
+
+            });
+
+        }, function Error(response) {
+            $scope.biofuels = [];
+        });
+
+
+    }
+
+    $scope.getAnterior = function() {
+
+        if (offset >= 10) {
+            offset = offset - 10;
+        }
+        $http.get(API + "?limit=" + limit + "&offset=" + offset).then(function(response) {
+            $scope.biofuels = response.data;
+        }, function Error(response) {
+            $scope.biofuels = [];
+        });
+    }
     $scope.loadBiofuels = function() {
 
         $http
@@ -66,7 +96,8 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             .then(function(response) {
                 console.log("DELETE response: " + response.status + " " + response.data);
                 $scope.status = "El recurso " + country + "-" + year + " se ha borrado con éxito";
-                refresh();
+                $scope.getAnterior();
+
             }, function(error) {
                 $scope.status = "El recurso con nombre " + country + " y año " + year + " no existe";
                 refresh();
@@ -113,18 +144,6 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
 
 
-    };
-
-    $scope.updatedBiofuel = function() {
-        console.log("Updating a new biofuel: " + JSON.stringify($scope.biofuel));
-        $http
-            .put(API + "/" + $scope.biofuel.country + "/" + $scope.biofuel.year, $scope.biofuel)
-            .then(function(response) {
-                $scope.status = response.status;
-                refresh();
-            }, function(error) {
-                $scope.status = error.status;
-            });
     };
 
 

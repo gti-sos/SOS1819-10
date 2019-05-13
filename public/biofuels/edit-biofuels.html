@@ -1,0 +1,23 @@
+<h1>Edit Biofuel</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Año</th>
+            <th>Ethanol</th>
+            <th>Gas Natural</th>
+            <th>Biodiesel</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ biofuel.country }}</td>
+            <td>{{ biofuel.year }}</td>
+            <td><input class="form-control" ng-model="biofuel.ethanolFuel" /></td>
+            <td><input class="form-control" ng-model="biofuel.dryNaturalGas" /></td>
+            <td><input class="form-control" ng-model="biofuel.biodiesel" /></td>
+            <td><button class="btn btn-primary" ng-click="updatedBiofuel(biofuel.country,biofuel.year)" ;>Update</button></td>
+        </tr>
+    </tbody>
+</table>
