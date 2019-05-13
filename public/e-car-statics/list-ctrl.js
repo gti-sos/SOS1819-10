@@ -12,7 +12,7 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
     function refresh() {
 
-        $http.get($scope.url).then(function(response) {
+         $http.get($scope.url+"?limit=10&offset=0").then(function(response) {
             console.log("Datos recibidos " + JSON.stringify(response.data, null, 2));
             $scope.ecarstatics = response.data;
 
@@ -123,6 +123,46 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.mensaje = "Error: " + error.status + " => No existe este País"
         });
     }
+    
+    $scope.following = function() {
+            if($scope.offset>$scope.ecarstatics.length){
+                
+            }else{
+            $scope.offset = $scope.offset + 10;
+            }
+            console.log($scope.offset);
+            $http.get($scope.url + "?limit=10" + "&offset=" + $scope.offset).then(function(response) {
+                $scope.status = "ok";
+                $scope.ecarstatics = response.data;
+                $scope.error = "";
+            }, function(response) {
+                console.log(response.status);
+                $scope.status = response.status;
+                $scope.error = "error";
+            });
+
+        };
+        
+        $scope.previous = function() {
+            if ($scope.offset < 10) {
+                $scope.offset = 0;
+            }
+            else {
+                $scope.offset = $scope.offset - 10;
+            }
+            console.log($scope.offset);
+            $http.get($scope.url + "?limit=10" + "&offset=" + $scope.offset).then(function(response) {
+                $scope.status = "ok";
+                $scope.ecarstatics = response.data;
+                $scope.error = "";
+            }, function(response) {
+                console.log(response.status);
+                $scope.status = response.status;
+                $scope.error = "error.";
+            });
+
+
+        };
 
     refresh();
 }]);
