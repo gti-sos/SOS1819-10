@@ -5,9 +5,6 @@ exports.config = {
   specs: ["e2e/TC01-listEmpty.js",
           "e2e/TC02-loadList.js",
           "e2e/TC03-createIssue.js",
-          "e2e/TC04-deleteIssue.js",
-          "e2e/TC05-loadDataecarstatics.js",
-		      "e2e/TC06-createDataecarstatics.js",
-		      "e2e/TC07-removeDataecarstatics.js"
+          "e2e/TC04-deleteIssue.js"
   ]
 };
