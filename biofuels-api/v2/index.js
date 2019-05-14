@@ -65,18 +65,6 @@ module.exports = function(app, BASE_PATH, biofuels) {
             ethanolFuel: 1,
             dryNaturalGas: 1,
             biodiesel: 1
-        }, {
-            country: "Canada",
-            year: 2006,
-            ethanolFuel: 4.4,
-            dryNaturalGas: 6522,
-            biodiesel: 1
-        }, {
-            country: "Canada",
-            year: 2007,
-            ethanolFuel: 4.4,
-            dryNaturalGas: 6561,
-            biodiesel: 9
         }];
 
         biofuels.find({}).toArray((err, biofuelsArray) => {

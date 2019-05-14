@@ -1,7 +1,6 @@
 describe("Check if a new biofuyel can be created", function() {
     it("List should grow after the biofuel creation", function() {
         browser.get("http://localhost:8080/#!/ui/v1/biofuels-production");
-        element(by.css('[value="siguiente"]')).click();
         element
             .all(by.repeater("biofuel in biofuels"))
             .then(function(initialCountry) {
