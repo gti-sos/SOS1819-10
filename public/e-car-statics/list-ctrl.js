@@ -14,6 +14,7 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
          $http.get($scope.url+"?limit=10&offset=0").then(function(response) {
             console.log("Datos recibidos " + JSON.stringify(response.data, null, 2));
+            $scope.offset = 0;
             $scope.ecarstatics = response.data;
 
         });
