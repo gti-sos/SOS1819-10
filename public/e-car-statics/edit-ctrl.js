@@ -1,6 +1,6 @@
 /*global angular*/
 
-var app = angular.module("Electric-Car-StaticsApp");
+var app = angular.module("EnvironmentApp");
 
 app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
 
