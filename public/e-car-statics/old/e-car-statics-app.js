@@ -1,5 +1,6 @@
  /* global angular*/
 
+/*
  var app = angular.module("Electric-Car-StaticsApp", ["ngRoute"]).config(function($routeProvider) {
 
      $routeProvider.when("/", {
@@ -14,3 +15,4 @@
  });
 
  console.log("App init");
+ */

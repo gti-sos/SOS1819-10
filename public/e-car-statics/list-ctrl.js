@@ -135,10 +135,12 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
                 $scope.status = "ok";
                 $scope.ecarstatics = response.data;
                 $scope.error = "";
+                refresh();
             }, function(response) {
                 console.log(response.status);
                 $scope.status = response.status;
                 $scope.error = "error";
+                refresh();
             });
 
         };
@@ -163,8 +165,6 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
 
         };
-
-    refresh();
 }]);
 
 /*
