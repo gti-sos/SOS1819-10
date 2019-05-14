@@ -30,6 +30,6 @@ app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", func
             console.log("Mal");
         });
         
-        $location.path("/");
+        $location.path("/ui/v1/e-car-statics");
     };
 }]);
