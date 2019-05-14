@@ -2,7 +2,7 @@ describe("Check if loadInitialData work", function() {
 
     it("List should have six elements", function() {
 
-        browser.get("https://sos1819-general-sos1819fpc.c9users.io/#!/ui/v1/issue-dioxid/0");
+        browser.get("http://localhost:8080/#!/ui/v1/issue-dioxid/0");
 
         element.all(by.repeater("dato in datos")).then(function() {
 

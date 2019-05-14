@@ -21,7 +21,7 @@
             <td>{{ biofuel.ethanolFuel }}</td>
             <td>{{ biofuel.dryNaturalGas }}</td>
             <td>{{ biofuel.biodiesel }}</td>
-            <td><button class="btn btn-danger" ng-click="deleteBiofuel(biofuel.country,biofuel.year)">Delete</button></td>
+            <td><button class="btn btn-danger" ng-click="deleteBiofuel(biofuel.country,biofuel.year)" value="delete">Borrar</button></td>
         </tr>
         <tr>
             <td>
@@ -41,7 +41,7 @@
                 <input class="form-control" ng-model="newBiofuel.biodiesel" />
             </td>
 
-            <td><button class="btn btn-primary" ng-click="addBiofuel()">Añadir</button></td>
+            <td><button class="btn btn-primary" ng-click="addBiofuel()" value="add">Añadir</button></td>
         </tr>
 
     </tbody>
@@ -69,6 +69,6 @@
     </div>
     <div>
         <p align="center">
-            <button class="btn btn-primary " ng-click="getAnterior()"> < </button>
-            <button class="btn btn-primary" ng-click="getSiguiente()"> > </button>
+            <button class="btn btn-primary " ng-click="getAnterior()" value="atras"> < </button>
+            <button class="btn btn-primary" ng-click="getSiguiente()" value="siguiente"> > </button>
     </div>
