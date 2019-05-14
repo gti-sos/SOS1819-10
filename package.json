@@ -6,11 +6,7 @@
   "scripts": {
     "pretest": "tests/runPhantom.sh",
     "start": "node index.js",
-<<<<<<< HEAD
-    "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716 cea09d8d7b56dc0 ",
-=======
     "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0; protractor tests/tests.js",
->>>>>>> ead0f02d61f9fc9a1d36e0c71bdb25426e648209
     "test-api-biofuels": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99",
     "test-api-carstatics": "newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a",
     "test-api-issue-dioxid": "newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0",
