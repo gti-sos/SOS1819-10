@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "tests/runPhantom.sh",
+    "pretest": "tests-ecarstatics/runPhantom.sh",
     "start": "node index.js",
-    "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0; protractor tests/test.js",
+    "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0; protractor tests-ecarstatics/test.js",
     "test-api-biofuels": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99",
     "test-api-carstatics": "newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a",
     "test-api-issue-dioxid": "newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0",
-    "testFrontEnd": "protractor tests/test.js",
+    "testFrontEndCarStatics": "protractor tests-ecarstatics/test.js",
     "posttest": "killall phantomjs"
   },
   "author": "",
