@@ -7,21 +7,26 @@ app.controller("ListDioxidCtrl", ["$scope", "$http", "$location", "$routeParams"
     console.log("ListDioxidCtrl ready");
 
     $scope.url = "/api/v2/issue-dioxid";
+    
+    $scope.mensaje = "Esperando una accion";
+    
+    var codigo = parseInt($routeParams.mensaje);
+
+    if (codigo != 0 && codigo == 200) {
+
+        $scope.mensaje = "Acción exitosa";
+    }
+    
+    if (codigo != 0 && codigo != 200) {
+
+        $scope.mensaje = "Acción fallida, error: " + codigo;
+    }
 
     function refresh() {
 
         $http.get($scope.url).then(function(response) {
 
             $scope.datos = response.data;
-            
-            if(!$routeParams.mensaje){
-                
-                getMensaje(0);
-            }
-            else{
-                
-                getMensaje($routeParams.mensaje);
-            }
         });
 
         $scope.loadData = function() {
@@ -74,7 +79,8 @@ app.controller("ListDioxidCtrl", ["$scope", "$http", "$location", "$routeParams"
 
                     refresh();
                 });
-            } else {
+            }
+            else {
 
                 if (year && !country) {
 
@@ -91,27 +97,28 @@ app.controller("ListDioxidCtrl", ["$scope", "$http", "$location", "$routeParams"
                         refresh();
 
                     });
-                } else {
+                }
+                else {
 
                     refresh();
                 }
             }
         };
-        
+
         $scope.pagData = function(limit, offset) {
-            
-            if(!limit && !offset){
-                
+
+            if (!limit && !offset) {
+
                 refresh();
-                
+
             }
-            else{
-                
+            else {
+
                 var limit2 = parseInt(limit);
                 var offset2 = parseInt(offset);
-                
+
                 $location.path("/ui/v1/issue-dioxid/pag/" + limit2 + "/" + offset2);
-                
+
             }
         };
 
@@ -146,59 +153,59 @@ app.controller("ListDioxidCtrl", ["$scope", "$http", "$location", "$routeParams"
                 refresh();
             });
         };
-        
-        function getMensaje (codigo){
-            
+
+        function getMensaje(codigo) {
+
             var code = parseInt(codigo);
-            
+
             switch (code) {
                 case 0:
-                    
+
                     $scope.mensaje = "Esperando una acción";
-                    
+
                     break;
-                    
+
                 case 200:
-                    
+
                     $scope.mensaje = "Acción realizada con exito";
-                    
+
                     break;
-                    
+
                 case 201:
-                    
+
                     $scope.mensaje = "Recurso creado con exito";
-                    
+
                     break;
-                    
+
                 case 400:
-                    
+
                     $scope.mensaje = "Error: " + code + " = Datos especificados no validos";
-                    
+
                     break;
-                    
+
                 case 404:
-                    
+
                     $scope.mensaje = "Error: " + code + " = Recurso no encontrado";
-                    
+
                     break;
-                    
+
                 case 409:
-                    
+
                     $scope.mensaje = "Error: " + code + " = conflicto con la base de datos";
-                    
+
                     break;
-                    
+
                 case 405:
-                    
+
                     $scope.mensaje = "Error: " + code + " = metodo no permitido";
-                    
+
                     break;
-                    
+
                 default:
-                    
+
                     $scope.mensaje = "Error: " + code + " = codigo no identificado";
             }
-            
+
         }
     }
 
