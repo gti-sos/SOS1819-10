@@ -14,33 +14,69 @@ module.exports = function(app, BASE_PATH, biofuels) {
         var newBiofuels = [{
             country: "China",
             year: 2003,
-            ethanolFuel: 14.0,
-            dryNaturalGas: 1211.0,
+            ethanolFuel: 14,
+            dryNaturalGas: 1211,
             biodiesel: 0.1
         }, {
             country: "Brazil",
             year: 2004,
-            ethanolFuel: 252.0,
-            dryNaturalGas: 341.0,
+            ethanolFuel: 252,
+            dryNaturalGas: 341,
             biodiesel: 0.0
         }, {
             country: "Canada",
             year: 2005,
             ethanolFuel: 4.4,
-            dryNaturalGas: 6561.0,
+            dryNaturalGas: 6561,
             biodiesel: 0.2
         }, {
             country: "Brazil",
             year: 2006,
-            ethanolFuel: 306.0,
-            dryNaturalGas: 349.0,
+            ethanolFuel: 306,
+            dryNaturalGas: 349,
             biodiesel: 0.2
         }, {
             country: "Bulgaria",
             year: 2006,
-            ethanolFuel: 0.0,
-            dryNaturalGas: 0.0,
-            biodiesel: 0.1
+            ethanolFuel: 1,
+            dryNaturalGas: 1,
+            biodiesel: 1
+        }, {
+            country: "China",
+            year: 2007,
+            ethanolFuel: 1,
+            dryNaturalGas: 13,
+            biodiesel: 15
+        }, {
+            country: "Bulgaria",
+            year: 2008,
+            ethanolFuel: 1,
+            dryNaturalGas: 1,
+            biodiesel: 1
+        }, {
+            country: "Bulgaria",
+            year: 2009,
+            ethanolFuel: 1,
+            dryNaturalGas: 1,
+            biodiesel: 1
+        }, {
+            country: "China",
+            year: 2010,
+            ethanolFuel: 1,
+            dryNaturalGas: 1,
+            biodiesel: 1
+        }, {
+            country: "Canada",
+            year: 2006,
+            ethanolFuel: 4.4,
+            dryNaturalGas: 6522,
+            biodiesel: 1
+        }, {
+            country: "Canada",
+            year: 2007,
+            ethanolFuel: 4.4,
+            dryNaturalGas: 6561,
+            biodiesel: 9
         }];
 
         biofuels.find({}).toArray((err, biofuelsArray) => {
