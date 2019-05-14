@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="biofuel in biofuels">
-            <td><a href="#!/edit/{{ biofuel.country }}/{{biofuel.year}}">{{ biofuel.country }}</a></td>
+            <td><a href="#!/ui/v1/biofuels-production/edit/{{ biofuel.country }}/{{biofuel.year}}">{{ biofuel.country }}</a></td>
             <td>{{ biofuel.year }}</td>
             <td>{{ biofuel.ethanolFuel }}</td>
             <td>{{ biofuel.dryNaturalGas }}</td>
@@ -42,26 +42,6 @@
             </td>
 
             <td><button class="btn btn-primary" ng-click="addBiofuel()">Añadir</button></td>
-        </tr>
-        <tr>
-            <td>
-                <input class="form-control" ng-model="biofuel.country" />
-            </td>
-
-            <td>
-                <input class="form-control" ng-model="biofuel.year" />
-            </td>
-            <td>
-                <input class="form-control" ng-model="biofuel.ethanolFuel" />
-            </td>
-            <td>
-                <input class="form-control" ng-model="biofuel.dryNaturalGas" />
-            </td>
-            <td>
-                <input class="form-control" ng-model="biofuel.biodiesel" />
-            </td>
-
-            <td><button class="btn btn-primary" ng-click="updatedBiofuel()">Actualizar</button></td>
         </tr>
 
     </tbody>

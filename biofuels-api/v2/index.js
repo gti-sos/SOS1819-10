@@ -140,6 +140,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
             if (biofuelsFilteredArray.length > 0) {
 
                 res.send(biofuelsFilteredArray.map((c) => {
+
                     delete c._id;
                     return c;
                 })[0]);
@@ -231,9 +232,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
         var country = req.params.country;
 
         //var reqBiofuels = req.body;
+
         var ethanolFuel = parseFloat(req.body.ethanolFuel);
         var dryNaturalGas = parseFloat(req.body.dryNaturalGas);
         var biodiesel = parseFloat(req.body.biodiesel);
+
         var reqBiofuels = {
             "country": country,
             "year": year,
@@ -241,10 +244,10 @@ module.exports = function(app, BASE_PATH, biofuels) {
             "dryNaturalGas": dryNaturalGas,
             "biodiesel": biodiesel
         };
-
-        if (Object.keys(reqBiofuels).length != 5 || !reqBiofuels.country || !reqBiofuels.year || !reqBiofuels.ethanolFuel ||
-            !reqBiofuels.dryNaturalGas || !reqBiofuels.biodiesel) {
-
+        console.log(JSON.stringify(reqBiofuels));
+        if (Object.keys(reqBiofuels).length != 5) {
+            console.log(Object.keys(reqBiofuels).length);
+            console.error("Faltan parametros ");
             res.sendStatus(400);
 
         } else {

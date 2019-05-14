@@ -1,6 +1,6 @@
 /* global angular */
 
-var app = angular.module("BiofuelsApp");
+var app = angular.module("EnvironmentApp");
 
 app.controller("ListBiofuelsCtrl", ["$scope", "$http", function($scope, $http) {
     var limit = 10;
@@ -146,63 +146,6 @@ app.controller("ListBiofuelsCtrl", ["$scope", "$http", function($scope, $http) {
 
     };
 
-
-
-    /* console.log("MainCtrl initialized");
-     
-     $scope.url = "/api/v1/biofuels-production";
-
-     $scope.load = function() {
-
-         $http.get("/api/v1/biofuels-production/loadInitialData").then(function(response) {
-
-             $scope.data = JSON.stringify(response.data, null, 2);
-
-         }, function(error) {
-
-             $scope.data = JSON.stringify(error.data, null, 2);
-
-         });
-     };
-     $scope.send = function() {
-         $http.get($scope.url).then(function(response) {
-             $scope.status = response.status;
-             $scope.data = JSON.stringify(response.data, null, 2);
-         }, function(error) {
-             $scope.status = error.status;
-             $scope.data = "";
-         });
-     };
-
-     $scope.post = function() {
-         $http.post($scope.url, $scope.body).then(function(response) {
-             $scope.status = response.status;
-             $scope.data = "";
-         }, function(error) {
-             $scope.status = error.status;
-             $scope.data = "";
-         });
-     };
-
-     $scope.put = function() {
-         $http.put($scope.url, $scope.body).then(function(response) {
-             $scope.status = response.status;
-             $scope.data = "";
-         }, function(error) {
-             $scope.status = error.status;
-             $scope.data = "";
-         });
-     };
-
-     $scope.delete = function() {
-         $http.delete($scope.url).then(function(response) {
-             $scope.status = response.status;
-             $scope.data = "";
-         }, function(error) {
-             $scope.status = error.status;
-             $scope.data = "";
-         });
-     };
-     
-     */
+    $scope.limit = limit;
+    $scope.offset = offset;
 }]);
