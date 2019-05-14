@@ -22,7 +22,7 @@ app.controller("ListCtrl", ["$scope", "$http", function($scope, $http) {
 
     $scope.cargaInicial = function() {
         $http.get($scope.url + "/loadInitialData").then(function(response) {
-
+            $scope.ecarstatics = response.data;
             $scope.mensaje = "Carga inicial exitosa";
             refresh();
         }, function(error) {
