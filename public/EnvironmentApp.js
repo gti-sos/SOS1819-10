@@ -9,6 +9,16 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
         })
 
         //RUTAS CARLOS
+        .when("/ui/v1/e-car-statics", {
+
+            controller: "ListCtrl",
+            templateUrl: "e-car-statics/list.html"
+
+        }).when("/ui/v1/e-car-statics/edit/:country/:year", {
+
+            controller: "EditCtrl",
+            templateUrl: "e-car-statics/edit.html"
+        })
 
         //RUTAS FRAN
 
@@ -48,3 +58,4 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
 console.log("Biofuels App initialized");
 console.log("Dioxid App initialized");
+console.log("EcarStatics App initialized");
