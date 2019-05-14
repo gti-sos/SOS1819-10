@@ -1,10 +1,10 @@
 /*global angular*/
 
-var app = angular.module("Issue-DioxidApp");
+var app = angular.module("EnvironmentApp");
 
-app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
+app.controller("EditDioxidCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
 
-    console.log("EditCtrl ready");
+    console.log("EditDioxidCtrl ready");
 
     $scope.url = "/api/v2/issue-dioxid";
 
@@ -20,16 +20,20 @@ app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", func
     $scope.updateData = function(country, year) {
 
         var url = $scope.url + "/" + country + "/" + year;
+        
+        var resultado = 200;
 
         $http.put(url, $scope.dato).then(function(response) {
 
-            console.log("Bien");
+            console.log("Recurso actualizado");
 
         }, function(error) {
 
-            console.log("Mal");
+            console.log("Recurso no actualizado");
+            
+            resultado = parseInt(error.status);
         });
-        
-        $location.path("/");
+
+        $location.path("/ui/v1/issue-dioxid/" + resultado);
     };
 }]);

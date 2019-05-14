@@ -1,21 +1,27 @@
 /*global angular*/
 
-var app = angular.module("Issue-DioxidApp");
+var app = angular.module("EnvironmentApp");
 
-app.controller("ListCtrl", ["$scope", "$http", "$location", function($scope, $http, $location) {
+app.controller("ListDioxidCtrl", ["$scope", "$http", "$location", "$routeParams", function($scope, $http, $location, $routeParams) {
 
-    console.log("ListCtrl ready");
+    console.log("ListDioxidCtrl ready");
 
     $scope.url = "/api/v2/issue-dioxid";
-
-    $scope.mensaje = '<div class="alert alert-info">"Esperando una acción"</div>';
 
     function refresh() {
 
         $http.get($scope.url).then(function(response) {
 
             $scope.datos = response.data;
-
+            
+            if(!$routeParams.mensaje){
+                
+                getMensaje(0);
+            }
+            else{
+                
+                getMensaje($routeParams.mensaje);
+            }
         });
 
         $scope.loadData = function() {
@@ -104,7 +110,7 @@ app.controller("ListCtrl", ["$scope", "$http", "$location", function($scope, $ht
                 var limit2 = parseInt(limit);
                 var offset2 = parseInt(offset);
                 
-                $location.path("/pag/" + limit2 + "/" + offset2);
+                $location.path("/ui/v1/issue-dioxid/pag/" + limit2 + "/" + offset2);
                 
             }
         };
@@ -146,45 +152,51 @@ app.controller("ListCtrl", ["$scope", "$http", "$location", function($scope, $ht
             var code = parseInt(codigo);
             
             switch (code) {
+                case 0:
+                    
+                    $scope.mensaje = "Esperando una acción";
+                    
+                    break;
+                    
                 case 200:
                     
-                    $scope.mensaje = '<div class="alert alert-success">Acción realizada con exito</div>';
+                    $scope.mensaje = "Acción realizada con exito";
                     
                     break;
                     
                 case 201:
                     
-                    $scope.mensaje = '<div class="alert alert-success">"Recurso creado con exito"</div>';
+                    $scope.mensaje = "Recurso creado con exito";
                     
                     break;
                     
                 case 400:
                     
-                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = Datos especificados no validos"</div>';
+                    $scope.mensaje = "Error: " + code + " = Datos especificados no validos";
                     
                     break;
                     
                 case 404:
                     
-                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = Recurso no encontrado"</div>';
+                    $scope.mensaje = "Error: " + code + " = Recurso no encontrado";
                     
                     break;
                     
                 case 409:
                     
-                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = conflicto con la base de datos"</div>';
+                    $scope.mensaje = "Error: " + code + " = conflicto con la base de datos";
                     
                     break;
                     
                 case 405:
                     
-                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = metodo no permitido"</div>';
+                    $scope.mensaje = "Error: " + code + " = metodo no permitido";
                     
                     break;
                     
                 default:
                     
-                    $scope.mensaje = '<div class="alert alert-danger">"Error: " + code + " = codigo no identificado"</div>';
+                    $scope.mensaje = "Error: " + code + " = codigo no identificado";
             }
             
         }

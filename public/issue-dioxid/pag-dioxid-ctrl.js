@@ -1,10 +1,10 @@
 /*global angular*/
 
-var app = angular.module("Issue-DioxidApp");
+var app = angular.module("EnvironmentApp");
 
-app.controller("PagCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
+app.controller("PagDioxidCtrl", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
 
-    console.log("PagCtrl ready");
+    console.log("PagDioxidCtrl ready");
 
     $scope.url = "/api/v2/issue-dioxid";
 
@@ -29,7 +29,7 @@ app.controller("PagCtrl", ["$scope", "$http", "$routeParams", "$location", funct
 
         $scope.allIssue = function() {
             
-            $location.path("/");
+            $location.path("/ui/v1/issue-dioxid/200");
 
         };
 
@@ -37,7 +37,7 @@ app.controller("PagCtrl", ["$scope", "$http", "$routeParams", "$location", funct
 
             var offset2 = offset + limit;
 
-            $location.path("/pag/" + limit + "/" + offset2);
+            $location.path("/ui/v1/issue-dioxid/pag/" + limit + "/" + offset2);
 
 
         }
@@ -53,7 +53,7 @@ app.controller("PagCtrl", ["$scope", "$http", "$routeParams", "$location", funct
             }
             else{
                 
-                $location.path("/pag/" + limit + "/" + offset3);
+                $location.path("/ui/v1/issue-dioxid/pag/" + limit + "/" + offset3);
             }
         };
     };

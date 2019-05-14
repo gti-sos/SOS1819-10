@@ -12,6 +12,22 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
         //RUTAS FRAN
 
+        .when("/ui/v1/issue-dioxid/:mensaje", {
+
+            controller: "ListDioxidCtrl",
+            templateUrl: "issue-dioxid/list-dioxid.html"
+
+        }).when("/ui/v1/issue-dioxid/edit/:country/:year", {
+
+            controller: "EditDioxidCtrl",
+            templateUrl: "issue-dioxid/edit-dioxid.html"
+
+        }).when("/ui/v1/issue-dioxid/pag/:limit/:offset", {
+
+            controller: "PagDioxidCtrl",
+            templateUrl: "issue-dioxid/pag-dioxid.html"
+        })
+
         //RUTAS FRAN ALONSO
 
         .when("/ui/v1/biofuels-production", {
@@ -31,3 +47,4 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
 
 console.log("Biofuels App initialized");
+console.log("Dioxid App initialized");
