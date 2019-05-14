@@ -8,6 +8,6 @@ exports.config = {
           "Frontend/TC04-deleteIssue.js",
           "TC05-loadDataecarstatics.js",
 		      "TC06-createDataecarstatics.js",
-		      'TC07-removeDataecarstatics.js'
+		      "TC07-removeDataecarstatics.js"
   ]
 };
