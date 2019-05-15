@@ -24,10 +24,12 @@ app.controller("EditCtrl", ["$scope", "$http", "$routeParams", "$location", func
         $http.put(url, $scope.ecarstatics).then(function(response) {
 
             console.log("Bien");
+            $scope.mensaje = "Actualización realizada con éxito";
 
         }, function(error) {
 
             console.log("Mal");
+            $scope.mensaje = "Actualización no se ha podido reaizar";
         });
         
         $location.path("/ui/v1/e-car-statics");
