@@ -293,7 +293,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
                     console.log("No existe el recurso del pais: " + country + " " + year);
                     res.sendStatus(404);
 
-                } else if (year == reqBiofuels.year && country == reqBiofuels.country) {
+                } else if (year == yearBody && country == countryBody) {
                     biofuels.replaceOne({
                         "country": country,
                         "year": year
