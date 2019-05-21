@@ -261,6 +261,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
         var dryNaturalGas = parseFloat(req.body.dryNaturalGas);
         var biodiesel = parseFloat(req.body.biodiesel);
 
+
         var reqBiofuels = {
             "country": country,
             "year": year,
@@ -268,9 +269,9 @@ module.exports = function(app, BASE_PATH, biofuels) {
             "dryNaturalGas": dryNaturalGas,
             "biodiesel": biodiesel
         };
-        console.log(JSON.stringify(reqBiofuels));
-        if (Object.keys(reqBiofuels).length != 5) {
-            console.log(Object.keys(reqBiofuels).length);
+
+        if (Object.keys(req.body).length != 5 || !country || !year || !ethanolFuel || !dryNaturalGas || !biodiesel) {
+            console.log(Object.keys(req.body).length);
             console.error("Faltan parametros ");
             res.sendStatus(400);
 
