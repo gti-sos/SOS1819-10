@@ -271,7 +271,11 @@ module.exports = function(app, BASE_PATH, biofuels) {
             "biodiesel": biodiesel
         };
 
+        console.log(ethanolFuel);
+        console.log(dryNaturalGas);
+        console.log(biodiesel);
         if (Object.keys(req.body).length != 5 || !yearBody || !countryBody || !ethanolFuel || !dryNaturalGas || !biodiesel) {
+
             console.log(Object.keys(req.body).length);
             console.error("Faltan parametros ");
             res.sendStatus(400);

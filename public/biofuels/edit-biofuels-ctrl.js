@@ -30,7 +30,8 @@ angular
 
                 Object.keys($scope.biofuel).forEach(p => {
                     if ($scope.biofuel[p] == "") {
-                        $scope.status = "Error: El objeto debe contener todos los parametros."
+                        console.log("El objeto no contiene todos los parametros");
+                        $scope.status = "Error: El objeto debe contener todos los parametros.";
                         put = false;
                     }
                 })
