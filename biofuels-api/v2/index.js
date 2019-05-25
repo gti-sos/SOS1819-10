@@ -6,7 +6,7 @@ module.exports = function(app, BASE_PATH, biofuels) {
     //GET /api/v1/biofuels-production/docs
 
     app.get(BASE_PATH + "/biofuels-production/docs", (req, res) => {
-        res.redirect("https://documenter.getpostman.com/view/7128730/S1EH21ic");
+        res.redirect("https://documenter.getpostman.com/view/7128730/S1TR5zde");
     });
 
     //GET LOADINITIALDATA
@@ -65,12 +65,6 @@ module.exports = function(app, BASE_PATH, biofuels) {
             ethanolFuel: 6.2,
             dryNaturalGas: 1282,
             biodiesel: 1.8
-        }, {
-            country: "Australia",
-            year: 2010,
-            ethanolFuel: 5.3,
-            dryNaturalGas: 1207,
-            biodiesel: 1.6
         }];
 
         biofuels.find({}).toArray((err, biofuelsArray) => {

@@ -6,8 +6,8 @@
   "scripts": {
     "pretest": "tests-ecarstatics/runPhantom.sh",
     "start": "node index.js",
-    "test": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0;  protractor tests-biofuels/test.js; protractor tests-ecarstatics/test.js; protractor tests/test.js",
-    "test-api-biofuels": "newman run https://www.getpostman.com/collections/2fd64e0b0241b6b57c99",
+    "test": "newman run https://www.getpostman.com/collections/f1ab183dc004b71abc4f; newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0;  protractor tests-biofuels/test.js; protractor tests-ecarstatics/test.js; protractor tests/test.js",
+    "test-api-biofuels": "newman run https://www.getpostman.com/collections/f1ab183dc004b71abc4f",
     "test-api-carstatics": "newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a",
     "test-api-issue-dioxid": "newman run https://www.getpostman.com/collections/54716cea09d8d7b56dc0",
     "testFrontEndCarStatics": "newman run https://www.getpostman.com/collections/150d418dc2d4cc755c1a; protractor tests-ecarstatics/test.js",
