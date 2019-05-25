@@ -15,56 +15,62 @@ module.exports = function(app, BASE_PATH, biofuels) {
             country: "China",
             year: 2003,
             ethanolFuel: 14,
-            dryNaturalGas: 1211,
+            dryNaturalGas: 1143,
+            biodiesel: 0.1
+        }, {
+            country: "China",
+            year: 2004,
+            ethanolFuel: 17,
+            dryNaturalGas: 1350,
             biodiesel: 0.1
         }, {
             country: "Brazil",
-            year: 2004,
-            ethanolFuel: 252,
-            dryNaturalGas: 341,
-            biodiesel: 0.0
+            year: 2007,
+            ethanolFuel: 262,
+            dryNaturalGas: 701,
+            biodiesel: 6.4
         }, {
             country: "Canada",
             year: 2005,
-            ethanolFuel: 4.4,
-            dryNaturalGas: 6561,
+            ethanolFuel: 5.8,
+            dryNaturalGas: 3144,
             biodiesel: 0.2
         }, {
             country: "Brazil",
-            year: 2006,
-            ethanolFuel: 306,
-            dryNaturalGas: 349,
-            biodiesel: 0.2
-        }, {
-            country: "Bulgaria",
-            year: 2006,
-            ethanolFuel: 1,
-            dryNaturalGas: 1,
-            biodiesel: 1
-        }, {
-            country: "China",
-            year: 2007,
-            ethanolFuel: 1,
-            dryNaturalGas: 13,
-            biodiesel: 15
-        }, {
-            country: "Bulgaria",
             year: 2008,
-            ethanolFuel: 1,
-            dryNaturalGas: 1,
-            biodiesel: 1
+            ethanolFuel: 337,
+            dryNaturalGas: 835,
+            biodiesel: 19
         }, {
-            country: "Bulgaria",
-            year: 2009,
-            ethanolFuel: 1,
-            dryNaturalGas: 1,
-            biodiesel: 1
+            country: "United States",
+            year: 2007,
+            ethanolFuel: 449,
+            dryNaturalGas: 23104,
+            biodiesel: 23
         }, {
-            country: "China",
+            country: "United States",
+            year: 2008,
+            ethanolFuel: 630,
+            dryNaturalGas: 23277,
+            biodiesel: 21
+        }, {
+            country: "Australia",
+            year: 2012,
+            ethanolFuel: 5.10,
+            dryNaturalGas: 1291,
+            biodiesel: 1.1
+        }, {
+            country: "Australia",
+            year: 2011,
+            ethanolFuel: 6.2,
+            dryNaturalGas: 1282,
+            biodiesel: 1.8
+        }, {
+            country: "Australia",
             year: 2010,
-            ethanolFuel: 1,
-            dryNaturalGas: 1,
-            biodiesel: 1
+            ethanolFuel: 5.3,
+            dryNaturalGas: 1207,
+            biodiesel: 1.6
         }];
 
         biofuels.find({}).toArray((err, biofuelsArray) => {
