@@ -13,7 +13,7 @@ var app = express();
 const BASE_PATH = "/api"
 
 app.use(bodyParser.json());
-app.use(cors);
+app.use(cors());
 
 
 var port = process.env.PORT || 8080;
