@@ -52,6 +52,18 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "EditBiofuelsCtrl",
             templateUrl: "biofuels/edit-biofuels.html"
 
+        })
+        .when("/analytics/highchartsBiofuels", {
+
+            controller: "HighchartsBiofuels",
+            templateUrl: "biofuels/analytics/highcharts-biofuels.html"
+
+        })
+        .when("/analytics/geoChartsBiofuels", {
+
+            controller: "GeoChartsBiofuels",
+            templateUrl: "biofuels/analytics/geocharts-biofuels.html"
+
         });
 });
 
