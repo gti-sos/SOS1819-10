@@ -64,6 +64,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "GeoChartsBiofuels",
             templateUrl: "biofuels/analytics/geocharts-biofuels.html"
 
+        })
+        .when("/integrations/visBiofuels", {
+
+            controller: "VisBiofuels",
+            templateUrl: "biofuels/integrations/vis-biofuels.html"
+
         });
 });
 

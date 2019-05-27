@@ -27,7 +27,7 @@ angular
 
                 var naturalChina = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    var filter = biofuels.filter(function(n) {
+                    biofuels.filter(function(n) {
                         if (n.country == "China" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
@@ -35,17 +35,13 @@ angular
 
                     });
 
-                    if (filter.length == 0) {
-                        return dryNaturalGas;
-                    } else {
-                        return dryNaturalGas;
-                    }
+                    return dryNaturalGas;
 
                 });
 
                 var naturalBrazil = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    var filter = biofuels.filter(function(n) {
+                    biofuels.filter(function(n) {
                         if (n.country == "Brazil" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
@@ -53,16 +49,12 @@ angular
 
                     });
 
-                    if (filter.length == 0) {
-                        return dryNaturalGas;
-                    } else {
-                        return dryNaturalGas;
-                    }
+                    return dryNaturalGas;
 
                 });
                 var naturalCanada = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    var filter = biofuels.filter(function(n) {
+                    biofuels.filter(function(n) {
                         if (n.country == "Canada" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
@@ -70,17 +62,13 @@ angular
 
                     });
 
-                    if (filter.length == 0) {
-                        return dryNaturalGas;
-                    } else {
-                        return dryNaturalGas;
-                    }
+                    return dryNaturalGas;
 
                 });
 
                 var naturalUSA = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    var filter = biofuels.filter(function(n) {
+                    biofuels.filter(function(n) {
                         if (n.country == "United States" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
@@ -88,17 +76,13 @@ angular
 
                     });
 
-                    if (filter.length == 0) {
-                        return dryNaturalGas;
-                    } else {
-                        return dryNaturalGas;
-                    }
+                    return dryNaturalGas;
 
                 });
 
                 var naturalAustralia = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    var filter = biofuels.filter(function(n) {
+                    biofuels.filter(function(n) {
                         if (n.country == "Australia" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
@@ -106,15 +90,11 @@ angular
 
                     });
 
-                    if (filter.length == 0) {
-                        return dryNaturalGas;
-                    } else {
-                        return dryNaturalGas;
-                    }
+                    return dryNaturalGas;
 
                 });
 
-                Highcharts.chart('container', {
+                Highcharts.chart('biofuels_container', {
                     chart: {
                         type: 'column'
                     },

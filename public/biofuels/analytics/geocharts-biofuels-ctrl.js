@@ -32,7 +32,7 @@ angular
 
                     var options = {};
 
-                    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+                    var chart = new google.visualization.GeoChart(document.getElementById('biofuels_id'));
 
                     chart.draw(plot, options);
                 }
