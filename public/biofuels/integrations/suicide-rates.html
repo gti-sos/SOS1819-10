@@ -1,0 +1,21 @@
+<h1>Suicides Rates</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Year</th>
+            <th>No Suicides Man</th>
+            <th>No Suicides Woman</th>
+            <th>Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="suicide in suicides">
+            <td>{{suicide.country}}</td>
+            <td>{{suicide.year}}</td>
+            <td>{{suicide.noSuicidesMan}}</td>
+            <td>{{suicide.noSuicidesWoman}}</td>
+            <td>{{suicide.rank}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -76,6 +76,18 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "moviesCtrl",
             templateUrl: "biofuels/integrations/movies-stats.html"
 
+        })
+        .when("/integrations/suicidesCharts", {
+
+            controller: "suicidesCtrl",
+            templateUrl: "biofuels/integrations/suicide-rates.html"
+
+        })
+        .when("/integrations/prueba", {
+
+            controller: "pruebaCtrl",
+            templateUrl: "biofuels/integrations/prueba.html"
+
         });
 });
 

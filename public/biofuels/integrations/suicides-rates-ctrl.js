@@ -2,12 +2,12 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("moviesCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("suicidesCtrl", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Movies Controller initialized.");
+    console.log("List Suicides Controller initialized.");
 
-    var API = "http://sos1819-02.herokuapp.com/api/v1/movies-stats/";
+    var API = "proxySR/api/v1/suicide-rates";
     refresh();
 
     function refresh() {
@@ -19,7 +19,7 @@ app.controller("moviesCtrl", ["$scope", "$http", function($scope, $http) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
 
-                $scope.movies = response.data;
+                $scope.suicides = response.data;
             });
     }
 
