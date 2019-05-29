@@ -86,6 +86,14 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     });
 
+    // PROXY A MOIES STATS
+    var request = require("request");
+    var externalAPI = "http://sos1819-02.herokuapp.com";
+    app.use("/proxyMS", function(req, res) {
+        var url = externalAPI + req.url;
+        req.pipe(request(url)).pipe(res);
+    });
+
     //POST al conjunto de recursos
 
     app.post(BASE_PATH + "/biofuels-production", (req, res) => {

@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var cors = require("cors");
-var Dygraph = require('dygraphs');
+//var Dygraph = require('dygraphs');
 
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");

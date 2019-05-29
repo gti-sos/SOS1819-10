@@ -1,0 +1,23 @@
+<h1>Movies </h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>5</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="movie in movies">
+            <td>{{movie.name}}</td>
+            <td>{{movie.country}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.movienomination}}</td>
+            <td>{{movie.movieaward}}</td>
+            <td>{{movie.movieedition}}</td>
+        </tr>
+    </tbody>
+</table>
