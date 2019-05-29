@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var cors = require("cors");
+var Dygraph = require('dygraphs');
 
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
@@ -10,7 +11,7 @@ var issueDioxidAPI = require("./issue-dioxid");
 
 var app = express();
 
-const BASE_PATH = "/api"
+const BASE_PATH = "/api";
 
 app.use(bodyParser.json());
 app.use(cors());
