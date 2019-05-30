@@ -33,6 +33,11 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "GeoChartsCarStatics",
             templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
 
+        }).when("/analytics/highchartsCarStatics", {
+
+            controller: "HighchartsCarStatics",
+            templateUrl: "e-car-statics/analytics/highcharts-ecarstatics.html"
+
         })
 
         //RUTAS FRAN
