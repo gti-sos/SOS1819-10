@@ -38,13 +38,13 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
             rankingPosition: 1,
             existsVehicles: 20486
         }, {
-            country: "Holand",
+            country: "Holland",
             year: 2015,
             marketPart: 9.74,
             rankingPosition: 2,
             existsVehicles: 88991
         }, {
-            country: "Holand",
+            country: "Holland",
             year: 2014,
             marketPart: 3.87,
             rankingPosition: 2,

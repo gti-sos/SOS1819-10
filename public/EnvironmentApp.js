@@ -18,6 +18,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "EditCtrl",
             templateUrl: "e-car-statics/edit.html"
+            
+        }).when("/analytics/geoChartsCarStatics", {
+
+            controller: "GeoChartsCarStatics",
+            templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
+
         })
 
         //RUTAS FRAN
