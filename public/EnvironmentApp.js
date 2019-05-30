@@ -51,6 +51,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "PagDioxidCtrl",
             templateUrl: "issue-dioxid/pag-dioxid.html"
+        
+        }).when("/analytics/highchartsIssueDioxid", {
+
+            controller: "GraphCrtl",
+            templateUrl: "issue-dioxid/dygraphs.html"
+
         })
 
         //RUTAS FRAN ALONSO

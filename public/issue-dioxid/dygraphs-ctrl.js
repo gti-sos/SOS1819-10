@@ -16,8 +16,12 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
         
         emisiones.forEach(function(i){
             
-            datosGraficos.push([parseInt(i.year), parseInt(i.issue_metric_ton)]);
-
+            if (i.year in datosGraficos){
+                
+            }
+            else{
+                datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
+            }
         });
         
         $scope.graphiss = new Dygraph(
@@ -25,9 +29,11 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
             document.getElementById("graphiss"),
 
             datosGraficos,
-
+            
             {
                 labels: ["x-coord", "issue_metric_ton"],
+                ylabel: "Issues"
+                
             }
         );
 

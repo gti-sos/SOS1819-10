@@ -61,6 +61,38 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     issue_liquid_fuel: "3.861,351",
                     issue_solid_fuel: "700,397"
                 });
+                
+                datos.insert({
+                    country: "Andorra",
+                    year: "1990",
+                    issue_metric_ton: "7,4767",
+                    issue_liquid_fuel: "407,037",
+                    issue_solid_fuel: "700,56"
+                });
+                
+                datos.insert({
+                    country: "Bahamas",
+                    year: "2000",
+                    issue_metric_ton: "5,601",
+                    issue_liquid_fuel: "99,78",
+                    issue_solid_fuel: "3,667"
+                });
+                
+                datos.insert({
+                    country: "Venezuela",
+                    year: "2005",
+                    issue_metric_ton: "6,164",
+                    issue_liquid_fuel: "58,367",
+                    issue_solid_fuel: "135,679"
+                });
+                
+                datos.insert({
+                    country: "Brasil",
+                    year: "1970",
+                    issue_metric_ton: "0,984",
+                    issue_liquid_fuel: "83,527",
+                    issue_solid_fuel: "8910,81"
+                });
 
 
                 res.sendStatus(201);
