@@ -1,0 +1,21 @@
+<h1>Airports</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Airport ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Country Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="airport in airports">
+            <td>{{airport.airportId}}</td>
+            <td>{{airport.code}}</td>
+            <td>{{airport.name}}</td>
+            <td>{{airport.city}}</td>
+            <td>{{airport.countryCode}}</td>
+        </tr>
+    </tbody>
+</table>

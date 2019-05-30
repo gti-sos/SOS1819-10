@@ -2,20 +2,20 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("moviesCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("pruebaCtrl", ["$scope", "$http", function($scope, $http) {
 
 
     console.log("List Movies Controller initialized.");
 
-    var API = "proxyMS/api/v1/movies-stats/";
+    var API = "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-radius?radius=100&lng=-157.895277&lat=21.265600";
     refresh();
 
     function refresh() {
-
+        
         var config = {
             headers: {
-                "X-RapidAPI-Host":"musixmatchcom-musixmatch.p.rapidapi.com",
-                "X-RapidAPI-Key":"b27a285eb2mshb77acfc1f491de6p1e909djsnb9814b6296df"
+                "X-RapidAPI-Host": "cometari-airportsfinder-v1.p.rapidapi.com",
+                "X-RapidAPI-Key": "b27a285eb2mshb77acfc1f491de6p1e909djsnb9814b6296df"
             }
         };
 
@@ -27,7 +27,7 @@ app.controller("moviesCtrl", ["$scope", "$http", function($scope, $http) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
 
-                $scope.movies = response.data;
+                $scope.airports= response.data;
             });
     }
 
