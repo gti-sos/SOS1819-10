@@ -2,21 +2,21 @@
 
 angular
     .module("EnvironmentApp")
-    .controller("HighchartsBiofuels", ["$scope",
+    .controller("HighchartsCarStatics", ["$scope",
         "$http",
         "$routeParams",
         function($scope, $http, $routeParams) {
 
             var API = "/api/v1/e-car-statics";
-            var biofuels = [];
+            var ecarstatics = [];
             $http.get(API).then(function(response) {
 
-                biofuels = response.data;
+                ecarstatics = response.data;
                 //});
 
 
 
-                var years = biofuels.map(function(item) {
+                var years = ecarstatics.map(function(item) {
 
                     var newItem = item.year;
                     return newItem;
@@ -25,127 +25,101 @@ angular
 
                 let sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
 
-                var naturalChina = sinRepetidos.map(function(year) {
-                    var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
-                        if (n.country == "China" && n.year == year) {
-                            dryNaturalGas = n.dryNaturalGas;
+                var mountNorway = sinRepetidos.map(function(year) {
+                    var existsVehicles = ""
+                    ecarstatics.filter(function(n) {
+                        if (n.country == "Norway" && n.year == year) {
+                            existsVehicles = n.existsVehicles;
                         }
-                        return (n.country == "China" && n.year == year);
+                        return (n.country == "Norway" && n.year == year);
 
                     });
 
-                    return dryNaturalGas;
+                    return existsVehicles;
 
                 });
-
-                var naturalBrazil = sinRepetidos.map(function(year) {
-                    var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
-                        if (n.country == "Brazil" && n.year == year) {
-                            dryNaturalGas = n.dryNaturalGas;
+                
+                var mountHolland = sinRepetidos.map(function(year) {
+                    var existsVehicles = ""
+                    ecarstatics.filter(function(n) {
+                        if (n.country == "Holland" && n.year == year) {
+                            existsVehicles = n.existsVehicles;
                         }
-                        return (n.country == "Brazil" && n.year == year);
+                        return (n.country == "Holland" && n.year == year);
 
                     });
 
-                    return dryNaturalGas;
+                    return existsVehicles;
 
                 });
-                var naturalCanada = sinRepetidos.map(function(year) {
-                    var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
-                        if (n.country == "Canada" && n.year == year) {
-                            dryNaturalGas = n.dryNaturalGas;
+
+                var mountSpain = sinRepetidos.map(function(year) {
+                    var existsVehicles = ""
+                    ecarstatics.filter(function(n) {
+                        if (n.country == "Spain" && n.year == year) {
+                            existsVehicles = n.existsVehicles;
                         }
-                        return (n.country == "Canada" && n.year == year);
+                        return (n.country == "Spain" && n.year == year);
 
                     });
 
-                    return dryNaturalGas;
+                    return existsVehicles;
 
                 });
+                
 
-                var naturalUSA = sinRepetidos.map(function(year) {
-                    var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
-                        if (n.country == "United States" && n.year == year) {
-                            dryNaturalGas = n.dryNaturalGas;
-                        }
-                        return (n.country == "United States" && n.year == year);
+                Highcharts.chart('carstatics_container', {
 
-                    });
-
-                    return dryNaturalGas;
-
-                });
-
-                var naturalAustralia = sinRepetidos.map(function(year) {
-                    var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
-                        if (n.country == "Australia" && n.year == year) {
-                            dryNaturalGas = n.dryNaturalGas;
-                        }
-                        return (n.country == "Australia" && n.year == year);
-
-                    });
-
-                    return dryNaturalGas;
-
-                });
-
-                Highcharts.chart('biofuels_container', {
-                    chart: {
-                        type: 'column'
-                    },
                     title: {
-                        text: 'Dry Natural Gas by Year'
+                        text: 'Total electric cars in a country per year'
                     },
-                    xAxis: {
-                        categories: sinRepetidos,
-                        crosshair: true
-                    },
+                    
                     yAxis: {
-                        min: 0,
                         title: {
-                            text: 'Billions Cubic Feet'
+                            text: 'Number of Electric Cars'
                         }
                     },
-                    tooltip: {
-                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                        footerFormat: '</table>',
-                        shared: true,
-                        useHTML: true
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
                     },
+
                     plotOptions: {
-                        column: {
-                            pointPadding: 0.2,
-                            borderWidth: 0
+                        series: {
+                            label: {
+                                connectorAllowed: false
+                            },
+                            pointStart: 2014
                         }
                     },
+
                     series: [{
-                        name: 'China',
-                        data: naturalChina
-
+                        name: 'Norway',
+                        data: mountNorway
                     }, {
-                        name: 'Brazil',
-                        data: naturalBrazil
-
+                        name: 'Holland',
+                        data: mountHolland
                     }, {
-                        name: 'Canada',
-                        data: naturalCanada
+                        name: 'Spain',
+                        data: mountSpain
+                    }],
 
-                    }, {
-                        name: 'United States',
-                        data: naturalUSA
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
 
-                    }, {
-                        name: 'Australia',
-                        data: naturalAustralia
-
-                    }]
                 });
 
 
