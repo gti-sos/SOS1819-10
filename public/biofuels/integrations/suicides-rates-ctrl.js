@@ -12,7 +12,7 @@ app.controller("suicidesCtrl", ["$scope", "$http", function($scope, $http) {
 
     function refresh() {
 
-        console.log("Requesting biofuels to <" + API + ">...");
+        console.log("Requesting suicides to <" + API + ">...");
         $http
             .get(API)
             .then(function(response) {

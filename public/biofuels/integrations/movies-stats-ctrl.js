@@ -12,7 +12,7 @@ app.controller("moviesCtrl", ["$scope", "$http", function($scope, $http) {
 
     function refresh() {
 
-        console.log("Requesting biofuels to <" + API + ">...");
+        console.log("Requesting movies to <" + API + ">...");
         $http
             .get(API)
             .then(function(response) {

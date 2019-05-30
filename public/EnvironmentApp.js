@@ -56,7 +56,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "PagDioxidCtrl",
             templateUrl: "issue-dioxid/pag-dioxid.html"
-        
+
         }).when("/analytics/highchartsIssueDioxid", {
 
             controller: "GraphCrtl",
@@ -109,10 +109,10 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/integrations/suicide-rates.html"
 
         })
-        .when("/integrations/prueba", {
+        .when("/integrations/airports", {
 
-            controller: "pruebaCtrl",
-            templateUrl: "biofuels/integrations/prueba.html"
+            controller: "airportsCtrl",
+            templateUrl: "biofuels/integrations/airports.html"
 
         });
 });

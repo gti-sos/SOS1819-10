@@ -2,7 +2,7 @@
 
 angular
     .module("EnvironmentApp")
-    .controller("HighchartsBiofuels", ["$scope",
+    .controller("HighchartsCars", ["$scope",
         "$http",
         "$routeParams",
         function($scope, $http, $routeParams) {
@@ -94,7 +94,7 @@ angular
 
                 });
 
-                Highcharts.chart('biofuels_container', {
+                Highcharts.chart('cars_container', {
                     chart: {
                         type: 'column'
                     },
