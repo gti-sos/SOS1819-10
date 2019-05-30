@@ -114,6 +114,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "airportsCtrl",
             templateUrl: "biofuels/integrations/airports.html"
 
+        })
+        .when("/integrations/norris", {
+
+            controller: "norrisCtrl",
+            templateUrl: "biofuels/integrations/norris.html"
+
         });
 });
 
