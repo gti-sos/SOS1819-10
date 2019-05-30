@@ -69,10 +69,7 @@ angular
 
 
                 Highcharts.chart('carstatics_container', {
-                    chart: {
-                        type: 'column'
-                    },
-
+                    
                     title: {
                         text: 'Total electric cars in a country per year'
                     },
