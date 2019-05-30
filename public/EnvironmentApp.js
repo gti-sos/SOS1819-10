@@ -5,7 +5,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
     $routeProvider
 
         .when("/", {
-            templateUrl: "inicio.html"
+            templateUrl: "Inicio.html"
         })
 
         //RUTAS CARLOS
