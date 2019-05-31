@@ -125,6 +125,30 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "norrisCtrl",
             templateUrl: "biofuels/integrations/norris.html"
 
+        })
+        .when("/integrations/carStatics", {
+
+            controller: "carsCtrl",
+            templateUrl: "biofuels/integrations/car-statics.html"
+
+        })
+        .when("/integrations/publicExpenses", {
+
+            controller: "expensesCtrl",
+            templateUrl: "biofuels/integrations/public-expenses.html"
+
+        })
+        .when("/integrations/pollutionStats", {
+
+            controller: "pollutionCtrl",
+            templateUrl: "biofuels/integrations/pollution-stats.html"
+
+        })
+        .when("/integrations/clubRankings", {
+
+            controller: "clubRankingsCtrl",
+            templateUrl: "biofuels/integrations/club-rankings.html"
+
         });
 });
 

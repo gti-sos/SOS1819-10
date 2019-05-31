@@ -1,0 +1,21 @@
+<h1>E Car Statics</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Year</th>
+            <th>Market Parts</th>
+            <th>Ranking Position</th>
+            <th>Exists Vehicles</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="ecarstatic in ecarstatics">
+            <td>{{ ecarstatic.country }}</td>
+            <td>{{ ecarstatic.year }}</td>
+            <td>{{ ecarstatic.marketPart }}</td>
+            <td>{{ ecarstatic.rankingPosition }}</td>
+            <td>{{ ecarstatic.existsVehicles }}</td>
+        </tr>
+    </tbody>
+</table>
