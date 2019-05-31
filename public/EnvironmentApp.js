@@ -28,7 +28,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "EditCtrl",
             templateUrl: "e-car-statics/edit.html"
 
-        }).when("/analytics/geoChartsCarStatics", {
+        }).when("/analytics/geochartsCarStatics", {
 
             controller: "GeoChartsCarStatics",
             templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
@@ -37,6 +37,11 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "HighchartsCarStatics",
             templateUrl: "e-car-statics/analytics/highcharts-ecarstatics.html"
+
+        }).when("/analytics/uvcchartsCarStatics", {
+
+            controller: "uvchartCarStatics",
+            templateUrl: "e-car-statics/analytics/uv-ecarstatics.html"
 
         })
 
