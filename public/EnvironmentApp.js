@@ -67,6 +67,10 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "GraphCrtl",
             templateUrl: "issue-dioxid/dygraphs.html"
 
+        }).when("/analytics/geochartIssueDioxid", {
+
+            controller: "GeoChartsIssueDioxid",
+            templateUrl: "issue-dioxid/geochart.html"
         })
 
         //RUTAS FRAN ALONSO
@@ -102,6 +106,8 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/analytics/vis-biofuels.html"
 
         })
+
+        //SOS INTEGRATIONS
         .when("/integrations/moviesCharts", {
 
             controller: "moviesCtrl",
@@ -114,6 +120,31 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/integrations/suicide-rates.html"
 
         })
+        .when("/integrations/carStatics", {
+
+            controller: "carsCtrl",
+            templateUrl: "biofuels/integrations/car-statics.html"
+
+        })
+        .when("/integrations/publicExpenses", {
+
+            controller: "expensesCtrl",
+            templateUrl: "biofuels/integrations/public-expenses.html"
+
+        })
+        .when("/integrations/pollutionStats", {
+
+            controller: "pollutionCtrl",
+            templateUrl: "biofuels/integrations/pollution-stats.html"
+
+        })
+        .when("/integrations/clubRankings", {
+
+            controller: "clubRankingsCtrl",
+            templateUrl: "biofuels/integrations/club-rankings.html"
+
+        })
+        //EXTERNAL APIS INTEGRATIONS
         .when("/integrations/airports", {
 
             controller: "airportsCtrl",
@@ -124,6 +155,13 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "norrisCtrl",
             templateUrl: "biofuels/integrations/norris.html"
+
+        })
+        //GRUPAL INTEGRATION
+        .when("/integrations/grupalAnalytics", {
+
+            controller: "grupalAnalyticsCtrl",
+            templateUrl: "grupal-analytics/grupal-analytics.html"
 
         });
 });

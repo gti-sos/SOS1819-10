@@ -86,11 +86,17 @@ module.exports = function(app, BASE_PATH, biofuels) {
 
     });
 
-    // PROXY A MOIES STATS
+    // PROXY A SUICIDE RATES
     var request = require("request");
-    var externalAPI = "http://sos1819-04.herokuapp.com";
+    var moviesAPI = "http://sos1819-04.herokuapp.com";
     app.use("/proxySR", function(req, res) {
-        var url = externalAPI + req.url;
+        var url = moviesAPI + req.url;
+        req.pipe(request(url)).pipe(res);
+    });
+    // PROXY A POLLUTION STATS
+    var pollutionsAPI = "http://sos1819-12.herokuapp.com";
+    app.use("/proxyPS", function(req, res) {
+        var url = pollutionsAPI + req.url;
         req.pipe(request(url)).pipe(res);
     });
 

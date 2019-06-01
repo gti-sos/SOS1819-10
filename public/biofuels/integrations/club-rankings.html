@@ -1,0 +1,17 @@
+<h1>Uefa Club Rankings</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Season</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="club in clubs">
+            <td>{{ club.country }}</td>
+            <td>{{ club.season }}</td>
+            <td>{{ club.points }}</td>
+        </tr>
+    </tbody>
+</table>
