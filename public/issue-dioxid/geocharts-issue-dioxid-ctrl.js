@@ -24,9 +24,6 @@ angular
                     
                     data.push(["Country", "issue_metric_ton"]);
                     data.push([issues[0].country, parseInt(issues[0].issue_metric_ton)]);
-                    data.push([issues[3].country, parseInt(issues[3].issue_metric_ton)]);
-                    data.push([issues[6].country, parseInt(issues[6].issue_metric_ton)]);
-                    data.push([issues[7].country, parseInt(issues[7].issue_metric_ton)]);
                     data.push([issues[8].country, parseInt(issues[8].issue_metric_ton)]);
                     
                     console.log(data);
