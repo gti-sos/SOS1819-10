@@ -13,22 +13,38 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
         var emisiones = response.data;
 
         var datosGraficos = [];
-        
-        var datosBuenos = [];
 
         emisiones.forEach(function(i) {
 
-            datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
+           if (datosGraficos == []){
+                
+                datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
+            }
+            else{
+                
+                var repetido = false;
+                
+                datosGraficos.forEach(function(x){
+                    
+                    if (x[0] == parseInt(i.year)){
+                        
+                        repetido = true;
+                    }
+                });
+                
+                if (repetido == false){
+                    
+                     datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
+                }
+            }
             
         });
-        
-        
         
         $scope.graphiss = new Dygraph(
 
             document.getElementById("graphiss"),
  
-            datosBuenos,
+            datosGraficos,
             
             {
                 labels: ["x-coord", "issue_metric_ton"],
