@@ -2,16 +2,16 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("pruebaCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("airportsCtrl", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Movies Controller initialized.");
+    console.log("List Airports Controller initialized.");
 
     var API = "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-radius?radius=100&lng=-157.895277&lat=21.265600";
     refresh();
 
     function refresh() {
-        
+
         var config = {
             headers: {
                 "X-RapidAPI-Host": "cometari-airportsfinder-v1.p.rapidapi.com",
@@ -20,14 +20,14 @@ app.controller("pruebaCtrl", ["$scope", "$http", function($scope, $http) {
         };
 
 
-        console.log("Requesting biofuels to <" + API + ">...");
+        console.log("Requesting Airports to <" + API + ">...");
         $http
             .get(API, config)
             .then(function(response) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
 
-                $scope.airports= response.data;
+                $scope.airports = response.data;
             });
     }
 

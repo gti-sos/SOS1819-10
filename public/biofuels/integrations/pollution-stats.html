@@ -1,0 +1,18 @@
+<h1>Pollution Stats</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Year</th>
+            <th>CO2 Pollution </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="pollution in pollutions">
+            <td>{{ pollution.country }}</td>
+            <td>{{ pollution.year }}</td>
+            <td>{{ pollution.pollution_tco2 }}</td>
+        </tr>
+    </tbody>
+</table>

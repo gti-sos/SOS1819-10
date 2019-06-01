@@ -12,9 +12,6 @@ angular
             $http.get(API).then(function(response) {
 
                 biofuels = response.data;
-                //});
-
-
 
                 var years = biofuels.map(function(item) {
 
@@ -27,26 +24,21 @@ angular
 
                 var naturalChina = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
+                    biofuels.forEach(function(n) {
                         if (n.country == "China" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
-                        return (n.country == "China" && n.year == year);
-
                     });
-
                     return dryNaturalGas;
 
                 });
 
                 var naturalBrazil = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
+                    biofuels.forEach(function(n) {
                         if (n.country == "Brazil" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
-                        return (n.country == "Brazil" && n.year == year);
-
                     });
 
                     return dryNaturalGas;
@@ -54,12 +46,10 @@ angular
                 });
                 var naturalCanada = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
+                    biofuels.forEach(function(n) {
                         if (n.country == "Canada" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
-                        return (n.country == "Canada" && n.year == year);
-
                     });
 
                     return dryNaturalGas;
@@ -68,12 +58,10 @@ angular
 
                 var naturalUSA = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
+                    biofuels.forEach(function(n) {
                         if (n.country == "United States" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
-                        return (n.country == "United States" && n.year == year);
-
                     });
 
                     return dryNaturalGas;
@@ -82,12 +70,10 @@ angular
 
                 var naturalAustralia = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
-                    biofuels.filter(function(n) {
+                    biofuels.forEach(function(n) {
                         if (n.country == "Australia" && n.year == year) {
                             dryNaturalGas = n.dryNaturalGas;
                         }
-                        return (n.country == "Australia" && n.year == year);
-
                     });
 
                     return dryNaturalGas;

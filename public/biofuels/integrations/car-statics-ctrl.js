@@ -2,24 +2,24 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("suicidesCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("carsCtrl", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Suicides Controller initialized.");
+    console.log("List Cars Controller initialized.");
 
-    var API = "proxySR/api/v1/suicide-rates";
+    var API = "/api/v1/e-car-statics";
     refresh();
 
     function refresh() {
 
-        console.log("Requesting suicides to <" + API + ">...");
+        console.log("Requesting cars to <" + API + ">...");
         $http
             .get(API)
             .then(function(response) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
 
-                $scope.suicides = response.data;
+                $scope.ecarstatics = response.data;
             });
     }
 

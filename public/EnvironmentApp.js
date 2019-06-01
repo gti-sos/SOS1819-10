@@ -28,10 +28,20 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "EditCtrl",
             templateUrl: "e-car-statics/edit.html"
 
-        }).when("/analytics/geoChartsCarStatics", {
+        }).when("/analytics/geochartsCarStatics", {
 
             controller: "GeoChartsCarStatics",
             templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
+
+        }).when("/analytics/highchartsCarStatics", {
+
+            controller: "HighchartsCarStatics",
+            templateUrl: "e-car-statics/analytics/highcharts-ecarstatics.html"
+
+        }).when("/analytics/uvcchartsCarStatics", {
+
+            controller: "uvchartCarStatics",
+            templateUrl: "e-car-statics/analytics/uv-ecarstatics.html"
 
         })
 
@@ -51,7 +61,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "PagDioxidCtrl",
             templateUrl: "issue-dioxid/pag-dioxid.html"
-        
+
         }).when("/analytics/highchartsIssueDioxid", {
 
             controller: "GraphCrtl",
@@ -92,6 +102,8 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/analytics/vis-biofuels.html"
 
         })
+
+        //SOS INTEGRATIONS
         .when("/integrations/moviesCharts", {
 
             controller: "moviesCtrl",
@@ -104,10 +116,49 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/integrations/suicide-rates.html"
 
         })
-        .when("/integrations/prueba", {
+        .when("/integrations/carStatics", {
 
-            controller: "pruebaCtrl",
-            templateUrl: "biofuels/integrations/prueba.html"
+            controller: "carsCtrl",
+            templateUrl: "biofuels/integrations/car-statics.html"
+
+        })
+        .when("/integrations/publicExpenses", {
+
+            controller: "expensesCtrl",
+            templateUrl: "biofuels/integrations/public-expenses.html"
+
+        })
+        .when("/integrations/pollutionStats", {
+
+            controller: "pollutionCtrl",
+            templateUrl: "biofuels/integrations/pollution-stats.html"
+
+        })
+        .when("/integrations/clubRankings", {
+
+            controller: "clubRankingsCtrl",
+            templateUrl: "biofuels/integrations/club-rankings.html"
+
+        })
+        .when("/integrations/airports", {
+
+            controller: "airportsCtrl",
+            templateUrl: "biofuels/integrations/airports.html"
+
+        })
+
+        //EXTERNAL APIS INTEGRATIONS
+        .when("/integrations/norris", {
+
+            controller: "norrisCtrl",
+            templateUrl: "biofuels/integrations/norris.html"
+
+        })
+        //GRUPAL INTEGRATION
+        .when("/integrations/grupalAnalytics", {
+
+            controller: "grupalAnalyticsCtrl",
+            templateUrl: "grupal-analytics/grupal-analytics.html"
 
         });
 });
