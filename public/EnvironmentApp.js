@@ -62,7 +62,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "PagDioxidCtrl",
             templateUrl: "issue-dioxid/pag-dioxid.html"
 
-        }).when("/analytics/highchartsIssueDioxid", {
+        }).when("/analytics/dygraphIssueDioxid", {
 
             controller: "GraphCrtl",
             templateUrl: "issue-dioxid/dygraphs.html"
@@ -71,6 +71,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "GeoChartsIssueDioxid",
             templateUrl: "issue-dioxid/geochart.html"
+        
+            
+        }).when("analytics/HighChartIssueDioxid", {
+            
+            controller: "HighGraphCrtl",
+            templateUrl: "issue-dioxid/highcharts-issue.html"
         })
 
         //RUTAS FRAN ALONSO
