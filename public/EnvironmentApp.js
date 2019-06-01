@@ -44,6 +44,21 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "e-car-statics/analytics/uv-ecarstatics.html"
 
         })
+        
+        //Integrations
+        .when("/integrations/scorer", {
+
+            controller: "scorerStats",
+            templateUrl: "e-car-statics/integrations/score-stats.html"
+
+        })
+        .when("/integrations/uefa", {
+
+            controller: "uefaCountry",
+            templateUrl: "e-car-statics/integrations/score-stats.html"
+
+        })
+        
 
         //RUTAS FRAN
 

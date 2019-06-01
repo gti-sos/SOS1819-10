@@ -2,10 +2,10 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("expensesCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("uefaCountry", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Expenses Controller initialized.");
+    console.log("List Uefa Controller initialized.");
 
     var API = "https://sos1819-06.herokuapp.com/api/v1/uefa-country-rankings";
     refresh();

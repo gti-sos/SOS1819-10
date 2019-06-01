@@ -2,10 +2,10 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("expensesCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("scorerStats", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Expenses Controller initialized.");
+    console.log("List ScorerStats Controller initialized.");
 
     var API = "https://sos1819-02.herokuapp.com/api/v1/scorers-stats";
     refresh();
