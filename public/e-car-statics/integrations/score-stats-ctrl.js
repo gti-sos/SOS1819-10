@@ -19,7 +19,7 @@ app.controller("scorerStats", ["$scope", "$http", function($scope, $http) {
 
                 console.log("Data received:" + JSON.stringify(response.data, null, 2));
 
-                $scope.expenses = response.data;
+                $scope.scorers = response.data;
             });
     }
 

@@ -55,7 +55,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
         .when("/integrations/uefa", {
 
             controller: "uefaCountry",
-            templateUrl: "e-car-statics/integrations/score-stats.html"
+            templateUrl: "e-car-statics/integrations/uefa-country-rankings.html"
 
         })
         
