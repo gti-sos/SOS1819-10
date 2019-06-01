@@ -102,6 +102,8 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/analytics/vis-biofuels.html"
 
         })
+
+        //SOS INTEGRATIONS
         .when("/integrations/moviesCharts", {
 
             controller: "moviesCtrl",
@@ -112,18 +114,6 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "suicidesCtrl",
             templateUrl: "biofuels/integrations/suicide-rates.html"
-
-        })
-        .when("/integrations/airports", {
-
-            controller: "airportsCtrl",
-            templateUrl: "biofuels/integrations/airports.html"
-
-        })
-        .when("/integrations/norris", {
-
-            controller: "norrisCtrl",
-            templateUrl: "biofuels/integrations/norris.html"
 
         })
         .when("/integrations/carStatics", {
@@ -148,6 +138,27 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
             controller: "clubRankingsCtrl",
             templateUrl: "biofuels/integrations/club-rankings.html"
+
+        })
+        .when("/integrations/airports", {
+
+            controller: "airportsCtrl",
+            templateUrl: "biofuels/integrations/airports.html"
+
+        })
+
+        //EXTERNAL APIS INTEGRATIONS
+        .when("/integrations/norris", {
+
+            controller: "norrisCtrl",
+            templateUrl: "biofuels/integrations/norris.html"
+
+        })
+        //GRUPAL INTEGRATION
+        .when("/integrations/grupalAnalytics", {
+
+            controller: "grupalAnalyticsCtrl",
+            templateUrl: "grupal-analytics/grupal-analytics.html"
 
         });
 });
