@@ -68,7 +68,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "issue-dioxid/dygraphs.html"
 
         }).when("/analytics/geochartIssueDioxid", {
-            
+
             controller: "GeoChartsIssueDioxid",
             templateUrl: "issue-dioxid/geochart.html"
         })
@@ -144,14 +144,13 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "biofuels/integrations/club-rankings.html"
 
         })
+        //EXTERNAL APIS INTEGRATIONS
         .when("/integrations/airports", {
 
             controller: "airportsCtrl",
             templateUrl: "biofuels/integrations/airports.html"
 
         })
-
-        //EXTERNAL APIS INTEGRATIONS
         .when("/integrations/norris", {
 
             controller: "norrisCtrl",
