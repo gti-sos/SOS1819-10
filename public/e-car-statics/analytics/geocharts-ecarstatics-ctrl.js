@@ -26,8 +26,8 @@ angular
                     data.push(["Country", "existing vehicles"]);
                     data.push([ecarstatics[0].country, ecarstatics[0].existsVehicles]);
                     data.push([ecarstatics[4].country, ecarstatics[4].existsVehicles]);
-                    data.push([ecarstatics[5].country, ecarstatics[5].existsVehicles]);
-                    data.push([ecarstatics[6].country, ecarstatics[6].existsVehicles]);
+                    //data.push([ecarstatics[5].country, ecarstatics[5].existsVehicles]);
+                    //data.push([ecarstatics[6].country, ecarstatics[6].existsVehicles]);
                     console.log(data);
                     var plot = google.visualization.arrayToDataTable(data);
 

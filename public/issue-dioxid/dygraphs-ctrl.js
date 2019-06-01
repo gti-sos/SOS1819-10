@@ -14,31 +14,32 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
 
         var datosGraficos = [];
         
-        emisiones.forEach(function(i){
+        var datosBuenos = [];
+
+        emisiones.forEach(function(i) {
+
+            datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
             
-            if (i.year in datosGraficos){
-                
-            }
-            else{
-                datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
-            }
         });
+        
+        
         
         $scope.graphiss = new Dygraph(
 
             document.getElementById("graphiss"),
-
-            datosGraficos,
+ 
+            datosBuenos,
             
             {
                 labels: ["x-coord", "issue_metric_ton"],
                 ylabel: "Issues"
-                
+
+
             }
         );
 
     }, function(error) {
-    
+
         console.log("Error al recoger datos");
 
     });
