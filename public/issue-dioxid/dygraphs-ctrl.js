@@ -32,7 +32,11 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
             
             {
                 labels: ["x-coord", "issue_metric_ton"],
-                ylabel: "Issues"
+                ylabel: "Issues",
+                chart: {
+                        
+                        type: ""
+                }
                 
             }
         );
