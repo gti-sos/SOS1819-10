@@ -1,0 +1,22 @@
+<h1>Uefa-Country-Rankings</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Temporada</th>
+            <th>Posición Ranking</th>
+            <th>Puntos</th>
+            <th>Equipos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="uefacountry in uefacountries">
+            <td><a href="#!/uefa-country-rankings/edit/{{uefacountry.country}}/{{uefacountry.season}}">{{uefacountry.country}}</a></td>
+            <td>{{uefacountry.season}}</td>
+            <td>{{uefacountry.rankingPosition}}</td>
+            <td>{{uefacountry.points}}</td>
+            <td>{{uefacountry.teams}}</td>
+        </tr>
+    </tbody>
+</table>
