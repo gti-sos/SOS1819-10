@@ -12,40 +12,38 @@ app.controller("HighGraphCrtl", ["$scope", "$http", "$location", "$routeParams",
 
         var emisiones = response.data;
 
-        var datosGraficos = [];
+        var datosEspaña = [];
+        
+        var datosAlbania = [];
 
         emisiones.forEach(function(i) {
 
-            if (datosGraficos == []) {
-
-                datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
-            }
-            else {
-
-                var repetido = false;
-
-                datosGraficos.forEach(function(x) {
-
-                    if (x[0] == parseInt(i.year)) {
-
-                        repetido = true;
-                    }
-                });
-
-                if (repetido == false) {
-
-                    datosGraficos.push([parseInt(i.year), parseFloat(i.issue_metric_ton)]);
-                }
+            switch(i.country){
+                
+                case "España":
+                    
+                    datosEspaña.push(parseFloat(i.issue_metric_ton));
+                    break;
+                    
+                case "Albania":
+                    
+                    datosAlbania.push(parseFloat(i.issue_metric_ton));
+                    break;
+                
+                default:
+                    
+                    break;
             }
 
         });
-
+        console.log(datosEspaña);
+        console.log(datosAlbania);
         Highcharts.chart('issue_dioxid_graph', {
             chart: {
                 type: 'area'
             },
             title: {
-                text: 'Issue_Metric_Ton'
+                text: 'Issues Metrics Tons'
             },
             subtitle: {
                 text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
@@ -63,6 +61,11 @@ app.controller("HighGraphCrtl", ["$scope", "$http", "$location", "$routeParams",
             yAxis: {
                 title: {
                     text: 'Issues'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value;
+                    }
                 }
             },
             tooltip: {
@@ -84,18 +87,12 @@ app.controller("HighGraphCrtl", ["$scope", "$http", "$location", "$routeParams",
                 }
             },
             series: [{
-
-                    name: Albania,
-
-                    data: [4.56, 5.67, 6.78]
-                },
-                {
-                    name: España,
-
-                    data: [3.45, 4.56, 7.78]
-
-                }
-            ]
+                name: 'España',
+                data: datosEspaña
+            }, {
+                name: 'Albania',
+                data: datosAlbania
+            }]
         });
 
     }, function(error) {

@@ -7,6 +7,13 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
     var datos = issue_dioxid;
 
     path = BASE_PATH + "issue_dioxid/loadInitialData";
+    
+    var request = require("request");
+    var biofuelsAPI = "http://sos1819-10.herokuapp.com";
+    app.use("/proxyBIO", function(req, res) {
+        var url = biofuelsAPI + req.url;
+        req.pipe(request(url)).pipe(res);
+    });
 
     app.get(BASE_PATH + "/issue-dioxid/loadInitialData", (req, res) => {
 
@@ -17,7 +24,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 datos.insert({
                     country: "España",
                     year: "2010",
-                    issue_metric_ton: "5,861",
+                    issue_metric_ton: "5,871",
                     issue_liquid_fuel: "155.506,469",
                     issue_solid_fuel: "31.033,821"
                 });
@@ -25,7 +32,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 datos.insert({
                     country: "España",
                     year: "2012",
-                    issue_metric_ton: "5,661",
+                    issue_metric_ton: "6,641",
                     issue_liquid_fuel: "133.093,765",
                     issue_solid_fuel: "58.290,632"
                 });
@@ -33,7 +40,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 datos.insert({
                     country: "España",
                     year: "2014",
-                    issue_metric_ton: "5,03",
+                    issue_metric_ton: "8,43",
                     issue_liquid_fuel: "129.038,06",
                     issue_solid_fuel: "43.461,28"
                 });
@@ -49,7 +56,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 datos.insert({
                     country: "Albania",
                     year: "2012",
-                    issue_metric_ton: "1,693",
+                    issue_metric_ton: "2,693",
                     issue_liquid_fuel: "3.157,287",
                     issue_solid_fuel: "627,057"
                 });
@@ -57,7 +64,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                 datos.insert({
                     country: "Albania",
                     year: "2014",
-                    issue_metric_ton: "1,979",
+                    issue_metric_ton: "3,579",
                     issue_liquid_fuel: "3.861,351",
                     issue_solid_fuel: "700,397"
                 });

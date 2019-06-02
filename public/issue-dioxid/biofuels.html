@@ -1,0 +1,21 @@
+<h1>Biofuels</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Año</th>
+            <th>Ethanol</th>
+            <th>Gas Natural</th>
+            <th>Biodiesel</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="biofuel in biofuels">
+            <td>{{ biofuel.country }}</a></td>
+            <td>{{ biofuel.year }}</td>
+            <td>{{ biofuel.ethanolFuel }}</td>
+            <td>{{ biofuel.dryNaturalGas }}</td>
+            <td>{{ biofuel.biodiesel }}</td>
+        </tr>
+    </tbody>
+</table>
