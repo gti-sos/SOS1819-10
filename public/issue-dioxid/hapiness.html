@@ -1,0 +1,21 @@
+<h1>Happiness</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>País</th>
+            <th>Año</th>
+            <th>Rango de felicidad</th>
+            <th>Limite inferior de confianza</th>
+            <th>Limite superior de confianza</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="happines in happiness">
+            <td>{{ happines.country }}</a></td>
+            <td>{{ happines.year }}</td>
+            <td>{{ happines.happinessScore }}</td>
+            <td>{{ happines.lowerLimitTrust }}</td>
+            <td>{{ happines.upperLimitTrust }}</td>
+        </tr>
+    </tbody>
+</table>

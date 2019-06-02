@@ -119,6 +119,17 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             
             controller: "BiofuelsCtrl",
             templateUrl: "issue-dioxid/biofuels.html"
+        
+        }).when("/integrations/Transfers", {
+            
+            controller: "TransfersCtrl",
+            templateUrl: "issue-dioxid/transfers.html"
+        
+        }).when("/integrations/Happiness", {
+            
+            controller: "HappinessCtrl",
+            templateUrl: "issue-dioxid/hapiness.html"
+        
         })
 
         //RUTAS FRAN ALONSO
