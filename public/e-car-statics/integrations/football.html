@@ -1,0 +1,21 @@
+<h1>Football</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Embed</th>
+            <th>URL</th>
+            <th>Thumbnail</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="football in footballs">
+            <td>{{football.title}}</td>
+            <td>{{football.embed}}</td>
+            <td>{{football.url}}</td>
+            <td>{{football.thumbnail}}</td>
+            <td>{{football.date}}</td>
+        </tr>
+    </tbody>
+</table>
