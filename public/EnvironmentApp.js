@@ -88,7 +88,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             templateUrl: "issue-dioxid/geochart.html"
         
             
-        }).when("analytics/HighChartIssueDioxid", {
+        }).when("/analytics/HighChartIssueDioxid", {
             
             controller: "HighGraphCrtl",
             templateUrl: "issue-dioxid/highcharts-issue.html"

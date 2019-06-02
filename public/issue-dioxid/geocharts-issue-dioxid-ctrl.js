@@ -23,8 +23,31 @@ angular
                     issues = response.data;
                     
                     data.push(["Country", "issue_metric_ton"]);
-                    data.push([issues[6].country, parseInt(issues[6].issue_metric_ton)]);
-                    data.push(["Spain", parseInt(issues[1].issue_metric_ton)]);
+                    
+                    issues.forEach(function(x){
+                        
+                        switch(x.country){
+                            
+                            case "España":
+                                
+                                data.push(["Spain", parseFloat(x.issue_metric_ton)]);
+                                break;
+                            
+                            case "Alemania":
+                                
+                                data.push(["Germany", parseFloat(x.issue_metric_ton)]);
+                                break;
+                            
+                            case "Brasil":
+                                
+                                data.push(["Brazil", parseFloat(x.issue_metric_ton)]);
+                                break;
+                            
+                            default:
+                                
+                                data.push([x.country, parseFloat(x.issue_metric_ton)]);
+                        }
+                    });
                     
                     console.log(data);
                     var plot = google.visualization.arrayToDataTable(data);
