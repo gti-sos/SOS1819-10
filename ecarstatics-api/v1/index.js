@@ -23,7 +23,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
             country: "Norway",
             year: 2015,
             marketPart: 22.39,
-            rankingPosition: 1,
+            rankingPosition: 4,
             existsVehicles: 84401
         }, {
             country: "Norway",
@@ -41,7 +41,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
             country: "Holland",
             year: 2015,
             marketPart: 9.74,
-            rankingPosition: 2,
+            rankingPosition: 3,
             existsVehicles: 88991
         }, {
             country: "Holland",
@@ -49,6 +49,24 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
             marketPart: 3.87,
             rankingPosition: 2,
             existsVehicles: 45020
+        },{
+            country: "United States",
+            year: 2015,
+            marketPart: 0.66,
+            rankingPosition: 1,
+            existsVehicles: 410000
+        },{
+            country: "China",
+            year: 2015,
+            marketPart: 0.84,
+            rankingPosition: 2,
+            existsVehicles: 258328
+        },{
+            country: "France",
+            year: 2015,
+            marketPart: 1.2,
+            rankingPosition: 5,
+            existsVehicles: 74274
         }];
 
         ecarstatics.find({}).toArray((err, eCarStaticsArray) => {
