@@ -57,6 +57,16 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "uefaCountry",
             templateUrl: "e-car-statics/integrations/uefa-country-rankings.html"
 
+        }).when("/integrations/companies", {
+
+            controller: "companiesCtrl",
+            templateUrl: "e-car-statics/integrations/companies.html"
+
+        }).when("/integrations/issueDioxid", {
+
+            controller: "issueDioxidCtrl",
+            templateUrl: "e-car-statics/integrations/issue-dioxid.html"
+
         })
         
 
