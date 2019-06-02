@@ -81,6 +81,14 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
             }
         });
     });
+    
+    // PROXY A COMPANIES
+    var request = require("request");
+    var companiesAPI = "http://sos1819-03.herokuapp.com";
+    app.use("/proxyG3", function(req, res) {
+        var url = companiesAPI + req.url;
+        req.pipe(request(url)).pipe(res);
+    });
 
 
     //  GET /api/v1/e-car-statics

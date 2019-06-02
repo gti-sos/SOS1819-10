@@ -28,15 +28,14 @@ angular
                 response.data.forEach(function(elem) {
                     let name = elem.country;
                     let value = elem.existsVehicles;
-                    uvCharts.push({ "name": name, "value": value });
+                    uvCharts.push({ "name": name, "value": value});
                     // }
                 });
 
                 var graphdef = {
                     categories: ['uvCharts'],
                     dataset: {
-                        'uvCharts': uvCharts,
-                        'name': name,
+                        'uvCharts': uvCharts
                     }
                 };
 
