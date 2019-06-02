@@ -28,20 +28,20 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "EditCtrl",
             templateUrl: "e-car-statics/edit.html"
 
-        }).when("/analytics/geochartsCarStatics", {
+        }).when("/analytics/geocharts", {
 
             controller: "GeoChartsCarStatics",
-            templateUrl: "e-car-statics/analytics/graphics.html"
+            templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
 
-        }).when("/analytics/highchartsCarStatics", {
+        }).when("/analytics/highcharts", {
 
             controller: "HighchartsCarStatics",
-            templateUrl: "e-car-statics/analytics/graphics.html"
+            templateUrl: "e-car-statics/analytics/highcharts-ecarstatics.html"
 
-        }).when("/analytics/uvcchartsCarStatics", {
+        }).when("/analytics/uvcharts", {
 
             controller: "uvchartCarStatics",
-            templateUrl: "e-car-statics/analytics/graphics.html"
+            templateUrl: "e-car-statics/analytics/uvcharts-ecarstatics.html"
 
         })
         

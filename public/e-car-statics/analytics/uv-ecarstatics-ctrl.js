@@ -26,7 +26,6 @@ angular
             $http.get(API).then(function(response) {
                 let uvCharts = [];
                 response.data.forEach(function(elem) {
-                    //if(elem.arrest_count>15){ // cojo los arrestos mayores de 15
                     let name = elem.country;
                     let value = elem.existsVehicles;
                     uvCharts.push({ "name": name, "value": value });
@@ -42,7 +41,7 @@ angular
                 };
 
 
-                var chart = uv.chart('Donut', graphdef, {
+                var chart = uv.chart('Bar', graphdef, {
                     meta: {
                         caption: 'Number of electric vehicles per country',
                         hlabel: 'Mount of vehicles',
