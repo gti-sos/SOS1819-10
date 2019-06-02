@@ -31,17 +31,17 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
         }).when("/analytics/geochartsCarStatics", {
 
             controller: "GeoChartsCarStatics",
-            templateUrl: "e-car-statics/analytics/geocharts-ecarstatics.html"
+            templateUrl: "e-car-statics/analytics/graphics.html"
 
         }).when("/analytics/highchartsCarStatics", {
 
             controller: "HighchartsCarStatics",
-            templateUrl: "e-car-statics/analytics/highcharts-ecarstatics.html"
+            templateUrl: "e-car-statics/analytics/graphics.html"
 
         }).when("/analytics/uvcchartsCarStatics", {
 
             controller: "uvchartCarStatics",
-            templateUrl: "e-car-statics/analytics/uv-ecarstatics.html"
+            templateUrl: "e-car-statics/analytics/graphics.html"
 
         })
         
