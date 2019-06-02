@@ -2,10 +2,10 @@
 
 var app = angular.module("EnvironmentApp");
 
-app.controller("carsCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("issueDioxidCtrl", ["$scope", "$http", function($scope, $http) {
 
 
-    console.log("List Cars Controller initialized.");
+    console.log("List IssueDioxid Controller initialized.");
 
     var API = "/api/v2/issue-dioxid";
     refresh();
