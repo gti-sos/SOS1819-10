@@ -1,0 +1,31 @@
+<h1>Issue Dioxid</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Issue_metric_ton
+            </th>
+            <th>
+                Issue_liquid_fuel
+            </th>
+            <th>
+                Issue_solid_fuel
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dato in datos">
+            <td><a href="#!/ui/v1/issue-dioxid/edit/{{ dato.country }}/{{dato.year}}">{{ dato.country }}</a></td>
+            <td>{{ dato.year }}</td>
+            <td>{{ dato.issue_metric_ton }}</td>
+            <td>{{ dato.issue_liquid_fuel }}</td>
+            <td>{{ dato.issue_solid_fuel }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,1 +1,43 @@
-
+<h1>Companies</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <tr>
+                <th scope="col">
+                    País
+                </th>
+                <th scope="col">
+                    Año
+                </th>
+                <th scope="col">
+                    Número de compañías
+                </th>
+                <th scope="col">
+                    Sectores
+                </th>
+                <th scope="col">
+                    Paginas
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="company in companies">
+            <td>
+                <a href="#!/ui/v1/companies/update/{{company.country}}/{{company.year}}">
+                                    {{ company.country }}
+                                </a>
+            </td>
+            <td>
+                {{company.year}}
+            </td>
+            <td>
+                {{company.numberOfCompanies}}
+            </td>
+            <td>
+                {{company.sector}}
+            </td>
+            <td>
+                {{company.page}}
+            </td>
+    </tbody>
+</table>
