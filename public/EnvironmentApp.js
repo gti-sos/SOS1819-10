@@ -45,7 +45,7 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
         })
         
-        //Integrations
+        //Integraciones de alumnos SOS
         .when("/integrations/scorer", {
 
             controller: "scorerStats",
@@ -69,6 +69,18 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
 
         })
         
+        //Integraciones con APIs exteriores
+        .when("/integrations/issueDioxid", {
+
+            controller: "issueDioxidCtrl",
+            templateUrl: "e-car-statics/integrations/issue-dioxid.html"
+
+        }).when("/integrations/issueDioxid", {
+
+            controller: "issueDioxidCtrl",
+            templateUrl: "e-car-statics/integrations/issue-dioxid.html"
+
+        })
 
         //RUTAS FRAN
 

@@ -56,7 +56,6 @@ angular
                     },
 
                     series: [{
-                        type: 'area',
                         name: 'Vehiculos eléctricos en uso',
                         data: response.data.map(function(d) { return d["existsVehicles"] })
                     }]
