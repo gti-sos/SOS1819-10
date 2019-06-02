@@ -75,6 +75,11 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "footballCtrl",
             templateUrl: "e-car-statics/integrations/football.html"
 
+        }).when("/integrations/country", {
+
+            controller: "countryCtrl",
+            templateUrl: "e-car-statics/integrations/country.html"
+
         })
 
         //RUTAS FRAN

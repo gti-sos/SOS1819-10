@@ -1,0 +1,22 @@
+<h1>Countries</h1>
+<h3> Get information about countries </h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Capital</th>
+            <th>Region</th>
+            <th>Poblacion</th>
+            <th>Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="country in countries">
+            <td>{{country.name}}</td>
+            <td>{{country.capital}}</td>
+            <td>{{country.region}}</td>
+            <td>{{country.population}}</td>
+            <td>{{country.area}}</td>
+        </tr>
+    </tbody>
+</table>
