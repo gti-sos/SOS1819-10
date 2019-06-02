@@ -2,7 +2,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 var cors = require("cors");
-//var Dygraph = require('dygraphs');
 
 //AÑADIENDO APIS
 var biofuelsAPI = require("./biofuels-api");
@@ -20,7 +19,6 @@ app.use(cors());
 var port = process.env.PORT || 8080;
 
 app.use("/", express.static(path.join(__dirname, "public")));
-
 
 //app.use("/ui/v1/biofuels-production", express.static(path.join(__dirname, "public/biofuels")));
 //app.use("/ui/v1/e-car-statics", express.static(path.join(__dirname, "public/e-car-statics")));
