@@ -20,20 +20,22 @@ angular
                 google.charts.setOnLoadCallback(drawRegionsMap);
 
                 function drawRegionsMap() {
-                    var data = [];
-
-                    ecarstatics = response.data;
-                    data.push(["Country", "existing vehicles"]);
-                    data.push([ecarstatics[0].country, ecarstatics[0].existsVehicles]);
-                    data.push([ecarstatics[4].country, ecarstatics[4].existsVehicles]);
-                    console.log(data);
-                    var plot = google.visualization.arrayToDataTable(data);
-
+                    var paises = response.data.map(function(d) { return d["country"] });
+                    var mountOfCars = response.data.map(function(d) { return d["existsVehicles"] });
+                    
+                    var a = [];
+                    a.push(['Country', 'existsVehicles']);
+                    for (var i = 0; i < paises.length; i++) {
+                        a.push([paises[i], mountOfCars[i]]);
+                    }
+                    
+                    var data = google.visualization.arrayToDataTable(a);
+                    
                     var options = {};
-
+            
                     var chart = new google.visualization.GeoChart(document.getElementById('carstatics_id'));
-
-                    chart.draw(plot, options);
+            
+                    chart.draw(data, options);
                 }
             });
         }
