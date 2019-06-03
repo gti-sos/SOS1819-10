@@ -20,7 +20,7 @@ angular
 
                 });
 
-                let sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
+                var sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
 
                 var naturalChina = sinRepetidos.map(function(year) {
                     var dryNaturalGas = ""
