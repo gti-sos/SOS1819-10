@@ -15,7 +15,8 @@ app.controller("footballCtrl", ["$scope", "$http", function($scope, $http) {
         var config = {
             headers: {
                 "X-RapidAPI-Host": "free-football-soccer-videos.p.rapidapi.com",
-                "X-RapidAPI-Key": "729b8d6310msh481d13170bbb74ap138a89jsn5d34b85865ee"
+                "X-RapidAPI-Key": "729b8d6310msh481d13170bbb74ap138a89jsn5d34b85865ee",
+                "accept": "application/json"
             }
         };
 
