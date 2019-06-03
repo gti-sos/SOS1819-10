@@ -20,7 +20,7 @@ app.controller("footballCtrl", ["$scope", "$http", function($scope, $http) {
         };
 
 
-        console.log("Requesting Number to <" + API + ">...");
+        console.log("Requesting Football to <" + API + ">...");
         $http
             .get(API, config)
             .then(function(response) {

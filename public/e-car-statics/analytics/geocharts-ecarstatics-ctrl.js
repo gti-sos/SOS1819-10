@@ -21,12 +21,12 @@ angular
 
                 function drawRegionsMap() {
                     var paises = response.data.map(function(d) { return d["country"] });
-                    var mountOfCars = response.data.map(function(d) { return d["existsVehicles"] });
+                    var amountOfCars = response.data.map(function(d) { return d["existsVehicles"] });
                     
                     var a = [];
                     a.push(['Country', 'existsVehicles']);
                     for (var i = 0; i < paises.length; i++) {
-                        a.push([paises[i], mountOfCars[i]]);
+                        a.push([paises[i], amountOfCars[i]]);
                     }
                     
                     var data = google.visualization.arrayToDataTable(a);
