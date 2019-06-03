@@ -14,14 +14,14 @@ angular
 
                 Highcharts.chart('carstatics_container', {
                     title: {
-                        text: 'Mount of electric car per country'
+                        text: 'Use of electric car per country'
                     },
                     xAxis: {
                         categories: response.data.map(function(d) { return d["country"] + " " + d["year"] })
                     },
                     yAxis: {
                         title: {
-                            text: 'Mount of vehicles'
+                            text: 'Number of vehicles'
                         }
 
                     },
