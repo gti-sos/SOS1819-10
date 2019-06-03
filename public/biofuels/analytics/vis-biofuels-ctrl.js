@@ -13,8 +13,7 @@ angular
             var edges = [];
             var count = 20;
             var count1 = 40;
-            //var nodes = [];
-            //var edges = [];
+
             $http.get(API).then(function(response) {
                 // create an array with nodes
                 biofuels = response.data;
@@ -26,7 +25,7 @@ angular
 
                 });
 
-                let sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
+                var sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
 
                 sinRepetidos.forEach(function(year, indice) {
                     nodes.push({ id: indice, label: String(year) });
@@ -77,35 +76,6 @@ angular
                     edges: edges
                 };
                 var network = new vis.Network(container, data, {});
-
-
-                /*
-            google.charts.load('current', {
-                'packages': ['geochart'],
-                // Note: you will need to get a mapsApiKey for your project.
-                // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-                'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-            });
-            google.charts.setOnLoadCallback(drawRegionsMap);
-    
-            function drawRegionsMap() {
-                var data = [];
-    
-                biofuels = response.data;
-                data.push(["Country", "Dry Natural Gas"]);
-                data.push([biofuels[0].country, biofuels[0].dryNaturalGas]);
-                data.push([biofuels[2].country, biofuels[2].dryNaturalGas]);
-                data.push([biofuels[3].country, biofuels[3].dryNaturalGas]);
-                console.log(data);
-                var plot = google.visualization.arrayToDataTable(data);
-    
-                var options = {};
-    
-                var chart = new google.visualization.GeoChart(document.getElementById('biofuels_id'));
-    
-                chart.draw(plot, options);
-            }
-            */
             });
         }
     ]);

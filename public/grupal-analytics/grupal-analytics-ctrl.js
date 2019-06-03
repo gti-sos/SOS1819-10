@@ -36,7 +36,7 @@ angular
                         });
 
 
-                        let sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
+                        var sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
 
                         var mountNorway = sinRepetidos.map(function(year) {
                             var existsVehicles = ""
