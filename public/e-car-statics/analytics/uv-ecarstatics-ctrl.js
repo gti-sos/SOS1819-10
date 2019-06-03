@@ -26,10 +26,11 @@ angular
             $http.get(API).then(function(response) {
                 let uvCharts = [];
                 response.data.forEach(function(elem) {
+                    if(elem.year == 2015){
                     let name = elem.country;
                     let value = elem.existsVehicles;
                     uvCharts.push({ "name": name, "value": value});
-                    // }
+                    }
                 });
 
                 var graphdef = {
@@ -42,8 +43,8 @@ angular
 
                 var chart = uv.chart('Bar', graphdef, {
                     meta: {
-                        caption: 'Number of electric vehicles per country',
-                        hlabel: 'Mount of vehicles',
+                        caption: 'Number of electric vehicles per country in 2015',
+                        hlabel: 'Number of electric vehicles',
                         vlabel: 'Country'
                     }
                 });
