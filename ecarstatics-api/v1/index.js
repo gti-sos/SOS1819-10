@@ -11,7 +11,7 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
     //Get /api/v1/e-car-statics/docs
 
     app.get(path + "/e-car-statics/docs", (req, res) => {
-        res.redirect("https://documenter.getpostman.com/view/7062681/S17us6hd");
+        res.redirect("https://documenter.getpostman.com/view/7062681/S1TWzcSg");
     });
 
     // GET /api/v1/e-car-statics/loadInitialData
