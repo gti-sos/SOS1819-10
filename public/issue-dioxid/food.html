@@ -1,0 +1,17 @@
+<h1>Comida</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Calorias</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="food in foods">
+            <td>{{ food.fields.item_name }}</a></td>
+            <td>{{ food.fields.brand_name }}</a></td>
+            <td>{{ food.fields.nf_calories }}</a></td>
+        </tr>
+    </tbody>
+</table>
