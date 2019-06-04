@@ -125,12 +125,12 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "TransfersCtrl",
             templateUrl: "issue-dioxid/transfers.html"
         
-        }).when("/integrations/Happiness", {
+        })/*.when("/integrations/Happiness", {
             
             controller: "HappinessCtrl",
             templateUrl: "issue-dioxid/hapiness.html"
-        
-        })
+            Da un error
+        })*/
 
         //RUTAS FRAN ALONSO
 

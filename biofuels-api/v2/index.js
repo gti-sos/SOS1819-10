@@ -269,21 +269,13 @@ module.exports = function(app, BASE_PATH, biofuels) {
         var year = parseInt(req.params.year);
         var country = req.params.country;
 
-        //var reqBiofuels = req.body;
-
-        var ethanolFuel = parseFloat(req.body.ethanolFuel);
-        var dryNaturalGas = parseFloat(req.body.dryNaturalGas);
-        var biodiesel = parseFloat(req.body.biodiesel);
+        var ethanolFuel = String(req.body.ethanolFuel);
+        var dryNaturalGas = String(req.body.dryNaturalGas);
+        var biodiesel = String(req.body.biodiesel);
         var yearBody = parseInt(req.body.year);
         var countryBody = req.body.country;
 
-        var reqBiofuels = {
-            "country": country,
-            "year": year,
-            "ethanolFuel": ethanolFuel,
-            "dryNaturalGas": dryNaturalGas,
-            "biodiesel": biodiesel
-        };
+
 
         console.log(ethanolFuel);
         console.log(dryNaturalGas);
@@ -295,6 +287,16 @@ module.exports = function(app, BASE_PATH, biofuels) {
             res.sendStatus(400);
 
         } else {
+            ethanolFuel = parseFloat(req.body.ethanolFuel);
+            dryNaturalGas = parseFloat(req.body.dryNaturalGas);
+            biodiesel = parseFloat(req.body.biodiesel);
+            var reqBiofuels = {
+                "country": country,
+                "year": year,
+                "ethanolFuel": ethanolFuel,
+                "dryNaturalGas": dryNaturalGas,
+                "biodiesel": biodiesel
+            };
 
             biofuels.find({
                 "country": country,

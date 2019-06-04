@@ -29,7 +29,11 @@ angular
                 console.log("Updating a new biofuel: " + JSON.stringify($scope.biofuel));
 
                 Object.keys($scope.biofuel).forEach(p => {
-                    if ($scope.biofuel[p] == "") {
+                    var biofuel = $scope.biofuel[p];
+                    if (biofuel == 0) {
+                        biofuel = String($scope.biofuel[p]);
+                    }
+                    if (biofuel == "") {
                         console.log("El objeto no contiene todos los parametros");
                         $scope.status = "Error: El objeto debe contener todos los parametros.";
                         put = false;
