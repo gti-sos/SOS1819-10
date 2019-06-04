@@ -13,7 +13,7 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
         var emisiones = response.data;
 
         var datosGraficos = [];
-
+/*
         emisiones.forEach(function(i) {
 
            if (datosGraficos == []){
@@ -38,8 +38,37 @@ app.controller("GraphCrtl", ["$scope", "$http", "$location", "$routeParams", fun
                 }
             }
             
-        });
+        });*/
         
+        var years = emisiones.map(function(item) {
+
+                    var newItem = item.year;
+                    return newItem;
+
+                });
+
+        var sinRepetidos = years.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual).sort();
+        
+        console.log(sinRepetidos);
+        console.log(emisiones);
+        
+        var usado = false;
+        
+        sinRepetidos.forEach(function(x){
+            
+            usado = false;
+            
+            emisiones.forEach(function(y){
+                
+                if(y.year == x && usado == false){
+                    
+                    datosGraficos.push([parseInt(x), parseFloat(y.issue_metric_ton)]);
+                    usado = true;
+                    
+                }
+            });
+        });
+        console.log(datosGraficos);
         $scope.graphiss = new Dygraph(
 
             document.getElementById("graphiss"),
