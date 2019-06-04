@@ -38,10 +38,12 @@ app.controller("scorerStats", ["$scope", "$http", function($scope, $http) {
                 var lab = [];
                 
                 for (var i in responseCar.data) {
-                    lab.push("Country: " + responseCar.data.map(function(d) { return d["country"] })[i]);
+                    if(i<=4){
+                    lab.push(responseCar.data.map(function(d) { return d["country"] + " : " + datosScorer[i]["name"] })[i]);
+                    }
                     }
 
-                new Chartist.Bar('#Integration2', {
+                new Chartist.Line('#Integration2', {
                     
                         labels: lab,
                         
