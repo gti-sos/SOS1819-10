@@ -41,7 +41,7 @@ app.controller("scorerStats", ["$scope", "$http", function($scope, $http) {
                     lab.push("Country: " + responseCar.data.map(function(d) { return d["country"] })[i]);
                     }
 
-                new Chartist.Line('#Integration2', {
+                new Chartist.Bar('#Integration2', {
                     
                         labels: lab,
                         
