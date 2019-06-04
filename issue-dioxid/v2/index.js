@@ -9,8 +9,8 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
     path = BASE_PATH + "issue_dioxid/loadInitialData";
 
     var request = require("request");
-    var biofuelsAPI = "https://sos1819-10.herokuapp.com/api/v1/biofuels-production";
-    app.use("/proxyBIO", function(req, res) {
+    var biofuelsAPI = "http://sos1819-04.herokuapp.com/api/v1/happiness-stats";
+    app.use("/proxyHappy", function(req, res) {
         var url = biofuelsAPI + req.url;
         req.pipe(request(url)).pipe(res);
     });

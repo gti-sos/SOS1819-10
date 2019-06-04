@@ -7,7 +7,7 @@ app.controller("HappinessCtrl", ["$scope", "$http", function($scope, $http) {
 
     console.log("List Happiness Controller initialized.");
 
-    var API = "http://sos1819-04.herokuapp.com/api/v1/happiness-stats";
+    var API = "/proxyHappy";
     
     refresh();
 
