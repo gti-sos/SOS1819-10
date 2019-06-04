@@ -269,9 +269,9 @@ module.exports = function(app, BASE_PATH, biofuels) {
         var year = parseInt(req.params.year);
         var country = req.params.country;
 
-        var ethanolFuel = req.body.ethanolFuel;
-        var dryNaturalGas = req.body.dryNaturalGas;
-        var biodiesel = req.body.biodiesel;
+        var ethanolFuel = String(req.body.ethanolFuel);
+        var dryNaturalGas = String(req.body.dryNaturalGas);
+        var biodiesel = String(req.body.biodiesel);
         var yearBody = parseInt(req.body.year);
         var countryBody = req.body.country;
 
