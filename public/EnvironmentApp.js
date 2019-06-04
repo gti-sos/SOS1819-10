@@ -130,6 +130,11 @@ var app = angular.module("EnvironmentApp", ["ngRoute"]).config(function($routePr
             controller: "FoodCtrl",
             templateUrl: "issue-dioxid/food.html"
         
+        }).when("/integrations/Heart", {
+            
+            controller: "HeartCtrl",
+            templateUrl: "issue-dioxid/heart.html"
+        
         })/*.when("/integrations/Happiness", {
             
             controller: "HappinessCtrl",

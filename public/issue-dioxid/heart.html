@@ -1,0 +1,17 @@
+<h1>Cartas Hearthstone</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Conjunto</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="card in cards">
+            <td>{{ card.name }}</a></td>
+            <td>{{ card.cardSet }}</a></td>
+            <td>{{ card.type }}</a></td>
+        </tr>
+    </tbody>
+</table>
