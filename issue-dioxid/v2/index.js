@@ -7,9 +7,9 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
     var datos = issue_dioxid;
 
     path = BASE_PATH + "issue_dioxid/loadInitialData";
-    
+
     var request = require("request");
-    var biofuelsAPI = "http://sos1819-10.herokuapp.com";
+    var biofuelsAPI = "https://sos1819-10.herokuapp.com/api/v1/biofuels-production";
     app.use("/proxyBIO", function(req, res) {
         var url = biofuelsAPI + req.url;
         req.pipe(request(url)).pipe(res);
@@ -68,7 +68,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     issue_liquid_fuel: "3.861,351",
                     issue_solid_fuel: "700,397"
                 });
-                
+
                 datos.insert({
                     country: "Andorra",
                     year: "1990",
@@ -76,7 +76,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     issue_liquid_fuel: "407,037",
                     issue_solid_fuel: "700,56"
                 });
-                
+
                 datos.insert({
                     country: "Bahamas",
                     year: "2000",
@@ -84,7 +84,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     issue_liquid_fuel: "99,78",
                     issue_solid_fuel: "3,667"
                 });
-                
+
                 datos.insert({
                     country: "Venezuela",
                     year: "2005",
@@ -92,7 +92,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                     issue_liquid_fuel: "58,367",
                     issue_solid_fuel: "135,679"
                 });
-                
+
                 datos.insert({
                     country: "Brasil",
                     year: "1970",
@@ -159,7 +159,7 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
                         }));
                     }
                     else {
-                        
+
                         res.send(datosArray);
                     }
                 }
@@ -328,8 +328,8 @@ module.exports = function(app, BASE_PATH, issue_dioxid) {
             else {
 
                 if (Object.keys(newData).length >= 5 && newData.country && newData.year &&
-                    newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel
-                    && newData.country == name && newData.year == anyo) {
+                    newData.issue_metric_ton && newData.issue_liquid_fuel && newData.issue_solid_fuel &&
+                    newData.country == name && newData.year == anyo) {
 
                     datos.update({ "country": name, "year": anyo }, { $set: newData });
 
