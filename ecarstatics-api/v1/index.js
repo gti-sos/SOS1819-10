@@ -15,8 +15,6 @@ module.exports = function(app, BASE_PATH, ecarstatics) {
     });
 
     // GET /api/v1/e-car-statics/loadInitialData
-
-
     app.get(path + "/e-car-statics/loadInitialData", (req, res) => {
 
         var newecarstatics = [{
